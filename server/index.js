@@ -6,7 +6,13 @@ const express = require('express')
 const app = express()
 const routerapi = require('./router')
 
-app.use('/movie', routerapi)
+// app.use('/movie', routerapi)
+
+app.get('/api/movie/getName', (req, res) => {
+  res.json({
+    data: '後端get Name連接ok'
+  })
+})
 
 app.listen(3000)
 console.log('success listen at port:3000......')
