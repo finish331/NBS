@@ -8,7 +8,7 @@ const routerapi = require('./router')
 
 // app.use('/movie', routerapi)
 
-app.get('/api/movie/getName', (req, res) => {
+app.get('/movie/getName', (req, res) => {
   res.json({
     data: '後端get Name連接ok'
   })
