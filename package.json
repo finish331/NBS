@@ -8,13 +8,20 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.19.0",
     "body-parser": "^1.19.0",
+    "bootstrap": "^4.3.1",
+    "bootstrap-vue": "^2.0.0-rc.26",
+    "chart.js": "^2.8.0",
     "core-js": "^2.6.5",
+    "echarts": "^4.2.1",
     "element-ui": "^2.8.2",
     "express": "^4.17.0",
     "mysql": "^2.17.1",
+    "v-charts": "^1.19.0",
     "vue": "^2.6.10",
+    "vue-chartjs": "^3.4.2",
+    "vue-loading-overlay": "^3.2.0",
     "vue-router": "^3.0.3",
     "vuex": "^3.1.1"
   },
