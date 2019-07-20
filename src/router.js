@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Player from './views/Player.vue'
+import Leader from './views/Leader.vue'
 
 Vue.use(Router)
 
@@ -24,6 +25,11 @@ export default new Router({
       path: '/player',
       name: 'Player',
       component: Player
+    },
+    {
+      path: '/Leader',
+      name: 'Leader',
+      component: Leader
     }
   ]
 })

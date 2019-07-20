@@ -11,9 +11,9 @@ import 'vue-loading-overlay/dist/vue-loading.css'
 
 Vue.use(BootstrapVue)
 Vue.use(VCharts)
+Vue.use(ElementUI)
 
 Vue.config.productionTip = false
-Vue.use(ElementUI)
 Vue.prototype.$http = axios
 
 new Vue({

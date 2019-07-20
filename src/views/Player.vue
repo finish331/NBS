@@ -33,7 +33,7 @@
 		data() {
 			this.chartSetting = [
 				{
-					textStyle.color : white
+					color : 'white'
 				}
 			]
 			this.visualMap = [
