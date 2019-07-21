@@ -13,6 +13,8 @@
 					<ve-line
 						height="300px"
 						width="auto"
+						:title="titleSetting"
+						:textStyle="textStyles"
 						:settings="chartSetting"
 						:grid="grid"
 						:visual-map="visualMap"
@@ -20,7 +22,9 @@
 						:data="chartData"
 						v-if="chartData"
 					></ve-line>
-					<b-spinner v-else label="Spinning"></b-spinner>
+					<div v-else >
+						<b-spinner variant="primary" label="Text Centered"></b-spinner>
+					</div>
 				</b-card>
 			</b-card-group>
 		</div>
@@ -31,26 +35,29 @@
 	export default {
 		components: {},
 		data() {
-			this.chartSetting = [
-				{
-					textStyle.color : white
+			this.titleSetting = {
+				textStyle: {
+					color: "white"
 				}
-			]
-			this.visualMap = [
-        {
-          type: 'piecewise',
-          splitNumber: 5,
-          min: 0,
-          max: 40,
-          right: 0,
-          top: '50%'
-        }
-      ]
-      this.grid = {
+			},
+				(this.textStyles = {
+					color: "white"
+				}),
+				(this.visualMap = [
+					{
+						type: "piecewise",
+						splitNumber: 5,
+						min: 0,
+						max: 40,
+						right: 0,
+						top: "50%"
+					}
+				]);
+			this.grid = {
 				right: 60
-      }
+			};
 			return {
-				chartData: null,
+				chartData: null
 			};
 		},
 		mounted() {
