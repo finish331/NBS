@@ -14,15 +14,15 @@
 						height="300px"
 						width="auto"
 						:title="titleSetting"
-						:textStyle="textStyles"
-						:settings="chartSetting"
+						:textStyle="textStyles" 
 						:grid="grid"
 						:visual-map="visualMap"
 						:judge-width="true"
 						:data="chartData"
 						v-if="chartData"
+						:legend="legendSetting"
 					></ve-line>
-					<div v-else >
+					<div v-else>
 						<b-spinner variant="primary" label="Text Centered"></b-spinner>
 					</div>
 				</b-card>
@@ -34,16 +34,22 @@
 <script>
 	export default {
 		components: {},
-		data() {
-			this.titleSetting = {
-				textStyle: {
+		data() { 
+			return {
+				legendSetting: {
+					textStyle:{
+						color: "white"
+					}
+				},
+				titleSetting: {
+					textStyle: {
+						color: "white"
+					}
+				},
+				textStyles: {
 					color: "white"
-				}
-			},
-				(this.textStyles = {
-					color: "white"
-				}),
-				(this.visualMap = [
+				},
+				visualMap: [
 					{
 						type: "piecewise",
 						splitNumber: 5,
@@ -52,11 +58,10 @@
 						right: 0,
 						top: "50%"
 					}
-				]);
-			this.grid = {
-				right: 60
-			};
-			return {
+				],
+				grid: {
+					right: 60
+				},
 				chartData: null
 			};
 		},

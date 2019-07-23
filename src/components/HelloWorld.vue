@@ -97,7 +97,7 @@ export default {
     getName () {
       this.$http.get('/api/movie/getName')
         .then((res) => {
-          console.log('res',res),
+          console.log('res',res) 
           this.inpContent = res.data.data
         })
     }

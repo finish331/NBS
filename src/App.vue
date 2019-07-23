@@ -51,7 +51,9 @@
 		data() {
 			return {};
 		},
-		mounted: {}
+		mounted () {
+			console.log(`仔入好了`);
+		}
 	};
 </script>
 
