@@ -13,8 +13,7 @@
 					<ve-line
 						height="300px"
 						width="auto"
-						:title="titleSetting"
-						:textStyle="textStyles" 
+						:textStyle="textStyles"
 						:grid="grid"
 						:visual-map="visualMap"
 						:judge-width="true"
@@ -34,11 +33,12 @@
 <script>
 	export default {
 		components: {},
-		data() { 
+		data() {
 			return {
 				legendSetting: {
-					textStyle:{
-						color: "white"
+					textStyle: {
+						color: "white",
+						fontSize: 14
 					}
 				},
 				titleSetting: {
@@ -47,16 +47,21 @@
 					}
 				},
 				textStyles: {
-					color: "white"
+					color: "white",
+					fontSize: 14
 				},
 				visualMap: [
 					{
-						type: "piecewise",
+						type: "continuous",
 						splitNumber: 5,
 						min: 0,
 						max: 40,
 						right: 0,
-						top: "50%"
+						top: "50%",
+						precision: 1,
+						inRange: {
+							color: ['#333333', '#777777']
+						}
 					}
 				],
 				grid: {
