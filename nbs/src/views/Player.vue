@@ -1,13 +1,14 @@
 <template>
 	<div>
-		<div class="my-1 bg-dark text-white">
-			<div class="container mx-3">
-				<div class="row justify-content-start align-items-center">
+		<!-- 球員基本資料區 -->
+		<div class="my-1 mx-2 bg-dark text-white">
+			<div class="container-fluid mx-0 px-0">
+				<div class="row pl-4 mb-1 justify-content-start align-items-center">
 					<div class="col-auto">
 						<img src="../assets/jamesHarden.png" />
 					</div>
 					<div class="col-auto">
-						<div class="row justify-content-start align-items-end pt-2 mb-1">
+						<div class="row justify-content-start align-items-end pt-2 mb-1" style="flex-wrap:nowrap">
 							<h1 class="col-auto font-italic" id="number">#13</h1>
 							<div class="col-auto px-0">
 								<p class="name">James</p>
@@ -22,18 +23,61 @@
 						</div>
 					</div>
 				</div>
+				<!-- 基本資料區 -->
+				<div class="row mx-0">
+					<div class="col baseDataDiv">
+						<p class="title">G</p>
+						<p class="mb-1">78</p>
+					</div>
+					<div class="col baseDataDiv">
+						<p class="title">PTS</p>
+						<p class="mb-1">36.1</p>
+					</div>
+					<div class="col baseDataDiv">
+						<p class="title">TRB</p>
+						<p class="mb-1">6.6</p>
+					</div>
+					<div class="col baseDataDiv">
+						<p class="title">AST</p>
+						<p class="mb-1">7.5</p>
+					</div>
+					<div class="col baseDataDiv">
+						<p class="title">FG%</p>
+						<p class="mb-1">44.2</p>
+					</div>
+				</div>
+				<div class="row mx-0">
+					<div class="col baseDataDiv">
+						<p class="title">FG3%</p>
+						<p class="mb-1">36.8</p>
+					</div>
+					<div class="col baseDataDiv">
+						<p class="title">FT%</p>
+						<p class="mb-1">87.9</p>
+					</div>
+					<div class="col baseDataDiv">
+						<p class="title">eFG%</p>
+						<p class="mb-1">54.1</p>
+					</div>
+					<div class="col baseDataDiv">
+						<p class="title">PER</p>
+						<p class="mb-1">30.6</p>
+					</div>
+					<div class="col baseDataDiv">
+						<p class="title">WS</p>
+						<p class="mb-1">15.2</p>
+					</div>
+				</div>
+				<!-- 基本資料區 -->
 			</div>
 		</div>
-		<div class="container my-3">
-			<div>
-				<b-card
-					img-src="http://lorempixel.com/250/300/sports"
-					blank-color="grey"
-					bg-variant="dark"
-					text-variant="white"
-					img-left
-					class="mb-3"
-				>
+		<!-- 球員進階數據 -->
+		<div class="container my-3 bg-dark">
+			<div class="row">
+				<div class="col-4">
+					<ve-radar :radar="radars" :legend="radarLegend" :data="chartData" height="300px" width="auto"></ve-radar>
+				</div>
+				<div class="col-8" v-if="pointsData">
 					<ve-line
 						height="300px"
 						width="auto"
@@ -41,16 +85,14 @@
 						:grid="grid"
 						:visual-map="visualMap"
 						:judge-width="true"
-						:data="chartData"
+						:data="pointsData"
 						:legend="legendSetting"
 						:settings="chartSettings"
-						v-if="chartData"
 					></ve-line>
-
-					<div class="d-flex justify-content-center flex-wrap my-5" v-else>
-						<b-spinner variant="primary" label="Text Centered"></b-spinner>
-					</div>
-				</b-card>
+				</div>
+				<div class="d-flex justify-content-center flex-wrap my-5" v-else>
+					<b-spinner variant="primary" label="Text Centered"></b-spinner>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -95,7 +137,32 @@
 				grid: {
 					right: 60
 				},
-				chartData: null
+				pointsData: null,
+				radars: {
+					indicator: [
+						{name: 'PTS', max: 40},
+						{name: 'TRB', max: 15},
+						{name: 'AST', max: 13},
+						{name: 'BLK', max: 3},
+						{name: 'STL', max: 3}						
+					]
+				},
+				chartData: {
+					columns: ["seasons", "PTS", "TRB", "AST", "BLK", "STL"],
+					rows: [
+						{
+							seasons: "2018-19",
+							PTS: 36.1,
+							TRB: 6.6,
+							AST: 7.5,
+							BLK: 0.7,
+							STL: 2.0
+						}
+					]
+				},
+				radarLegend: {
+					show: false
+				}
 			};
 		},
 		mounted() {
@@ -104,7 +171,7 @@
 		methods: {
 			fetchDataFromServer() {
 				setInterval(() => {
-					this.chartData = {
+					this.pointsData = {
 						columns: ["season", "points"],
 						rows: [
 							{ season: "2012-13", points: 5.0 },
@@ -149,5 +216,17 @@
 	#logo {
 		height: 1rem;
 		width: auto;
+	}
+
+	.title {
+		text-align: start;
+		margin-bottom: 0;
+	}
+
+	.baseDataDiv {
+		height: fit-content;
+		line-height: 1.2rem;
+		margin-top: 0;
+		border: 1.5px white solid;
 	}
 </style>
