@@ -72,12 +72,19 @@
 			</div>
 		</div>
 		<!-- 球員進階數據 -->
-		<div class="container my-3 bg-dark">
+		<div class="container my-3">
 			<div class="row">
-				<div class="col-4">
-					<ve-radar :radar="radars" :legend="radarLegend" :data="chartData" height="300px" width="auto"></ve-radar>
+				<div id="radarChartDiv" class="col bg-dark px-0">
+					<ve-radar
+						:radar="radars"
+						:legend="radarLegend"
+						:data="chartData"
+						:settings="radarSettings"
+						height="300px"
+						width="auto"
+					></ve-radar>
 				</div>
-				<div class="col-8" v-if="pointsData">
+				<div id="lineChartDiv" class="col-8 bg-dark mx-1 px-0" v-if="pointsData">
 					<ve-line
 						height="300px"
 						width="auto"
@@ -105,7 +112,31 @@
 			return {
 				chartSettings: {
 					area: true,
-					scale: [true, true] //基本值是否為0，true為否
+					scale: [true, true], //基本值是否為0，true為否
+					lineStyle: {
+						width: 3
+					}
+				},
+				radarSettings: {
+					areaStyle: {
+						color: {
+							type: "radial",
+							x: 0.5,
+							y: 0.5,
+							r: 0.5,
+							colorStops: [
+								{
+									offset: 0,
+									color: "blue" // 0% 处的颜色
+								},
+								{
+									offset: 1,
+									color: "red" // 100% 处的颜色
+								}
+							],
+							global: false // 缺省为 false
+						}
+					}
 				},
 				legendSetting: {
 					textStyle: {
@@ -140,26 +171,14 @@
 				pointsData: null,
 				radars: {
 					indicator: [
-						{name: 'PTS', max: 40},
-						{name: 'TRB', max: 15},
-						{name: 'AST', max: 13},
-						{name: 'BLK', max: 3},
-						{name: 'STL', max: 3}						
+						{ name: "PTS", max: 40 },
+						{ name: "TRB", max: 15 },
+						{ name: "AST", max: 13 },
+						{ name: "BLK", max: 3 },
+						{ name: "STL", max: 3 }
 					]
 				},
-				chartData: {
-					columns: ["seasons", "PTS", "TRB", "AST", "BLK", "STL"],
-					rows: [
-						{
-							seasons: "2018-19",
-							PTS: 36.1,
-							TRB: 6.6,
-							AST: 7.5,
-							BLK: 0.7,
-							STL: 2.0
-						}
-					]
-				},
+				chartData: null,
 				radarLegend: {
 					show: false
 				}
@@ -179,6 +198,19 @@
 							{ season: "2014-15", points: 21.0 },
 							{ season: "2015-16", points: 25.1 },
 							{ season: "2016-15", points: 27.0 }
+						]
+					};
+					this.chartData = {
+						columns: ["seasons", "PTS", "TRB", "AST", "BLK", "STL"],
+						rows: [
+							{
+								seasons: "2018-19",
+								PTS: 36.1,
+								TRB: 6.6,
+								AST: 7.5,
+								BLK: 0.7,
+								STL: 2.0
+							}
 						]
 					};
 				}, 1500);
@@ -228,5 +260,13 @@
 		line-height: 1.2rem;
 		margin-top: 0;
 		border: 1.5px white solid;
+	}
+
+	#radarChartDiv {
+		border-radius: 5px 0 0 5px;
+	}
+
+	#lineChartDiv {
+		border-radius: 0 5px 5px 0;
 	}
 </style>
