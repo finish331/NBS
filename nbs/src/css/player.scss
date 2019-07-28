@@ -1,0 +1,51 @@
+.card-body {
+  padding: 0px;
+}
+
+.name {
+  line-height: 0.3rem;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+#number {
+  font-size: 3rem;
+  line-height: 2.5rem;
+}
+
+#vl {
+  border-left: 2px solid white;
+  height: 1rem;
+}
+
+span {
+  line-height: 1rem;
+}
+
+#logo {
+  height: 1rem;
+  width: auto;
+}
+
+
+.base-data {
+  margin-top: 0;
+  border: 1.5px white solid;
+  .title {
+    text-align: left;
+    margin-bottom: 0; 
+  }  
+  .value {
+    font-weight: 500;
+    margin-bottom: .25rem;
+  }
+}
+
+#radarChartDiv {
+  border-radius: 5px 0 0 5px;
+}
+
+#lineChartDiv {
+  border-radius: 0 5px 5px 0;
+}
