@@ -8,24 +8,25 @@
 						<img src="../assets/jamesHarden.png" />
 					</div>
 					<div class="col-auto">
-						<div class="row justify-content-start align-items-end pt-2 mb-1" style="flex-wrap:nowrap">
-							<h1 class="col-auto font-italic" id="number">#13</h1>
-							<div class="col-auto px-0">
-								<p class="name">James</p>
-								<p class="name">Harden</p>
+						<div class="row justify-content-start align-items-end pt-2 mb-2" style="flex-wrap:nowrap">
+							<h1 class="col-auto font-italic number">#13</h1>
+							<div class="col-auto px-0 pb-1">
+								<div class="name">James</div>
+								<div class="name">Harden</div>
 							</div>
 						</div>
 						<div class="mx-0 d-flex">
-							<img id="logo" class="mr-2" src="../assets/basketball.svg" />
+							<img class="mr-2 logo" src="../assets/basketball.svg" />
 							<span>G</span>
-							<div id="vl" class="mx-2 pb-0"></div>
+							<div class="mx-2 pb-0 vl"></div>
 							<span>Houston Rocket</span>
 						</div>
 					</div>
 				</div>
 				<!-- 基本資料區 -->
 				<div class="row mx-0">
-					<template v-for="(i, index) in 素質List">
+					<!-- 如果v-for會用到兩種以上不同的方式則要用template -->
+					<template v-for="(i, index) in 數值List">
 						<div class="col base-data" :key="index">
 							<div class="title">{{ i.title }}</div>
 							<div class="value">{{ i.value }}</div>
@@ -76,7 +77,7 @@
 		components: {},
 		data() {
 			return {
-				...lineChart,	
+				...lineChart,		//展開lineChart
 				pointsData: {
 					columns: ["season", "points"],
 					rows: [
@@ -100,11 +101,11 @@
 						}
 					]
 				},
-				素質List: [
+				數值List: [
 					{ title: 'G', value: 80 },
-					{ title: 'PTS', value: 30.6 },
-					{ title: 'TRB', value: 5.5 },
-					{ title: 'AST', value: 6.2 },
+					{ title: 'PTS', value: 36.1 },
+					{ title: 'TRB', value: 6.6 },
+					{ title: 'AST', value: 7.5 },
 					{ title: 'FG%', value: 80.3 },
 					{ title: 'FG3%', value: 45.3 },
 					{ title: 'FT%', value: 88.6 },
@@ -118,5 +119,5 @@
 </script>
 
 <style scoped lang="scss">
-@import '../css/player.scss'
+@import '../scss/player.scss'
 </style>
