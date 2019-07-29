@@ -8,6 +8,7 @@ import axios from 'axios'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'vue-loading-overlay/dist/vue-loading.css'
+import vuetify from './plugins/vuetify';
 
 Vue.use(BootstrapVue)
 Vue.use(VCharts)
@@ -19,5 +20,6 @@ Vue.prototype.$http = axios
 new Vue({
   router,
   store,
+  vuetify,
   render: h => h(App)
 }).$mount('#app')
