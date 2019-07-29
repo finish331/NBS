@@ -32,7 +32,7 @@
 							<div class="value">{{ i.value }}</div>
 						</div>
 						<div class="w-100" :key="'divider' + index" v-if="(index + 1) % 5 === 0"></div>
-					</template> 
+					</template>
 				</div>
 				<!-- 基本資料區 -->
 			</div>
@@ -67,17 +67,34 @@
 					<b-spinner variant="primary" label="Text Centered"></b-spinner>
 				</div>
 			</div>
+			<div class="row justify-content-center data-table mt-3">
+				<b-table
+					:striped="true"
+					:bordered="true"
+					:borderless="true"
+					:outlined="true"
+					:small="true"
+					:hover="true"
+					:dark="true"
+					:fixed="fixed"
+					:foot-clone="false"
+					:items="items"
+					:fields="fields"
+					class="col-auto"
+				></b-table>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-	import { lineChart } from '@/assets/js/config.js' 
+	import { lineChart } from "@/assets/js/playerConfig.js";
+	import playerData from "@/assets/playerData.json";
 	export default {
 		components: {},
 		data() {
 			return {
-				...lineChart,		//展開lineChart
+				...lineChart, //展開lineChart
 				pointsData: {
 					columns: ["season", "points"],
 					rows: [
@@ -102,22 +119,55 @@
 					]
 				},
 				數值List: [
-					{ title: 'G', value: 80 },
-					{ title: 'PTS', value: 36.1 },
-					{ title: 'TRB', value: 6.6 },
-					{ title: 'AST', value: 7.5 },
-					{ title: 'FG%', value: 80.3 },
-					{ title: 'FG3%', value: 45.3 },
-					{ title: 'FT%', value: 88.6 },
-					{ title: 'eFG%', value: 54.3 },
-					{ title: 'PER', value: 30.2 },
-					{ title: 'WS', value: 21 }
-				]
+					{ title: "G", value: 80 },
+					{ title: "PTS", value: 36.1 },
+					{ title: "TRB", value: 6.6 },
+					{ title: "AST", value: 7.5 },
+					{ title: "FG%", value: 80.3 },
+					{ title: "FG3%", value: 45.3 },
+					{ title: "FT%", value: 88.6 },
+					{ title: "eFG%", value: 54.3 },
+					{ title: "PER", value: 30.2 },
+					{ title: "WS", value: 21 }
+				],
+				fields: [
+					"Season",
+					"Age",
+					"Tm",
+					"Lg",
+					"Pos",
+					"G",
+					"GS",
+					"MP",
+					"FG",
+					"FGA",
+					"FG%",
+					"3P",
+					"3PA",
+					"3P%",
+					"2P",
+					"2PA",
+					"2P%",
+					"eFG%",
+					"FT",
+					"FTA",
+					"FT%",
+					"ORB",
+					"DRB",
+					"TRB",
+					"AST",
+					"STL",
+					"BLK",
+					"TOV",
+					"PF",
+					"PTS"
+				],
+				items: playerData
 			};
 		}
 	};
 </script>
 
 <style scoped lang="scss">
-@import '../scss/player.scss'
+	@import "../scss/player.scss";
 </style>
