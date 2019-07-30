@@ -39,16 +39,18 @@
               outlined
             ></v-select>
           </v-flex>
-
         </v-layout>
       </v-container>
+      <DataTable/>
+      <v-icon>chevron-down</v-icon>
     </v-app>
   </div>
 </template>
 
 <script>
+import DataTable from '../components/LeaderDataTable'
 export default {
-  components: {},
+  components: {DataTable},
   data(){
     return{
       nowSelectSeason: { value: '2018-2019', text:'2018-2019' },
