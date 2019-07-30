@@ -76,10 +76,8 @@
 					:small="true"
 					:hover="true"
 					:dark="true"
-					:fixed="fixed"
-					:foot-clone="false"
 					:items="items"
-					:fields="fields"
+					:fields="dataFields"
 					class="col-auto"
 				></b-table>
 			</div>
@@ -90,6 +88,7 @@
 <script>
 	import { lineChart } from "@/assets/js/playerConfig.js";
 	import playerData from "@/assets/playerData.json";
+
 	export default {
 		components: {},
 		data() {
@@ -130,7 +129,7 @@
 					{ title: "PER", value: 30.2 },
 					{ title: "WS", value: 21 }
 				],
-				fields: [
+				dataFields: [
 					"Season",
 					"Age",
 					"Tm",
@@ -148,7 +147,7 @@
 					"2P",
 					"2PA",
 					"2P%",
-					"eFG%",
+					{ key: "eFG%", label: "eFG%" },
 					"FT",
 					"FTA",
 					"FT%",
