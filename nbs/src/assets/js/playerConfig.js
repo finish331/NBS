@@ -2,8 +2,14 @@ export const lineChart = {
   chartSettings: {
     area: true,
     scale: [true, true], //基本值是否為0，true為否
+    smooth: true,
     lineStyle: {
-      width: 3
+      width: 10
+    }
+  },
+  chartExtend: {
+    series: {
+      smooth: false
     }
   },
   radarSettings: {
@@ -16,14 +22,14 @@ export const lineChart = {
         colorStops: [
           {
             offset: 0,
-            color: "blue" // 0% 处的颜色
+            color: "blue" // 0% 處的顏色
           },
           {
             offset: 1,
-            color: "red" // 100% 处的颜色
+            color: "red" // 100% 處顏色
           }
         ],
-        global: false // 缺省为 false
+        global: false // 預設為 false
       }
     }
   },
@@ -55,7 +61,9 @@ export const lineChart = {
     }
   ],
   grid: {
-    right: 60
+    right: 60,
+    top: 50,
+    bottom: 30
   },
   radars: {
     indicator: [
@@ -64,7 +72,8 @@ export const lineChart = {
       { name: "AST", max: 13 },
       { name: "BLK", max: 3 },
       { name: "STL", max: 3 }
-    ]
+    ],
+    center: ['50%', '55%']
   },
   radarLegend: {
     show: false

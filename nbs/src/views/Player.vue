@@ -2,20 +2,28 @@
 	<div>
 		<!-- 球員基本資料區 -->
 		<div class="my-1 mx-2 bg-dark text-white">
-			<div class="container-fluid mx-0 px-0">
-				<div class="row pl-4 mb-1 justify-content-start align-items-center">
-					<div class="col-auto">
-						<img src="../assets/jamesHarden.png" />
+			<div class="container-fluid">
+				<div class="row mb-1 justify-content-start align-items-center" style="position: relative;">
+					<div style="background: url('https://stats.nba.com/media/img/teams/logos/HOU_logo.svg'); background-size: cover; background-position: center center ; width: 100%; height: 100%; position: absolute; opacity: .2;"></div>
+					<div class="col-12 col-sm-auto">
+						<img class="img-fluid" src="../assets/jamesHarden.png" />
 					</div>
-					<div class="col-auto">
-						<div class="row justify-content-start align-items-end pt-2 mb-2" style="flex-wrap:nowrap">
-							<h1 class="col-auto font-italic number">#13</h1>
-							<div class="col-auto px-0 pb-1">
-								<div class="name">James</div>
-								<div class="name">Harden</div>
+					<div class="col-12 col-sm-auto">
+						<div
+							class="row justify-content-center justify-content-sm-start align-items-end mb-2 no-gutters"
+							style="flex-wrap:nowrap"
+						>
+							<div class="col-auto">
+								<h1 class="font-italic number">#13</h1>
+							</div>
+							<div class="col-auto pb-1">
+								<div class="ml-2">
+									<div class="name">James</div>
+									<div class="name">Harden</div>
+								</div>
 							</div>
 						</div>
-						<div class="mx-0 d-flex">
+						<div class="mx-0 d-flex justify-content-center justify-content-sm-start">
 							<img class="mr-2 logo" src="../assets/basketball.svg" />
 							<span>G</span>
 							<div class="mx-2 pb-0 vl"></div>
@@ -24,7 +32,7 @@
 					</div>
 				</div>
 				<!-- 基本資料區 -->
-				<div class="row mx-0">
+				<div class="row no-gutters base-data-row">
 					<!-- 如果v-for會用到兩種以上不同的方式則要用template -->
 					<template v-for="(i, index) in 數值List">
 						<div class="col base-data" :key="index">
@@ -39,19 +47,22 @@
 		</div>
 		<!-- 球員進階數據 -->
 		<div class="container my-3">
-			<div class="row">
-				<div id="radarChartDiv" class="col bg-dark px-0">
+			<div class="row no-gutters">
+				<div class="col-12 col-md-4 mb-3">
 					<ve-radar
+						id="radarChartDiv"
 						:radar="radars"
 						:legend="radarLegend"
 						:data="chartData"
 						:settings="radarSettings"
 						height="300px"
 						width="auto"
+						class="bg-dark mr-1"
 					></ve-radar>
 				</div>
-				<div id="lineChartDiv" class="col-8 bg-dark mx-1 px-0" v-if="pointsData">
+				<div class="col-12 col-md-8 mb-3" v-if="pointsData">
 					<ve-line
+						id="lineChartDiv"
 						height="300px"
 						width="auto"
 						:textStyle="textStyles"
@@ -60,26 +71,31 @@
 						:judge-width="true"
 						:data="pointsData"
 						:legend="legendSetting"
+						:extend="chartExtend"
 						:settings="chartSettings"
+						class="bg-dark"
 					></ve-line>
 				</div>
 				<div class="d-flex justify-content-center flex-wrap my-5" v-else>
 					<b-spinner variant="primary" label="Text Centered"></b-spinner>
 				</div>
 			</div>
-			<div class="row justify-content-center data-table mt-3">
-				<b-table
-					:striped="true"
-					:bordered="true"
-					:borderless="true"
-					:outlined="true"
-					:small="true"
-					:hover="true"
-					:dark="true"
-					:items="items"
-					:fields="dataFields"
-					class="col-auto"
-				></b-table>
+			<div class="row justify-content-center mt-3">
+				<div class="col-12">
+					<b-table
+						responsive
+						:striped="true"
+						:bordered="true"
+						:borderless="true"
+						:outlined="true"
+						:small="true"
+						:hover="true"
+						:dark="true"
+						:items="items"
+						:fields="dataFields"
+						class="detail-data"
+					></b-table>
+				</div>
 			</div>
 		</div>
 	</div>
