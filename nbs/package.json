@@ -16,7 +16,7 @@
     "core-js": "^2.6.5",
     "echarts": "^4.2.1",
     "element-ui": "^2.8.2",
-    "express": "^4.17.0",
+    "express": "^4.17.1",
     "material-icons": "^0.3.1",
     "mysql": "^2.17.1",
     "v-charts": "^1.19.0",
