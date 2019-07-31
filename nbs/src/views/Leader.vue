@@ -42,7 +42,6 @@
         </v-layout>
       </v-container>
       <DataTable/>
-      <v-icon>chevron-down</v-icon>
     </v-app>
   </div>
 </template>

@@ -70,6 +70,7 @@
           <v-layout
             wrap
           >
+          <!-- 利用迴圈的方式產生card -->
             <v-flex
               v-for="item in props.items"
               :key="item.name"
@@ -78,11 +79,11 @@
               md4
               lg3
             >
-              <v-card>
+              <v-card @click="TestClick(item)">
                 <v-card-title class="subheading font-weight-bold">{{ item.name }}</v-card-title>
-  
+                <!-- 分隔線 -->
                 <v-divider></v-divider>
-  
+                <!-- 產生屬性 -->
                 <v-list dense>
                   <v-list-item
                     v-for="(key, index) in filteredKeys"
@@ -92,7 +93,6 @@
                     <v-list-item-content>{{ key }}:</v-list-item-content>
                     <v-list-item-content class="align-end">{{ item[key.toLowerCase()] }}</v-list-item-content>
                   </v-list-item>
-                  <v-btn @click="TestClick(filteredKeys)">Test</v-btn>
                 </v-list>
               </v-card>
             </v-flex>
@@ -158,6 +158,38 @@
         </template>
       </v-data-iterator>
     </v-container>
+    <div class="text-center">
+      <v-dialog
+        v-model="dialog"
+        width="500"
+      >
+        <v-card :item="dialogItem">
+          <v-card-title
+            class="headline grey lighten-2"
+            primary-title
+          >
+            {{dialogItem.name}}
+          </v-card-title>
+  
+          <v-card-text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </v-card-text>
+  
+          <v-divider></v-divider>
+  
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn
+              color="primary"
+              text
+              @click="dialog = false"
+            >
+              I accept
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </div>
   </div>
 </template>
 
@@ -166,6 +198,7 @@ export default {
   components: {},
   data(){
     return{
+      dialog: false,
       itemsPerPageArray: [4, 8, 12],
       search: '',
       filter: {},
@@ -183,6 +216,7 @@ export default {
         'Calcium',
         'Iron',
       ],
+      dialogItem:[],
       items: [
         {
           name: 'Frozen Yogurt',
@@ -291,6 +325,7 @@ export default {
     numberOfPages () {
       return Math.ceil(this.items.length / this.itemsPerPage)
     },
+    // 把Name以外的屬性列出來
     filteredKeys () {
       return this.keys.filter(key => key !== `Name`)
     },
@@ -306,7 +341,9 @@ export default {
       this.itemsPerPage = number
     },
     TestClick(output){
-      console.log(output);
+      this.dialog = true;
+      this.dialogItem = output;
+      console.log(this.dialogItem);
     }
   }
 }
