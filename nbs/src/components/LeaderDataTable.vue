@@ -158,12 +158,29 @@
         </template>
       </v-data-iterator>
     </v-container>
+    <!-- 球員彈跳視窗 -->
     <div class="text-center">
       <v-dialog
         v-model="dialog"
         width="500"
       >
-        <v-card :item="dialogItem">
+        <v-card>
+          <v-card-title class="subheading font-weight-bold">{{ dialogItem.name }}</v-card-title>
+          <!-- 分隔線 -->
+          <v-divider></v-divider>
+          <!-- 產生屬性 -->
+          <v-list dense>
+            <v-list-item
+              v-for="(key, index) in filteredKeys"
+              :key="index"
+              :color="sortBy === key ? `blue lighten-4` : `white`"
+            >
+              <v-list-item-content>{{ key }}:</v-list-item-content>
+              <v-list-item-content class="align-end">{{ dialogItem[key.toLowerCase()] }}</v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-card>
+        <!-- <v-card :item="dialogItem">
           <v-card-title
             class="headline grey lighten-2"
             primary-title
@@ -187,7 +204,7 @@
               I accept
             </v-btn>
           </v-card-actions>
-        </v-card>
+        </v-card> -->
       </v-dialog>
     </div>
   </div>

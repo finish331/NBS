@@ -1,7 +1,11 @@
 <template>
   <div class = "hello">
     <v-app id="inspire">
-      <v-container fluid grid-list-xl class="select-filter">
+      <v-container 
+        fluid grid-list-xl 
+        class="select-filter"
+        style="padding:40px 100px"
+      >
         <v-layout wrap align-center>
           <v-flex xs12 sm6 md3 d-flex class="select-season">
             <v-select
