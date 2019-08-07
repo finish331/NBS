@@ -1,6 +1,6 @@
 <template>
 	<div id="app">
-		<b-navbar toggleable="lg" type="dark" variant="info">
+		<b-navbar toggleable="lg" type="dark" variant="custom-dark">
 			<b-navbar-brand href="#">
 				<img src="./assets/brand.png" height="50px"/>
 			</b-navbar-brand>
