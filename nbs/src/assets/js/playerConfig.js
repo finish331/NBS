@@ -14,23 +14,7 @@ export const lineChart = {
   },
   radarSettings: {
     areaStyle: {
-      color: {
-        type: "radial",
-        x: 0.5,
-        y: 0.5,
-        r: 0.5,
-        colorStops: [
-          {
-            offset: 0,
-            color: "blue" // 0% 處的顏色
-          },
-          {
-            offset: 1,
-            color: "red" // 100% 處顏色
-          }
-        ],
-        global: false // 預設為 false
-      }
+      color: "#ff0000"
     }
   },
   legendSetting: {
@@ -73,7 +57,11 @@ export const lineChart = {
       { name: "BLK", max: 3 },
       { name: "STL", max: 3 }
     ],
-    center: ['50%', '55%']
+    center: ['50%', '55%'],
+    name: {
+      color: "white",
+      fontSize: 14
+    }
   },
   radarLegend: {
     show: false
