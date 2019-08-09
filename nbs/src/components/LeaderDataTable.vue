@@ -17,7 +17,7 @@
         <template v-slot:header>
           <v-toolbar
             dark
-            color="blue darken-3"
+            color="#666666 darken-5"
             class="mb-1"
           >
             <v-text-field
@@ -48,7 +48,7 @@
                 <v-btn
                   large
                   depressed
-                  color="blue"
+                  color="#666666"
                   :value="false"
                 >
                   <v-icon>keyboard_arrow_up</v-icon>
@@ -56,7 +56,7 @@
                 <v-btn
                   large
                   depressed
-                  color="blue"
+                  color="#666666"
                   :value="true"
                 >
                   <v-icon>arrow_downward</v-icon>
@@ -107,7 +107,7 @@
                 <v-btn
                   dark
                   text
-                  color="primary"
+                  color="#666666"
                   class="ml-2"
                   v-on="on"
                 >
@@ -137,7 +137,7 @@
             <v-btn
               fab
               dark
-              color="blue darken-3"
+              color="#666666 darken-3"
               class="mr-1"
               @click="formerPage"
               style="height:40px; width:40px"
@@ -147,7 +147,7 @@
             <v-btn
               fab
               dark
-              color="blue darken-3"
+              color="#666666 darken-3"
               class="ml-1"
               @click="nextPage"
               style="height:40px; width:40px"
