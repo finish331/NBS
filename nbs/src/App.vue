@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
 		<b-navbar toggleable="lg" type="dark" variant="custom-dark">
-			<b-navbar-brand href="#">
+			<b-navbar-brand v-bind:to="'/home'">
 				<img src="./assets/brand.png" height="50px" />
 			</b-navbar-brand>
 

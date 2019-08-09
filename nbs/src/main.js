@@ -9,10 +9,12 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'vue-loading-overlay/dist/vue-loading.css'
 import vuetify from './plugins/vuetify';
+import '@/scss/global.scss'
 
 Vue.use(BootstrapVue)
 Vue.use(VCharts)
 Vue.use(ElementUI)
+
 
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
