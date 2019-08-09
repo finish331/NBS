@@ -74,6 +74,10 @@ export default {
   .select-season{
     width: 300%;
   }
+
+  #inspire {
+    background-color: white;
+  }
 </style>
 
 <style scoped>

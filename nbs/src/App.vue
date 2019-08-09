@@ -2,7 +2,7 @@
 	<div id="app">
 		<b-navbar toggleable="lg" type="dark" variant="custom-dark">
 			<b-navbar-brand href="#">
-				<img src="./assets/brand.png" height="50px"/>
+				<img src="./assets/brand.png" height="50px" />
 			</b-navbar-brand>
 
 			<b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -41,7 +41,9 @@
 				</b-navbar-nav>
 			</b-collapse>
 		</b-navbar>
-		<router-view />
+		<div style="padding:0 5%;">
+			<router-view />
+		</div>
 	</div>
 </template>
 
@@ -51,7 +53,7 @@
 		data() {
 			return {};
 		},
-		mounted () {
+		mounted() {
 			console.log(`仔入好了`);
 		}
 	};
