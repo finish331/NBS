@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import Player from './views/Player.vue'
 import Leader from './views/Leader.vue'
 import CompareLeader from './views/ComparePlayer.vue'
+import Map from './views/map.vue'
 
 Vue.use(Router)
 
@@ -36,6 +37,11 @@ export default new Router({
       path: '/compare',
       name: 'Compare',
       component: CompareLeader
+    },
+    {
+      path: '/map',
+      name: 'Map',
+      component: Map
     }
   ]
 })

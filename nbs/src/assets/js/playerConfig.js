@@ -4,7 +4,7 @@ export const lineChart = {
     scale: [true, true], //基本值是否為0，true為否
     smooth: true,
     lineStyle: {
-      width: 10
+      width: 5
     }
   },
   chartExtend: {
