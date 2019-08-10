@@ -16,6 +16,10 @@
 					<b-nav-item v-bind:to="'/leader'">Leader</b-nav-item>
 				</b-navbar-nav>
 
+				<b-navbar-nav>
+					<b-nav-item v-bind:to="'/compare'">Compare</b-nav-item>
+				</b-navbar-nav>
+
 				<!-- Right aligned nav items -->
 				<b-navbar-nav class="ml-auto">
 					<b-nav-form>

@@ -4,7 +4,8 @@
       <v-container 
         fluid grid-list-xl 
         class="select-filter"
-        style="padding:40px 100px"
+        style="padding:5% 0 0 0"
+        v-if="$vuetify.breakpoint.mdAndDown"
       >
         <v-layout wrap align-center>
           <v-flex xs12 sm6 md3 d-flex class="select-season">
@@ -42,14 +43,16 @@
 
           <v-flex xs12 sm6 md3 d-flex>
             <v-select
-              :items="items"
+              v-model="nowSelectStateCategory"
+              :items="stateCategoryFilter"
               label="STAT CATEGORY"
               outlined
             ></v-select>
           </v-flex>
         </v-layout>
       </v-container>
-      <DataTable/>
+      <!-- 將select的值帶入DataTable中，供grid篩選用 -->
+      <DataTable :test="nowSelectSeason" :test2="nowSelectSeasonType" />
     </v-app>
   </div>
 </template>
@@ -60,18 +63,18 @@ export default {
   components: {DataTable},
   data(){
     return{
-      nowSelectSeason: { value: '2018-2019', text:'2018-2019' },
+      nowSelectSeason: '2018-19',
       seasonFilter: [
-        { value: '2018-2019', text:'2018-2019' },
-        { value: '2017-2018', text:'2017-2018' },
-        { value: '2016-2017', text:'2016-2017' }
+        { value: '2018-19', text:'2018-2019' },
+        { value: '2017-18', text:'2017-2018' },
+        { value: '2016-17', text:'2016-2017' }
       ],
-      nowSelectSeasonType: { value: '0', text:'Regular Season' },
+      nowSelectSeasonType: '0',
       seasonTypeFilter: [
         { value: '0', text:'Regular Season' },
         { value: '1', text:'Playoffs' },
       ],
-      nowSelectStateCategory: { value: '0', text:'PTS' },
+      nowSelectStateCategory: '0',
       stateCategoryFilter: [
         { value: '0', text:'PTS' },
         { value: '1', text:'EFF' },
@@ -100,7 +103,6 @@ export default {
 
 <style scoped>
   #inspire >>> .container{
-    padding: 100px;
   }
 </style>
 

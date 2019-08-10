@@ -3,14 +3,14 @@
     <v-container
       fluid
       grid-list-md
-      style="padding:0px 100px"
+      style="padding:4% 0"
     >
       <v-data-iterator
         :items="items"
         :items-per-page.sync="itemsPerPage"
         :page="page"
         :search="search"
-        :custom-filter="FilterPlayerDate"
+        :custom-filter="FilterPlayerData"
         :sort-by="sortBy.toUpperCase()"
         :sort-desc="sortDesc"
         hide-default-footer
@@ -30,7 +30,7 @@
               prepend-inner-icon="search"
               label="Search"
             ></v-text-field>
-            <template v-if="$vuetify.breakpoint.mdAndUp">  
+            <template v-if="$vuetify.breakpoint.lgAndUp">  
               <v-spacer></v-spacer>
               <v-flex lg2 md3 d-flex>
                 <v-select
@@ -43,12 +43,11 @@
                   color="red"
                 ></v-select>
               </v-flex>
-
               <v-spacer></v-spacer>
               <v-flex lg2 md3 d-flex>
                 <v-select
-                  v-model="nowSelectSeason"
-                  :items="seasonFilter"
+                  v-model="nowSelectSeasonType"
+                  :items="seasonTypeFilter"
                   label="SEASON TYPE"
                   flat
                   outlined
@@ -58,8 +57,8 @@
               <v-spacer></v-spacer>
               <v-flex lg2 md3 d-flex>
                 <v-select
-                  v-model="nowSelectSeason"
-                  :items="seasonFilter"
+                  v-model="nowSelectStatCategory"
+                  :items="statCategoryFilter"
                   label="STAT CATEGORY"
                   flat
                   outlined
@@ -255,6 +254,12 @@ import playerData from "@/assets/playerData.json";
 
 export default {
   components: {},
+  // 接來自父層傳遞的參數
+  props:['test','test2'],
+  mounted: function(){
+    console.log(this.test);
+    console.log(this.test2);
+  },
   data(){
     return{
       dialog: false,
@@ -276,115 +281,30 @@ export default {
         '2PA',
         '2P%',
       ],
-      nowSelectSeason: { value: '2018-2019', text:'2018-2019' },
+      // Select的資料
+      nowSelectSeason: '2018-19',
       seasonFilter: [
-        { value: '2018-2019', text:'2018-2019' },
-        { value: '2017-2018', text:'2017-2018' },
-        { value: '2016-2017', text:'2016-2017' }
+        { value: '2018-19', text:'2018-2019' },
+        { value: '2017-18', text:'2017-2018' },
+        { value: '2016-17', text:'2016-2017' }
+      ],
+      nowSelectSeasonType: { value: '0', text:'Regular Season' },
+      seasonTypeFilter: [
+        { value: '0', text:'Regular Season' },
+        { value: '1', text:'Playoffs' },
+      ],
+      nowSelectStatCategory: { value: '0', text:'PTS' },
+      statCategoryFilter: [
+        { value: '0', text:'PTS' },
+        { value: '1', text:'EFF' },
+        { value: '2', text:'TOV' },
+        { value: '3', text:'BLK' },
+        { value: '4', text:'AST' },
+        { value: '5', text:'STL' },
       ],
       dialogItem:[],
-      items: playerData  //[
-      //   {
-      //     name: 'Frozen Yogurt',
-      //     calories: 159,
-      //     fat: 6.0,
-      //     carbs: 24,
-      //     protein: 4.0,
-      //     sodium: 87,
-      //     calcium: '14%',
-      //     iron: '1%',
-      //   },
-      //   {
-      //     name: 'Ice cream sandwich',
-      //     calories: 237,
-      //     fat: 9.0,
-      //     carbs: 37,
-      //     protein: 4.3,
-      //     sodium: 129,
-      //     calcium: '8%',
-      //     iron: '1%',
-      //   },
-      //   {
-      //     name: 'Eclair',
-      //     calories: 262,
-      //     fat: 16.0,
-      //     carbs: 23,
-      //     protein: 6.0,
-      //     sodium: 337,
-      //     calcium: '6%',
-      //     iron: '7%',
-      //   },
-      //   {
-      //     name: 'Cupcake',
-      //     calories: 305,
-      //     fat: 3.7,
-      //     carbs: 67,
-      //     protein: 4.3,
-      //     sodium: 413,
-      //     calcium: '3%',
-      //     iron: '8%',
-      //   },
-      //   {
-      //     name: 'Gingerbread',
-      //     calories: 356,
-      //     fat: 16.0,
-      //     carbs: 49,
-      //     protein: 3.9,
-      //     sodium: 327,
-      //     calcium: '7%',
-      //     iron: '16%',
-      //   },
-      //   {
-      //     name: 'Jelly bean',
-      //     calories: 375,
-      //     fat: 0.0,
-      //     carbs: 94,
-      //     protein: 0.0,
-      //     sodium: 50,
-      //     calcium: '0%',
-      //     iron: '0%',
-      //   },
-      //   {
-      //     name: 'Lollipop',
-      //     calories: 392,
-      //     fat: 0.2,
-      //     carbs: 98,
-      //     protein: 0,
-      //     sodium: 38,
-      //     calcium: '0%',
-      //     iron: '2%',
-      //   },
-      //   {
-      //     name: 'Honeycomb',
-      //     calories: 408,
-      //     fat: 3.2,
-      //     carbs: 87,
-      //     protein: 6.5,
-      //     sodium: 562,
-      //     calcium: '0%',
-      //     iron: '45%',
-      //   },
-      //   {
-      //     name: 'Donut',
-      //     calories: 452,
-      //     fat: 25.0,
-      //     carbs: 51,
-      //     protein: 4.9,
-      //     sodium: 326,
-      //     calcium: '2%',
-      //     iron: '22%',
-      //   },
-      //   {
-      //     name: 'KitKat',
-      //     calories: 518,
-      //     fat: 26.0,
-      //     carbs: 65,
-      //     protein: 7,
-      //     sodium: 54,
-      //     calcium: '12%',
-      //     iron: '6%',
-      //   },
-      // ],
+      items:[],
+      temp: playerData
     };
   },
   computed:{
@@ -395,6 +315,15 @@ export default {
     filteredKeys () {
       return this.keys.filter(key => key !== `Name`)
     },
+    cloneLeaderSelect: {
+      get: function(){
+        return this.nowSelectSeason;
+      },
+      set: function(a){
+        this.nowSelectSeason = a
+      }
+
+    }
   },
   methods:{
     nextPage () {
@@ -406,7 +335,13 @@ export default {
     updateItemsPerPage (number) {
       this.itemsPerPage = number
     },
-    FilterPlayerDate (){
+    FilterPlayerData (){
+      for(var key in this.temp){
+        // if(this.nowSelectSeason == this.temp[key].Season){
+          this.items.push(this.temp[key])
+        // }
+      }
+      console.log(this.items)
       return this.items
     },
     TestClick(output){
