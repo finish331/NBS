@@ -185,5 +185,5 @@
 </script>
 
 <style scoped lang="scss">
-	@import "../scss/player.scss";
+	@import "@/assets/scss/player.scss";
 </style>
