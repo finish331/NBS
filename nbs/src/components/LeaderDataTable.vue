@@ -250,7 +250,7 @@
 </template>
 
 <script>
-import playerData from "@/assets/playerData.json";
+import playerData from "@/assets/json/playerData.json";
 
 export default {
   components: {},

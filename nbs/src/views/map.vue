@@ -1,6 +1,6 @@
 <template>
-	<div class="container">
-		<ve-map :data="chartData" :settings="chartSettings"></ve-map>
+	<div class="container-fluid align-middle" >
+		<ve-map class="" :data="chartData" :settings="chartSettings"></ve-map>
 	</div>
 </template>
 
