@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import usMap from '@/assets/custom.geo.json'
+import usMap from '@/assets/json/custom-map.json'
 	export default {
 		data() {
 			return {

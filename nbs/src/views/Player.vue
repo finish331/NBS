@@ -104,7 +104,7 @@
 
 <script>
 	import { lineChart } from "@/assets/js/playerConfig.js";
-	import playerData from "@/assets/playerData.json";
+	import playerData from "@/assets/json/playerData.json";
 
 	export default {
 		components: {},
