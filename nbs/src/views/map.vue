@@ -1,11 +1,13 @@
 <template>
-	<div class="container-fluid align-middle" >
-		<ve-map class="" :data="chartData" :settings="chartSettings"></ve-map>
+	<div class="container page-height">
+		<div class="row mh-100 vh-100 align-items-center" >
+      <ve-map class="col" height="600px" :data="chartData" :settings="chartSettings"></ve-map>
+    </div>
 	</div>
 </template>
 
 <script>
-import usMap from '@/assets/json/custom-map.json'
+  import usMap from '@/assets/json/custom-map.json'
 	export default {
 		data() {
 			return {
@@ -19,7 +21,13 @@ import usMap from '@/assets/json/custom-map.json'
           ]
         },
         chartSettings: {
-          mapOrigin: usMap
+          mapOrigin: usMap,
+          itemStyle: {
+            areaColor: '#fafafa'
+          },
+          label: {
+            show: false
+          }
         }
       };
 		},
@@ -29,4 +37,7 @@ import usMap from '@/assets/json/custom-map.json'
 </script>
 
 <style scoped lang="scss">
+  .page-height {
+    height: calc(100vh - 80px);
+  }
 </style>
