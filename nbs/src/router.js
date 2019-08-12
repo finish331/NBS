@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Player from './views/Player.vue'
 import Leader from './views/Leader.vue'
-
+import Champion from './views/Champion.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -30,6 +30,11 @@ export default new Router({
       path: '/Leader',
       name: 'Leader',
       component: Leader
+    },
+    {
+      path :'/Champion',
+      name :'Champion',
+      component:Champion
     }
   ]
 })

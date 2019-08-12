@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
-		<b-navbar toggleable="lg" type="dark" variant="info">
-			<b-navbar-brand href="#">
+			<b-navbar toggleable="lg" type="dark" variant="info" >
+			<b-navbar-brand v-bind:to="'/'">
 				<img src="./assets/brand.png" height="50px"/>
 			</b-navbar-brand>
 
@@ -15,7 +15,9 @@
 				<b-navbar-nav>
 					<b-nav-item v-bind:to="'/leader'">Leader</b-nav-item>
 				</b-navbar-nav>
-
+				<b-navbar-nav>
+					<b-nav-item v-bind:to="'/champion'">Champion</b-nav-item>
+				</b-navbar-nav>
 				<!-- Right aligned nav items -->
 				<b-navbar-nav class="ml-auto">
 					<b-nav-form>
@@ -41,7 +43,8 @@
 				</b-navbar-nav>
 			</b-collapse>
 		</b-navbar>
-		<router-view />
+
+			<router-view />
 	</div>
 </template>
 
@@ -70,5 +73,6 @@
 		-moz-osx-font-smoothing: grayscale;
 		text-align: center;
 		color: #2c3e50;
+		background: #fafafa ;
 	}
 </style>

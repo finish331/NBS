@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div style="background:#fafafa ">
 		<!-- 球員基本資料區 -->
 		<div class="my-1 mx-2 bg-dark text-white">
 			<div class="container-fluid">
