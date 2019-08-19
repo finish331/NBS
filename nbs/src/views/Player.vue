@@ -1,7 +1,8 @@
 <template>
-	<div style="background:#fafafa ">
+
+	<div id="app">
 		<!-- 球員基本資料區 -->
-		<div class="my-1 mx-2 bg-dark text-white">
+		<div class="my-1 mx-2 text-white global-bg-gray">
 			<div class="container-fluid">
 				<div class="row mb-1 justify-content-start align-items-center" style="position: relative;">
 					<div style="background: url('https://stats.nba.com/media/img/teams/logos/HOU_logo.svg'); background-size: cover; background-position: center center ; width: 100%; height: 100%; position: absolute; opacity: .2;"></div>
@@ -57,7 +58,7 @@
 						:settings="radarSettings"
 						height="300px"
 						width="auto"
-						class="bg-dark mr-1"
+						class="mr-1 global-bg-gray"
 					></ve-radar>
 				</div>
 				<div class="col-12 col-md-8 mb-3" v-if="pointsData">
@@ -65,6 +66,7 @@
 						id="lineChartDiv"
 						height="300px"
 						width="auto"
+						class="global-bg-gray"
 						:textStyle="textStyles"
 						:grid="grid"
 						:visual-map="visualMap"
@@ -73,11 +75,10 @@
 						:legend="legendSetting"
 						:extend="chartExtend"
 						:settings="chartSettings"
-						class="bg-dark"
 					></ve-line>
 				</div>
 				<div class="d-flex justify-content-center flex-wrap my-5" v-else>
-					<b-spinner variant="primary" label="Text Centered"></b-spinner>
+					<b-spinner variant="custom-gray" label="Text Centered"></b-spinner>
 				</div>
 			</div>
 			<div class="row justify-content-center mt-3">
@@ -94,6 +95,7 @@
 						:items="items"
 						:fields="dataFields"
 						class="detail-data"
+						table-class="global-bg-gray"
 					></b-table>
 				</div>
 			</div>
@@ -103,7 +105,7 @@
 
 <script>
 	import { lineChart } from "@/assets/js/playerConfig.js";
-	import playerData from "@/assets/playerData.json";
+	import playerData from "@/assets/json/playerData.json";
 
 	export default {
 		components: {},
@@ -184,5 +186,5 @@
 </script>
 
 <style scoped lang="scss">
-	@import "../scss/player.scss";
+	@import "@/assets/scss/player.scss";
 </style>

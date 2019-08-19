@@ -1,8 +1,8 @@
 <template>
 	<div id="app">
-			<b-navbar toggleable="lg" type="dark" variant="info" >
+		<b-navbar toggleable="lg" type="dark" variant="custom-dark">
 			<b-navbar-brand v-bind:to="'/'">
-				<img src="./assets/brand.png" height="50px"/>
+				<img src="./assets/brand.png" height="50px" />
 			</b-navbar-brand>
 
 			<b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
@@ -17,6 +17,13 @@
 				</b-navbar-nav>
 				<b-navbar-nav>
 					<b-nav-item v-bind:to="'/champion'">Champion</b-nav-item>
+</b-navbar-nav>
+				<b-navbar-nav>
+					<b-nav-item v-bind:to="'/map'">Map</b-nav-item>
+				</b-navbar-nav>
+
+				<b-navbar-nav>
+					<b-nav-item v-bind:to="'/compare'">Compare</b-nav-item>
 				</b-navbar-nav>
 				<!-- Right aligned nav items -->
 				<b-navbar-nav class="ml-auto">
@@ -43,8 +50,9 @@
 				</b-navbar-nav>
 			</b-collapse>
 		</b-navbar>
-
+		<div style="padding:0 5%;">
 			<router-view />
+		</div>
 	</div>
 </template>
 
@@ -54,7 +62,7 @@
 		data() {
 			return {};
 		},
-		mounted () {
+		mounted() {
 			console.log(`仔入好了`);
 		}
 	};
@@ -72,7 +80,5 @@
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		text-align: center;
-		color: #2c3e50;
-		background: #fafafa ;
 	}
 </style>

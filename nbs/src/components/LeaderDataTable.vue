@@ -3,21 +3,22 @@
     <v-container
       fluid
       grid-list-md
-      style="padding:0px 100px"
+      style="padding:4% 0"
     >
       <v-data-iterator
         :items="items"
         :items-per-page.sync="itemsPerPage"
         :page="page"
         :search="search"
-        :sort-by="sortBy.toLowerCase()"
+        :custom-filter="FilterPlayerData"
+        :sort-by="sortBy.toUpperCase()"
         :sort-desc="sortDesc"
         hide-default-footer
       >
         <template v-slot:header>
           <v-toolbar
             dark
-            color="blue darken-3"
+            color="#666666 darken-5"
             class="mb-1"
           >
             <v-text-field
@@ -29,17 +30,54 @@
               prepend-inner-icon="search"
               label="Search"
             ></v-text-field>
-            <template v-if="$vuetify.breakpoint.mdAndUp">
+            <template v-if="$vuetify.breakpoint.lgAndUp">  
               <v-spacer></v-spacer>
-              <v-select
-                v-model="sortBy"
-                flat
-                solo-inverted
-                hide-details
-                :items="keys"
-                prepend-inner-icon="search"
-                label="Sort by"
-              ></v-select>
+              <v-flex lg2 md3 d-flex>
+                <v-select
+                  v-model="nowSelectSeason"
+                  :items="seasonFilter"
+                  label="SEASON"
+                  flat
+                  outlined
+                  hide-details
+                  color="red"
+                ></v-select>
+              </v-flex>
+              <v-spacer></v-spacer>
+              <v-flex lg2 md3 d-flex>
+                <v-select
+                  v-model="nowSelectSeasonType"
+                  :items="seasonTypeFilter"
+                  label="SEASON TYPE"
+                  flat
+                  outlined
+                  hide-details
+                ></v-select>
+              </v-flex>
+              <v-spacer></v-spacer>
+              <v-flex lg2 md3 d-flex>
+                <v-select
+                  v-model="nowSelectStatCategory"
+                  :items="statCategoryFilter"
+                  label="STAT CATEGORY"
+                  flat
+                  outlined
+                  hide-details
+                ></v-select>
+              </v-flex>
+              <v-spacer></v-spacer>
+              <v-flex lg2 md3>
+                <v-select
+                  v-model="sortBy"
+                  flat
+                  solo-inverted
+                  hide-details
+                  :items="keys"
+                  prepend-inner-icon="search"
+                  label="Sort by"
+                ></v-select>
+              </v-flex>
+
               <v-spacer></v-spacer>
               <v-btn-toggle
                 v-model="sortDesc"
@@ -48,7 +86,7 @@
                 <v-btn
                   large
                   depressed
-                  color="blue"
+                  color="#666666"
                   :value="false"
                 >
                   <v-icon>keyboard_arrow_up</v-icon>
@@ -56,7 +94,7 @@
                 <v-btn
                   large
                   depressed
-                  color="blue"
+                  color="#666666"
                   :value="true"
                 >
                   <v-icon>arrow_downward</v-icon>
@@ -71,16 +109,17 @@
             wrap
           >
           <!-- 利用迴圈的方式產生card -->
+          <!-- :為v-bind簡寫 -->
             <v-flex
               v-for="item in props.items"
               :key="item.name"
               xs12
               sm6
-              md4
-              lg3
+              md3
+              lg2
             >
               <v-card @click="TestClick(item)">
-                <v-card-title class="subheading font-weight-bold">{{ item.name }}</v-card-title>
+                <v-card-title class="subheading font-weight-bold">James Harden</v-card-title>
                 <!-- 分隔線 -->
                 <v-divider></v-divider>
                 <!-- 產生屬性 -->
@@ -91,7 +130,7 @@
                     :color="sortBy === key ? `blue lighten-4` : `white`"
                   >
                     <v-list-item-content>{{ key }}:</v-list-item-content>
-                    <v-list-item-content class="align-end">{{ item[key.toLowerCase()] }}</v-list-item-content>
+                    <v-list-item-content class="align-end">{{ item[key.toUpperCase()] }}</v-list-item-content>
                   </v-list-item>
                 </v-list>
               </v-card>
@@ -107,7 +146,7 @@
                 <v-btn
                   dark
                   text
-                  color="primary"
+                  color="#666666"
                   class="ml-2"
                   v-on="on"
                 >
@@ -137,7 +176,7 @@
             <v-btn
               fab
               dark
-              color="blue darken-3"
+              color="#666666 darken-3"
               class="mr-1"
               @click="formerPage"
               style="height:40px; width:40px"
@@ -147,7 +186,7 @@
             <v-btn
               fab
               dark
-              color="blue darken-3"
+              color="#666666 darken-3"
               class="ml-1"
               @click="nextPage"
               style="height:40px; width:40px"
@@ -165,7 +204,7 @@
         width="500"
       >
         <v-card>
-          <v-card-title class="subheading font-weight-bold">{{ dialogItem.name }}</v-card-title>
+          <v-card-title class="subheading font-weight-bold">James Harden</v-card-title>
           <!-- 分隔線 -->
           <v-divider></v-divider>
           <!-- 產生屬性 -->
@@ -176,7 +215,7 @@
               :color="sortBy === key ? `blue lighten-4` : `white`"
             >
               <v-list-item-content>{{ key }}:</v-list-item-content>
-              <v-list-item-content class="align-end">{{ dialogItem[key.toLowerCase()] }}</v-list-item-content>
+              <v-list-item-content class="align-end">{{ dialogItem[key.toUpperCase()] }}</v-list-item-content>
             </v-list-item>
           </v-list>
         </v-card>
@@ -211,131 +250,61 @@
 </template>
 
 <script>
+import playerData from "@/assets/json/playerData.json";
+
 export default {
   components: {},
+  // 接來自父層傳遞的參數
+  props:['test','test2'],
+  mounted: function(){
+    console.log(this.test);
+    console.log(this.test2);
+  },
   data(){
     return{
       dialog: false,
-      itemsPerPageArray: [4, 8, 12],
+      itemsPerPageArray: [6, 12, 18],
       search: '',
       filter: {},
       sortDesc: false,
       page: 1,
-      itemsPerPage: 4,
+      itemsPerPage: 6,
       sortBy: 'name',
       keys: [
-        'Name',
-        'Calories',
-        'Fat',
-        'Carbs',
-        'Protein',
-        'Sodium',
-        'Calcium',
-        'Iron',
+        'Season',
+        'AGE',
+        'PTS',
+        'TRB',
+        'AST',
+        '3PA',
+        '3P%',
+        '2PA',
+        '2P%',
+      ],
+      // Select的資料
+      nowSelectSeason: '2018-19',
+      seasonFilter: [
+        { value: '2018-19', text:'2018-2019' },
+        { value: '2017-18', text:'2017-2018' },
+        { value: '2016-17', text:'2016-2017' }
+      ],
+      nowSelectSeasonType: { value: '0', text:'Regular Season' },
+      seasonTypeFilter: [
+        { value: '0', text:'Regular Season' },
+        { value: '1', text:'Playoffs' },
+      ],
+      nowSelectStatCategory: { value: '0', text:'PTS' },
+      statCategoryFilter: [
+        { value: '0', text:'PTS' },
+        { value: '1', text:'EFF' },
+        { value: '2', text:'TOV' },
+        { value: '3', text:'BLK' },
+        { value: '4', text:'AST' },
+        { value: '5', text:'STL' },
       ],
       dialogItem:[],
-      items: [
-        {
-          name: 'Frozen Yogurt',
-          calories: 159,
-          fat: 6.0,
-          carbs: 24,
-          protein: 4.0,
-          sodium: 87,
-          calcium: '14%',
-          iron: '1%',
-        },
-        {
-          name: 'Ice cream sandwich',
-          calories: 237,
-          fat: 9.0,
-          carbs: 37,
-          protein: 4.3,
-          sodium: 129,
-          calcium: '8%',
-          iron: '1%',
-        },
-        {
-          name: 'Eclair',
-          calories: 262,
-          fat: 16.0,
-          carbs: 23,
-          protein: 6.0,
-          sodium: 337,
-          calcium: '6%',
-          iron: '7%',
-        },
-        {
-          name: 'Cupcake',
-          calories: 305,
-          fat: 3.7,
-          carbs: 67,
-          protein: 4.3,
-          sodium: 413,
-          calcium: '3%',
-          iron: '8%',
-        },
-        {
-          name: 'Gingerbread',
-          calories: 356,
-          fat: 16.0,
-          carbs: 49,
-          protein: 3.9,
-          sodium: 327,
-          calcium: '7%',
-          iron: '16%',
-        },
-        {
-          name: 'Jelly bean',
-          calories: 375,
-          fat: 0.0,
-          carbs: 94,
-          protein: 0.0,
-          sodium: 50,
-          calcium: '0%',
-          iron: '0%',
-        },
-        {
-          name: 'Lollipop',
-          calories: 392,
-          fat: 0.2,
-          carbs: 98,
-          protein: 0,
-          sodium: 38,
-          calcium: '0%',
-          iron: '2%',
-        },
-        {
-          name: 'Honeycomb',
-          calories: 408,
-          fat: 3.2,
-          carbs: 87,
-          protein: 6.5,
-          sodium: 562,
-          calcium: '0%',
-          iron: '45%',
-        },
-        {
-          name: 'Donut',
-          calories: 452,
-          fat: 25.0,
-          carbs: 51,
-          protein: 4.9,
-          sodium: 326,
-          calcium: '2%',
-          iron: '22%',
-        },
-        {
-          name: 'KitKat',
-          calories: 518,
-          fat: 26.0,
-          carbs: 65,
-          protein: 7,
-          sodium: 54,
-          calcium: '12%',
-          iron: '6%',
-        },
-      ],
+      items:[],
+      temp: playerData
     };
   },
   computed:{
@@ -346,6 +315,15 @@ export default {
     filteredKeys () {
       return this.keys.filter(key => key !== `Name`)
     },
+    cloneLeaderSelect: {
+      get: function(){
+        return this.nowSelectSeason;
+      },
+      set: function(a){
+        this.nowSelectSeason = a
+      }
+
+    }
   },
   methods:{
     nextPage () {
@@ -357,12 +335,24 @@ export default {
     updateItemsPerPage (number) {
       this.itemsPerPage = number
     },
+    FilterPlayerData (){
+      for(var key in this.temp){
+        // if(this.nowSelectSeason == this.temp[key].Season){
+          this.items.push(this.temp[key])
+        // }
+      }
+      console.log(this.items)
+      return this.items
+    },
     TestClick(output){
       this.dialog = true;
       this.dialogItem = output;
       console.log(this.dialogItem);
     }
+    
   }
 }
 </script>
+
+
 

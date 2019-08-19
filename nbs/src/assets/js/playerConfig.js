@@ -73,7 +73,11 @@ export const lineChart = {
       { name: "BLK", max: 3 },
       { name: "STL", max: 3 }
     ],
-    center: ['50%', '55%']
+    center: ['50%', '55%'],
+    name: {
+      color: "white",
+      fontSize: 14
+    }
   },
   radarLegend: {
     show: false
