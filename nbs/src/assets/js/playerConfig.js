@@ -14,7 +14,23 @@ export const lineChart = {
   },
   radarSettings: {
     areaStyle: {
-      color: "#ff0000"
+      color: {
+        type: "radial",
+        x: 0.5,
+        y: 0.5,
+        r: 0.5,
+        colorStops: [
+          {
+            offset: 0,
+            color: "red" // 0% 處的顏色
+          },
+          {
+            offset: 1,
+            color: "red" // 100% 處顏色
+          }
+        ],
+        global: false // 預設為 false
+      }
     }
   },
   legendSetting: {
