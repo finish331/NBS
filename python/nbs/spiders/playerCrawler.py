@@ -10,7 +10,7 @@ import re
 
 class PlayerCrawler(scrapy.Spider):
     name = 'player'
-    start_urls = ['https://www.basketball-reference.com/players/a/anthoca01.html']
+    start_urls = ['https://www.basketball-reference.com/players/a/anthoca01.html', 'https://www.basketball-reference.com/players/a/arizatr01.html', 'https://www.basketball-reference.com/players/a/arlaujo01.html']
     # start_urls = ['https://www.basketball-reference.com/players/a/arizatr01.html']
     # start_urls = ['https://www.basketball-reference.com/players/a/arlaujo01.html']
 
