@@ -1,28 +1,42 @@
-#使用Anaconda Prompt開啟檔案
-#輸入scrapy startproject 'projectName' 創建專案
-#輸入scrapy crawl 'fileName'執行
-#輸入scrapy crawl 'fileName' -o fileName.檔案類別 -t 檔案類別 ; -o代表等一下要輸出的檔案 -t是要用的格式
+# 使用Anaconda Prompt開啟檔案
+# 輸入scrapy startproject 'projectName' 創建專案
+# 輸入scrapy crawl 'fileName'執行
+# 輸入scrapy crawl 'fileName' -o fileName.檔案類別 -t 檔案類別 ; -o代表等一下要輸出的檔案 -t是要用的格式
 
 import scrapy
+from scrapy.spiders import CrawlSpider, Rule
+from scrapy.linkextractors import LinkExtractor
 from bs4 import BeautifulSoup as BS
 from nbs.items import NbsItem
 import re
 import pandas
 
-class PlayerCrawler(scrapy.Spider):
-    name = 'player'
-    start_urls = ['https://www.basketball-reference.com/players/a/anthoca01.html', 'https://www.basketball-reference.com/players/a/arizatr01.html', 'https://www.basketball-reference.com/players/a/arlaujo01.html']
-    # start_urls = ['https://www.basketball-reference.com/players/a/arizatr01.html']
-    # start_urls = ['https://www.basketball-reference.com/players/a/anthoca01.html']
 
-    
+class PlayerCrawler(CrawlSpider):
+    name = 'player'
+    domain = 'https://www.basketball-reference.com/players/'
+    start_urls = []
+    for alphabet in range(97, 123):
+        start_urls.append(domain + chr(alphabet) + '/')
+
+    rules = [
+        Rule(LinkExtractor(allow=(
+            'https://www.basketball-reference.com/players/[a-z]')), callback='parse', follow='true')
+    ]
+
     def parse(self, response):
+        domain = 'https://www.basketball-reference.com'
+        res = BS(response.body, 'lxml')
+        table = res.select('table')[0].select('tbody')[0]
+        for index in table.select('tr'):
+            index = index.select('th')[0]
+            url = index.select('a')[0].get('href')
+            yield scrapy.Request(domain + url, self.parse_detail)
+
+    def parse_detail(self, response):
         team = None
         res = BS(response.body, 'lxml')
         table = pandas.read_html(response.url)[0]
-
-        basicData = res.select('.stats_pullout')[0]
-        basicData = basicData.select('p')
         name = res.select('h1')
         number = res.select('text')
         meta = res.select('#meta')[0]
@@ -46,10 +60,8 @@ class PlayerCrawler(scrapy.Spider):
         nbsItems['number'] = number[len(number)-1].text
         if team == None:
             nbsItems['team'] = None
-        else :
+        else:
             nbsItems['team'] = team
         nbsItems['position'] = position
         nbsItems['data'] = table.to_dict()
         return nbsItems
-
-        # def detail_parse(self, response):
