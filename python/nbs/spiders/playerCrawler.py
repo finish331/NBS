@@ -7,16 +7,19 @@ import scrapy
 from bs4 import BeautifulSoup as BS
 from nbs.items import NbsItem
 import re
+import pandas
 
 class PlayerCrawler(scrapy.Spider):
     name = 'player'
     start_urls = ['https://www.basketball-reference.com/players/a/anthoca01.html', 'https://www.basketball-reference.com/players/a/arizatr01.html', 'https://www.basketball-reference.com/players/a/arlaujo01.html']
     # start_urls = ['https://www.basketball-reference.com/players/a/arizatr01.html']
-    # start_urls = ['https://www.basketball-reference.com/players/a/arlaujo01.html']
+    # start_urls = ['https://www.basketball-reference.com/players/a/anthoca01.html']
 
+    
     def parse(self, response):
         team = None
         res = BS(response.body, 'lxml')
+        table = pandas.read_html(response.url)[0]
 
         basicData = res.select('.stats_pullout')[0]
         basicData = basicData.select('p')
@@ -46,16 +49,7 @@ class PlayerCrawler(scrapy.Spider):
         else :
             nbsItems['team'] = team
         nbsItems['position'] = position
-        nbsItems['game'] = basicData[2].text
-        nbsItems['points'] = basicData[4].text
-        nbsItems['rebounds'] = basicData[6].text
-        nbsItems['assists'] = basicData[8].text
-        nbsItems['FG'] = basicData[10].text
-        nbsItems['FG3'] = basicData[12].text
-        nbsItems['FT'] = basicData[14].text
-        nbsItems['eFG'] = basicData[16].text
-        nbsItems['PER'] = basicData[18].text
-        nbsItems['WS'] = basicData[20].text
+        nbsItems['data'] = table.to_dict()
         return nbsItems
 
-        # def exportJsom(self, response):
+        # def detail_parse(self, response):
