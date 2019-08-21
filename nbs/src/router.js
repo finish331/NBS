@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Player from './views/Player.vue'
 import Leader from './views/Leader.vue'
+import Champion from './views/Champion.vue'
 import CompareLeader from './views/ComparePlayer.vue'
 import Map from './views/map.vue'
 
@@ -32,6 +33,11 @@ export default new Router({
       path: '/leader',
       name: 'Leader',
       component: Leader
+    },
+    {
+      path :'/Champion',
+      name :'Champion',
+      component:Champion
     },
     {
       path: '/compare',

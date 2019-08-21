@@ -1,4 +1,5 @@
 <template>
+
 	<div id="app">
 		<!-- 球員基本資料區 -->
 		<div class="my-1 mx-2 text-white global-bg-gray">

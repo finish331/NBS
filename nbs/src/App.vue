@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
 		<b-navbar toggleable="lg" type="dark" variant="custom-dark">
-			<b-navbar-brand v-bind:to="'/home'">
+			<b-navbar-brand v-bind:to="'/'">
 				<img src="./assets/brand.png" height="50px" />
 			</b-navbar-brand>
 
@@ -15,7 +15,9 @@
 				<b-navbar-nav>
 					<b-nav-item v-bind:to="'/leader'">Leader</b-nav-item>
 				</b-navbar-nav>
-
+				<b-navbar-nav>
+					<b-nav-item v-bind:to="'/champion'">Champion</b-nav-item>
+</b-navbar-nav>
 				<b-navbar-nav>
 					<b-nav-item v-bind:to="'/map'">Map</b-nav-item>
 				</b-navbar-nav>

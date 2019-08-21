@@ -1,7 +1,7 @@
 <template>
 	<div class="container page-height">
 		<div class="row mh-100 vh-100 align-items-center" >
-      <ve-map class="col" height="600px" :data="chartData" :settings="chartSettings"></ve-map>
+      <ve-map class="col" width="80%" height="600px" :data="chartData" :settings="chartSettings"></ve-map>
     </div>
 	</div>
 </template>
