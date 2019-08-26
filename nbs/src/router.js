@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import TestView from './components/HelloWorld.vue'
 import Home from './views/Home.vue'
 import Player from './views/Player.vue'
 import Leader from './views/Leader.vue'
@@ -15,6 +16,11 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: TestView
     },
     // {
     //   path: '/about',

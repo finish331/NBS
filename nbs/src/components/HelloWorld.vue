@@ -77,7 +77,7 @@
       </li>
     </ul>
     <el-button type="primary"
-               @click="firebaseTest">{{buttonText}}</el-button>
+               @click="getName">{{buttonText}}</el-button>
     <el-input v-model="inpContent"></el-input>
   </div>
 </template>
@@ -97,7 +97,11 @@ export default {
   },
   methods: {
     getName () {
-      this.$http.get('/api/movie/getName')
+      this.$http.get('/api/movie/getName', {
+        params:{
+          ID: '12345'
+        }
+      })
         .then((res) => {
           console.log('res',res) 
           this.inpContent = res.data.data
@@ -110,9 +114,11 @@ export default {
       //   desctiption: "本劇改編自阿瑟·柯南·道爾爵士家喻戶曉的推理小說，一位脾氣古怪的大偵探在現代倫敦的街頭悄悄巡行，四處搜尋線索。",
       //   actors: ["班尼迪克·康柏拜區", "馬丁·費曼"]
       // });
+      console.log('success');
       db.collection('movies').doc('新世紀福爾摩').get().then(function(doc){
         console.log(doc.data().date);
       })
+      
     }
   },
   firestore(){
