@@ -10,10 +10,10 @@ import scrapy
 
 class NbsItem(scrapy.Item):
     # define the fields for your item here like:
-    number = scrapy.Field()
     name = scrapy.Field()
-    birth = scrapy.Field()
-    position = scrapy.Field()
+    id = scrapy.Field()
+    number = scrapy.Field()
     team = scrapy.Field()
+    position = scrapy.Field()
     data = scrapy.Field()
-    pass
+    # pass
