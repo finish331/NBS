@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for nbs project
+# Scrapy settings for NBS project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,14 +9,14 @@
 #     https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'nbs'
+BOT_NAME = 'NBS'
 
-SPIDER_MODULES = ['nbs.spiders']
-NEWSPIDER_MODULE = 'nbs.spiders'
+SPIDER_MODULES = ['NBS.spiders']
+NEWSPIDER_MODULE = 'NBS.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'nbs (+http://www.yourdomain.com)'
+#USER_AGENT = 'NBS (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -47,13 +47,13 @@ ROBOTSTXT_OBEY = True
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'nbs.middlewares.NbsSpiderMiddleware': 543,
+#    'NBS.middlewares.NbsSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'nbs.middlewares.NbsDownloaderMiddleware': 543,
+#    'NBS.middlewares.NbsDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -65,7 +65,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 #ITEM_PIPELINES = {
-#    'nbs.pipelines.NbsPipeline': 300,
+#    'NBS.pipelines.NbsPipeline': 300,
 #}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
