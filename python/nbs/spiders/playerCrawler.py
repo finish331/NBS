@@ -12,7 +12,7 @@ class PlayerCrawler(CrawlSpider):
     url = 'https://www.basketball-reference.com/players/'
     start_urls = []
     rules = [
-        Rule(LinkExtractor(allow=('/players/a/')),
+        Rule(LinkExtractor(allow=('/players/')),
              callback='parse', follow=True)
     ]
     for alphabet in range(97, 123):
@@ -32,8 +32,6 @@ class PlayerCrawler(CrawlSpider):
         team = None
         name = res.select('h1')[0].text  # 球員名字
         number = res.select('text')  # 球員最後一個背號
-        temp = res.select('#necro-birth')[0]
-        birth_year = temp.select('a')[1].text  # 球員出生年
         table = pandas.read_html(response.url)[0]  # 球員歷年數據表格
         meta = res.select('#meta')[0]  # 球員基本資料區
         meta = meta.select('p')  # 球員基本資料
@@ -52,13 +50,14 @@ class PlayerCrawler(CrawlSpider):
                 break
         position = str[i+2][2:]
 
-        #設定ID
-        id = name.replace(' ', '') + birth_year #ID為名字+出生年份
+        if len(number) == 0:
+            number = None   #沒有球衣背號
+        else:
+            number = number[len(number)-1].text #取得球員最後一個球衣背號
 
         nbsItems = NbsItem()
         nbsItems['name'] = name
-        nbsItems['id'] = id
-        nbsItems['number'] = number[len(number)-1].text
+        nbsItems['number'] = number
         nbsItems['team'] = team
         nbsItems['position'] = position
         nbsItems['data'] = table.to_dict()
