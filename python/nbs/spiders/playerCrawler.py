@@ -19,13 +19,13 @@ class PlayerCrawler(CrawlSpider):
         start_urls.append(url + chr(alphabet) + '/')
 
     def parse(self, response):
-        domain = 'https://www.basketball-reference.com'
+        url = 'https://www.basketball-reference.com'
         res = BS(response.body, 'lxml')
         table = res.select('table')[0].select('tbody')[0]   #取得球員列表
         for index in table.select('tr'):
             index = index.select('th')[0]
-            url = index.select('a')[0].get('href')
-            yield scrapy.Request(domain + url, self.parse_detail)   #進入各球員頁面
+            link = index.select('a')[0].get('href')
+            yield scrapy.Request(url + link, self.parse_detail)   #進入各球員頁面
 
     def parse_detail(self, response):
         res = BS(response.body, 'lxml')
