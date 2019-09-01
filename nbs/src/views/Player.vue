@@ -1,6 +1,6 @@
 <template>
 
-	<div id="app">
+	<div id="app" class="px-5">
 		<!-- 球員基本資料區 -->
 		<div class="my-1 mx-2 text-white global-bg-gray">
 			<div class="container-fluid">

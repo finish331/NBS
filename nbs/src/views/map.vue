@@ -1,5 +1,5 @@
 <template>
-	<div class="container page-height">
+	<div class="container page-height px-5">
 		<div class="row mh-100 vh-100 align-items-center" >
       <ve-map class="col" width="80%" height="600px" :data="chartData" :settings="chartSettings"></ve-map>
     </div>

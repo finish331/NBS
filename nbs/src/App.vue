@@ -50,7 +50,7 @@
 				</b-navbar-nav>
 			</b-collapse>
 		</b-navbar>
-		<div style="padding:0 5%;">
+		<div >
 			<router-view />
 		</div>
 	</div>
