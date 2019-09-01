@@ -1,7 +1,7 @@
 <template>
   <div class="home ">
     <div class="banner">
-      
+
     </div>
     <div class="content">
         <div class="content-padding">
@@ -12,7 +12,7 @@
           </div>
           <a href="'/player'"><div class="content-bnt">
             →
-            
+
           </div></a>
         </div>
     </div>
@@ -61,7 +61,7 @@
     padding: 1% 2%;
     bottom: 0;
     animation: contenr-title-in .5s .25s 1 ease-in backwards;
-  }  
+  }
 
   @keyframes contenr-title-in {
     from {
@@ -71,7 +71,7 @@
     to {
       opacity: .75;
     }
-  } 
+  }
   .contenr-title span{
     font-size: 90px;
   }

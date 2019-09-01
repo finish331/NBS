@@ -1,8 +1,8 @@
 <template>
-  <div class = "hello">
+  <div class = "hello px-5">
     <v-app id="inspire">
-      <v-container 
-        fluid grid-list-xl 
+      <v-container
+        fluid grid-list-xl
         class="select-filter"
         style="padding:5% 0 0 0"
         v-if="$vuetify.breakpoint.mdAndDown"
@@ -105,5 +105,3 @@ export default {
   #inspire >>> .container{
   }
 </style>
-
-
