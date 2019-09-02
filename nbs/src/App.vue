@@ -19,7 +19,7 @@
 					<b-nav-item v-bind:to="'/champion'">Champion</b-nav-item>
 </b-navbar-nav>
 				<b-navbar-nav>
-					<b-nav-item v-bind:to="'/map'">Map</b-nav-item>
+					<b-nav-item v-bind:to="'/map1'">Map</b-nav-item>
 				</b-navbar-nav>
 
 				<b-navbar-nav>

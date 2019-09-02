@@ -7,7 +7,8 @@ import Leader from './views/Leader.vue'
 import Champion from './views/Champion.vue'
 import CompareLeader from './views/ComparePlayer.vue'
 import Map from './views/map.vue'
-
+import Map1 from './views/map1.vue'
+import PlayerHomePage from './views/playerHomePage.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -54,6 +55,16 @@ export default new Router({
       path: '/map',
       name: 'Map',
       component: Map
+    },
+    {
+      path: '/map1',
+      name: 'Map1',
+      component: Map1
+    },
+    {
+      path:'/playerHomePage',
+      name:'PlayerHomePage',
+      component: PlayerHomePage
     }
   ]
 })
