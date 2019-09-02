@@ -17,3 +17,9 @@ class NbsItem(scrapy.Item):
     position = scrapy.Field()
     data = scrapy.Field()
     # pass
+
+class TeamItem(scrapy.Item):
+    name = scrapy.Field()
+    rosters = scrapy.Field()
+    stats = scrapy.Field()
+    # pass
