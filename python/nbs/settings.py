@@ -21,17 +21,15 @@ NEWSPIDER_MODULE = 'NBS.spiders'
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
-DOWNLOADER_MIDDLEWARES = {
-    'scrapy_splash.SplashCookiesMiddleware': 723,
-    'scrapy_splash.SplashMiddleware': 725,
-    'scrapy.downloadermiddlewares.httpcompression.HttpCompressionMiddleware': 810,
-}
+# customize
+# LOG_LEVEL = 'INFO'
+COOKIES_ENABLED = False
+LOG_FILE = 'team.log'
 
-SPLASH_URL = 'http://localhost:8050'
-
-DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
-HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
-
+# 輸出json檔
+FEED_FORMAT = "json"
+FEED_URI = "team.json"
+FEED_EXPORT_ENCODING = "utf-8"
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
