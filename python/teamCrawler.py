@@ -80,5 +80,6 @@ if __name__ == '__main__':
         count += 1
         if count % 10 == 0 and count >= 10:
             result.append(temp)
-    with open("test.json", 'w') as file_object:
+            temp = {}
+    with open("team.json", 'w') as file_object:
         json.dump(result, file_object)
