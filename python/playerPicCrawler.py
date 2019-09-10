@@ -28,7 +28,8 @@ class PlayerPictureCrawler:
         res = BS(self.driver.page_source, 'lxml')
         list = res.select('.players-list__name')
         for player in list:
-            print(player.get('href'))
+            link = player.select('a')[0]
+            print(link.get('href'))
 
     def parse(self):
         self.start_driver()     # 開啟 WebDriver
@@ -38,10 +39,10 @@ class PlayerPictureCrawler:
 
 
 def save_to_json(result):
-    with open("team_pic.json", 'w') as file_object:
+    with open("player_pic.json", 'w') as file_object:
         json.dump(result, file_object)
 
 if __name__ == '__main__':
     crawler = PlayerPictureCrawler(URL)
     crawler.parse()
-    save_to_json(crawler.result)
+    # save_to_json(crawler.result)
