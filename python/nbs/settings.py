@@ -21,6 +21,16 @@ NEWSPIDER_MODULE = 'NBS.spiders'
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
+# customize
+# LOG_LEVEL = 'INFO'
+COOKIES_ENABLED = False
+LOG_FILE = 'team.log'
+
+# 輸出json檔
+FEED_FORMAT = "json"
+FEED_URI = "team.json"
+FEED_EXPORT_ENCODING = "utf-8"
+
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 
@@ -46,14 +56,14 @@ ROBOTSTXT_OBEY = True
 
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
-#SPIDER_MIDDLEWARES = {
+# SPIDER_MIDDLEWARES = {
 #    'NBS.middlewares.NbsSpiderMiddleware': 543,
-#}
+# }
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 # DOWNLOADER_MIDDLEWARES = {
-#    'NBS.middlewares.NbsDownloaderMiddleware': 543,
+   # 'NBS.middlewares.NbsDownloaderMiddleware': 543,
 # }
 
 # Enable or disable extensions
