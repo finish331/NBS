@@ -97,14 +97,14 @@
       </div>
       <div style="width:100%;height:45%">
         <div v-if="leftTeam.isTeam">
-          <ve-bar height="300px" :textStyle="textStyles" :data="leftTeamDate">
+          <ve-bar height="300px" :textStyle="textStyles" :data="leftTeamDate" :extend="leftseries">
           </ve-bar>
         </div>
         <div v-else>
           <div v-for="(i, index) in leftTeam.player" :key="index">
             <div v-if="i.state">
               <div>
-                <ve-bar height="300px" :textStyle="textStyles" :data="leftPlayerData">
+                <ve-bar height="300px" :textStyle="textStyles" :data="leftPlayerData" :extend="leftseries">
                 </ve-bar>
               </div>
             </div>
@@ -123,14 +123,14 @@
       </div>
       <div style="width:100%;height:45%">
         <div v-if="rightTeam.isTeam">
-          <ve-bar height="300px" :textStyle="textStyles" :data="rightTeamDate">
+          <ve-bar height="300px" :textStyle="textStyles" :data="rightTeamDate" :extend="rightseries">
           </ve-bar>
         </div>
         <div v-else>
           <div v-for="(i, index) in rightTeam.player" :key="index">
             <div v-if="i.state">
               <div>
-                <ve-bar height="300px" :textStyle="textStyles" :data="rightPlayerData">
+                <ve-bar height="300px" :textStyle="textStyles" :data="rightPlayerData" :extend="rightseries">
                 </ve-bar>
               </div>
             </div>
