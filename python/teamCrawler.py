@@ -28,7 +28,6 @@ def GetTeamList():
     result = []
     team_names = []
     for link in links:
-        # result.append(domain + link.get('href'))
         result = GoToEachYear(domain, domain + link.get('href'), result)
         team_names.append(link.text)
     return result, team_names
@@ -68,13 +67,11 @@ if __name__ == '__main__':
     for link in links:
         if count %10 == 0:
             team = team_names.pop(0)
-            # result[team] = {}
             temp["name"] = team
-            # print(team)
-        if count %10 == 1 and count > 10:
+            #print(team)
+        if year == 2010:
             year = 2020
-        # print(year)
-        # print(link)
+        #print(year)
         temp[str(year)] = main(link)
         year -= 1
         count += 1
