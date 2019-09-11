@@ -1,12 +1,17 @@
 const express = require('express')
 
-const router = express.Router()
-// const api = require('./api')
+const app = express()
 
-router.get('/getName', (req, res) => {
-  res.json({
-    data: '後端get Name連接ok'
-  })
-})
+const db = require('./firbaseInit')
 
-module.exports = router
+//透過doc('path') 或透過 db.collection('movies').doc('新世紀福爾摩')皆可
+app.get('/getName', (req, res) => {
+  db.doc('movies/新世紀福爾摩').get().then( doc => {
+    res.json({
+      data: req.query.ID,
+      firbaseData: doc.data().actors
+    });
+  });
+});
+
+module.exports = app

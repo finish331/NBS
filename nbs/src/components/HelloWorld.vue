@@ -97,7 +97,7 @@ export default {
   },
   methods: {
     getName () {
-      this.$http.get('/api/movie/getName', {
+      this.$http.get('/api/test/testWhere', {
         params:{
           ID: '12345'
         }
