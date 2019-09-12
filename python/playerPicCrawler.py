@@ -86,10 +86,10 @@ class PlayerPictureCrawler:
         self.close_driver()     # 關閉 WebDriver
 
 if __name__ == '__main__':
-    startTime = time.clock()
+    # startTime = time.clock()
     crawler = PlayerPictureCrawler(URL)
     crawler.parse()
-    endTime = time.clock()
-    time = endTime - startTime
-    print("完成耗時： ")
-    print(time)
+    # endTime = time.clock()
+    # time = endTime - startTime
+    # print("完成耗時： ")
+    # print(time)
