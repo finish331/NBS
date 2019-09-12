@@ -97,14 +97,14 @@ export default {
   },
   methods: {
     getName () {
-      this.$http.get('/api/movie/getName', {
+      this.$http.get('/api/test/testWhere', {
         params:{
           ID: '12345'
         }
       })
         .then((res) => {
           console.log('res',res) 
-          this.inpContent = res.data.data
+          this.inpContent = res.data.data2.date
         })
     },
     firebaseTest (){
