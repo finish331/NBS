@@ -7,7 +7,7 @@ const app = express()
 const routerapi = require('./router')
 
 const admin = require('firebase-admin');
-const serviceAccount = require('../../../project_key/ServerKey.json');
+const serviceAccount = require('../../ServerKey.json');
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount)
@@ -22,7 +22,8 @@ var t = 123
 app.get('/movie/getName', (req, res) => {
   db.collection('movies').doc('新世紀福爾摩').get().then(function(doc){
     res.json({
-      data: req.query.ID
+      data: req.query.ID,
+      data2: doc.data()
     });
   });
 });

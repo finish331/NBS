@@ -104,7 +104,7 @@ export default {
       })
         .then((res) => {
           console.log('res',res) 
-          this.inpContent = res.data.data
+          this.inpContent = res.data.data2.date
         })
     },
     firebaseTest (){
