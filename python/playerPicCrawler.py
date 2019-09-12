@@ -4,8 +4,8 @@ from bs4 import BeautifulSoup as BS
 import json
 import os
 from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException
-# import time
-# 目標 URL網址
+from selenium.webdriver.support import expected_conditions as EC
+# 目標URL網址
 URL = "https://stats.nba.com/players/list/?Historic=Y"
 
 class PlayerPictureCrawler:
@@ -29,7 +29,7 @@ class PlayerPictureCrawler:
         time.sleep(2)
 
     def save_to_json(result):
-        with open("./XIANG/player_pic.json", 'w') as file_object:
+        with open("./JSON/player_pic.json", 'w') as file_object:
             json.dump(result, file_object)
 
     def parse_link(self):
@@ -54,10 +54,14 @@ class PlayerPictureCrawler:
             except NoSuchElementException:  #沒有球員本身照片
                 while(True):
                     try:
-                        player_pic_url = self.driver.find_element_by_xpath("//img[@class='player-img not-found']").get_attribute('src')
+                        player_pic_url = self.driver.find_element_by_xpath("//img[@class='ng-isolate-scope player-img not-found']").get_attribute('src')
                         break
                     except NoSuchElementException:
-                        pass
+                        try:
+                            player_pic_url = self.driver.find_element_by_xpath("//img[@class='ng-isolate-scope player-img']").get_attribute('src')
+                            break
+                        except:
+                            pass
             except StaleElementReferenceException:
                 pass
             attempts += 1
@@ -86,10 +90,5 @@ class PlayerPictureCrawler:
         self.close_driver()     # 關閉 WebDriver
 
 if __name__ == '__main__':
-    # startTime = time.clock()
     crawler = PlayerPictureCrawler(URL)
     crawler.parse()
-    # endTime = time.clock()
-    # time = endTime - startTime
-    # print("完成耗時： ")
-    # print(time)
