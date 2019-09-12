@@ -1,1 +1,31 @@
-[{"name": "Alaa Abdelnaby", "pic_url": "https://stats.nba.com/media/img/league/nba-headshot-fallback.png"}, {"name": "Zaid Abdul-Aziz", "pic_url": "https://stats.nba.com/media/img/league/nba-headshot-fallback.png"}, {"name": "Kareem Abdul-Jabbar", "pic_url": "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/76003.png"}, {"name": "Mahmoud Abdul-Rauf", "pic_url": "https://stats.nba.com/media/img/league/nba-headshot-fallback.png"}, {"name": "Tariq Abdul-Wahad", "pic_url": "https://stats.nba.com/media/img/league/nba-headshot-fallback.png"}, {"name": "Shareef Abdur-Rahim", "pic_url": "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/949.png"}, {"name": "Tom Abernethy", "pic_url": "https://stats.nba.com/media/img/league/nba-headshot-fallback.png"}, {"name": "Forest Able", "pic_url": "https://stats.nba.com/media/img/league/nba-headshot-fallback.png"}, {"name": "John Abramovic", "pic_url": "https://stats.nba.com/media/img/league/nba-headshot-fallback.png"}, {"name": "Alex Abrines", "pic_url": "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/203518.png"}]
+[{
+  "name": "Alaa Abdelnaby",
+  "pic_url": "https://stats.nba.com/media/img/league/nba-headshot-fallback.png"
+}, {
+  "name": "Zaid Abdul-Aziz",
+  "pic_url": "https://stats.nba.com/media/img/league/nba-headshot-fallback.png"
+}, {
+  "name": "Kareem Abdul-Jabbar",
+  "pic_url": "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/76003.png"
+}, {
+  "name": "Mahmoud Abdul-Rauf",
+  "pic_url": "https://stats.nba.com/media/img/league/nba-headshot-fallback.png"
+}, {
+  "name": "Tariq Abdul-Wahad",
+  "pic_url": "https://stats.nba.com/media/img/league/nba-headshot-fallback.png"
+}, {
+  "name": "Shareef Abdur-Rahim",
+  "pic_url": "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/949.png"
+}, {
+  "name": "Tom Abernethy",
+  "pic_url": "https://stats.nba.com/media/img/league/nba-headshot-fallback.png"
+}, {
+  "name": "Forest Able",
+  "pic_url": "https://stats.nba.com/media/img/league/nba-headshot-fallback.png"
+}, {
+  "name": "John Abramovic",
+  "pic_url": "https://stats.nba.com/media/img/league/nba-headshot-fallback.png"
+}, {
+  "name": "Alex Abrines",
+  "pic_url": "https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/203518.png"
+}]
