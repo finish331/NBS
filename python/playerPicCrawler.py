@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup as BS
 import json
 import os
 from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException
-import time
+# import time
 # 目標 URL網址
 URL = "https://stats.nba.com/players/list/?Historic=Y"
 
@@ -86,10 +86,10 @@ class PlayerPictureCrawler:
         self.close_driver()     # 關閉 WebDriver
 
 if __name__ == '__main__':
-    startTime = time.clock()
+    # startTime = time.clock()
     crawler = PlayerPictureCrawler(URL)
     crawler.parse()
-    endTime = time.clock()
-    time = endTime - startTime
-    print("完成耗時： ")
-    print(time)
+    # endTime = time.clock()
+    # time = endTime - startTime
+    # print("完成耗時： ")
+    # print(time)
