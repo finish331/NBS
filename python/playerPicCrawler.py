@@ -62,6 +62,7 @@ class PlayerPictureCrawler:
                             break
                         except:
                             pass
+                break
             except StaleElementReferenceException:
                 pass
             attempts += 1
