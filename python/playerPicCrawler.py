@@ -28,8 +28,8 @@ class PlayerPictureCrawler:
         self.driver.get(url)
         time.sleep(2)
 
-    def save_to_json(result):
-        with open("./JSON/player_pic.json", 'w') as file_object:
+    def save_to_json(self, result):
+        with open("./XIANG/player_pic.json", 'w') as file_object:
             json.dump(result, file_object)
 
     def parse_link(self):
@@ -79,8 +79,9 @@ class PlayerPictureCrawler:
             self.get_page(link)
             self.parse_player()
             i += 1
-            if i == 20: #定時存檔
+            if i == 15: #定時存檔
                 self.save_to_json(self.result)
+                print("存檔成功！")
                 i = 0
 
     def parse(self):
