@@ -63,6 +63,7 @@ class PlayerPictureCrawler:
                         except:
                             time.sleep(2)
                             pass
+                break
             except StaleElementReferenceException:
                 time.sleep(2)
                 pass
