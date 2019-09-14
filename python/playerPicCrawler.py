@@ -29,10 +29,10 @@ class PlayerPictureCrawler:
         self.driver.get(url)
         time.sleep(2)
 
-    def save_to_json(self, result):
+    def save_to_json(self):
         file_name = "./JSON/player_pic" + self.index + ".json"
         with open(file_name, 'w') as file_object:
-            json.dump(result, file_object)
+            json.dump(self.result, file_object)
             print(file_name + "完成！！！")
 
     def parse_link(self, index):
