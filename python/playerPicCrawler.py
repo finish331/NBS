@@ -30,12 +30,8 @@ class PlayerPictureCrawler:
         time.sleep(2)
 
     def save_to_json(self, result):
-<<<<<<< HEAD
-        with open("./JSON/player_pic_.json", 'w') as file_object:
-=======
         file_name = "./JSON/player_pic" + self.index + ".json"
         with open(file_name, 'w') as file_object:
->>>>>>> 489f17f53514b97e2ddef0b8f6e327be0a57bd2b
             json.dump(result, file_object)
             print(file_name + "完成！！！")
 
@@ -105,13 +101,8 @@ class PlayerPictureCrawler:
         self.close_driver()     # 關閉 WebDriver
 
 if __name__ == '__main__':
-<<<<<<< HEAD
-    # startTime = time.clock()
-    crawler = PlayerPictureCrawler(URL)
-=======
     index = input("請輸入爬蟲球員字母開頭(A~Z)，注意要大寫：")
     crawler = PlayerPictureCrawler(URL, index)
->>>>>>> 489f17f53514b97e2ddef0b8f6e327be0a57bd2b
     crawler.parse()
     # endTime = time.clock()
     # time = endTime - startTime
