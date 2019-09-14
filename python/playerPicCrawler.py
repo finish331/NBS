@@ -95,6 +95,7 @@ class PlayerPictureCrawler:
         self.get_page(self.url_to_crawl)    # 進入球員index
         self.parse_link(self.index)   # 取得所有球員url
         self.go_each_player()
+        self.save_to_json()
         self.close_driver()     # 關閉 WebDriver
 
 if __name__ == '__main__':
