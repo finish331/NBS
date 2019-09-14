@@ -29,7 +29,7 @@ class PlayerPictureCrawler:
         time.sleep(2)
 
     def save_to_json(self, result):
-        with open("./XIANG/player_pic.json", 'w') as file_object:
+        with open("./JSON/player_pic_.json", 'w') as file_object:
             json.dump(result, file_object)
 
     def parse_link(self):
