@@ -27,10 +27,15 @@ class ProcessTeamFile:
     def process(self, statsFile, picFile):
         self.statsFile = self.openFile(statsFile, 'r')
         self.picFile = self.openFile(picFile, 'r')
-        self.Merge(statsFile, picFile)
-        # self.writeFile("team_final.json", 'w', self.statsFile)
+        self.Merge(self.statsFile, self.picFile)
+        self.writeFile("team_final.json", 'w', self.statsFile)
+        # self.test()
+
+    def test(self):
+        for item in self.statsFile:
+            print(type(item))
 
 if __name__ == '__main__':
     process = ProcessTeamFile()
     process.process("team.json", "team_pic.json")
-    print(type(process.picFile[1]))
+    # print(type(process.picFile[1]))
