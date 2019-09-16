@@ -84,7 +84,7 @@ def AddData():
           doc_ref.set(outputJson)
         outputJson.clear()
 
-if(__name__ == '__main__'):
+if __name__ == '__main__' :
   db = firestore.client()
   AddData()
   #測試案例
