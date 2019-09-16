@@ -59,24 +59,24 @@ def main(url):
     return dict
 
 if __name__ == '__main__':
-    result = []
-    links, team_names = GetTeamList()
-    count = 0
-    year = 2020
+    # result = []
+    # links, team_names = GetTeamList()
+    # count = 0
+    # year = 2020
     temp = {}
-    for link in links:
-        if count %10 == 0:
-            team = team_names.pop(0)
-            temp["name"] = team
-            #print(team)
-        if year == 2010:
-            year = 2020
-        #print(year)
-        temp[str(year)] = main(link)
-        year -= 1
-        count += 1
-        if count % 10 == 0 and count >= 10:
-            result.append(temp)
-            temp = {}
-    with open("team.json", 'w') as file_object:
-        json.dump(result, file_object)
+    # for link in links:
+    #     if count %10 == 0:
+    #         team = team_names.pop(0)
+    #         temp["name"] = team
+    #     if year == 2010:
+    #         year = 2020
+    #     temp[str(year)] = main(link)
+    #     year -= 1
+    #     count += 1
+    #     if count % 10 == 0 and count >= 10:
+    #         result.append(temp)
+    #         temp = {}
+    temp["2011"] = main("https://www.basketball-reference.com/teams/BOS/2011.html")
+    with open("team_BOS.json", 'w') as file_object:
+        # json.dump(result, file_object)
+        json.dump(temp, file_object)
