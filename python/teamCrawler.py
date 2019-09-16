@@ -58,12 +58,21 @@ def main(url):
         dict["stats"] = None
     return dict
 
+def test():
+    url = "https://www.basketball-reference.com/teams/ATL/"
+    res = requests.get(url).text
+    res = BS(res, 'lxml')
+    table = res.select('table')[0]
+    links = []
+    links = table.find_elements_by_xpath("//tbody/tr/th[@class='left']/a")
+    print(link)
+
 if __name__ == '__main__':
     # result = []
     # links, team_names = GetTeamList()
     # count = 0
     # year = 2020
-    temp = {}
+    # temp = {}
     # for link in links:
     #     if count %10 == 0:
     #         team = team_names.pop(0)
@@ -76,7 +85,6 @@ if __name__ == '__main__':
     #     if count % 10 == 0 and count >= 10:
     #         result.append(temp)
     #         temp = {}
-    temp["2011"] = main("https://www.basketball-reference.com/teams/BOS/2011.html")
-    with open("team_BOS.json", 'w') as file_object:
-        # json.dump(result, file_object)
-        json.dump(temp, file_object)
+    # with open("team_GSW.json", 'w') as file_object:
+    #     json.dump(result, file_object)
+    test()
