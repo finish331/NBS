@@ -67,9 +67,11 @@ class PlayerPictureCrawler:
                             player_pic_url = self.driver.find_element_by_xpath("//img[@class='ng-isolate-scope player-img']").get_attribute('src')
                             break
                         except:
+                            time.sleep(2)
                             pass
                 break
             except StaleElementReferenceException:
+                time.sleep(2)
                 pass
             attempts += 1
         player["name"] = first_name + " " + last_name   # 球員名字
@@ -95,3 +97,7 @@ if __name__ == '__main__':
     index = input("請輸入爬蟲球員字母開頭(A~Z)，注意要大寫：")
     crawler = PlayerPictureCrawler(URL, index)
     crawler.parse()
+    # endTime = time.clock()
+    # time = endTime - startTime
+    # print("完成耗時： ")
+    # print(time)
