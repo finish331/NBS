@@ -4,7 +4,6 @@ from bs4 import BeautifulSoup as BS
 import json
 import os
 from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException
-from selenium.webdriver.support import expected_conditions as EC
 # 目標URL網址
 URL = "https://stats.nba.com/players/list/?Historic=Y"
 
@@ -29,6 +28,7 @@ class PlayerPictureCrawler:
         self.driver.get(url)
         time.sleep(2)
 
+    # 最後寫入檔案
     def save_to_json(self):
         file_name = "./JSON/player_pic" + self.index + ".json"
         with open(file_name, 'w') as file_object:
@@ -39,12 +39,12 @@ class PlayerPictureCrawler:
         print("取得球員列表...")
         domain = "https://stats.nba.com"
         res = BS(self.driver.page_source, 'lxml')
-        temp_index = ord(index) - 65
+        temp_index = ord(index) - 65    #算這個字母開頭的球員是在section的第幾個
         section = res.select('.players-list__section')[temp_index]
         list = section.select('.players-list__name')
+        # 加入所有這個字母開頭的球員
         for player in list:
             link = player.select('a')[0]
-            # print(link.text)
             self.links.append(domain + link.get('href'))
 
     def parse_player(self):
@@ -53,11 +53,11 @@ class PlayerPictureCrawler:
         first_name = res.select('.player-summary__first-name')[0].text
         last_name = res.select('.player-summary__last-name')[0].text
         attempts = 0
-        while(attempts < 2):
+        while(attempts < 2):    #避免 StaleElementReferenceException
             try:
                 player_pic_url = self.driver.find_element_by_xpath("//img[@class='player-img']").get_attribute('src')
                 break
-            except NoSuchElementException:  #沒有球員本身照片
+            except NoSuchElementException:  #沒有球員本身照片，NBA logo代替
                 while(True):
                     try:
                         player_pic_url = self.driver.find_element_by_xpath("//img[@class='ng-isolate-scope player-img not-found']").get_attribute('src')
@@ -72,23 +72,16 @@ class PlayerPictureCrawler:
             except StaleElementReferenceException:
                 pass
             attempts += 1
-        player["name"] = first_name + " " + last_name
-        player["pic_url"] = player_pic_url
-        self.result.append(player)
+        player["name"] = first_name + " " + last_name   # 球員名字
+        player["pic_url"] = player_pic_url  # 球員圖片url
+        self.result.append(player)  #將球員加入list
         print(player["name"] + " 爬取成功！")
-        # print(player["pic_url"])
 
     # 進入各個球員頁面
     def go_each_player(self):
-        # i = 0
         for link in self.links:
             self.get_page(link)
             self.parse_player()
-            # i += 1
-            # if i == 15: #定時存檔
-            #     self.save_to_json(self.result)
-            #     print("存檔成功！")
-            #     i = 0
 
     def parse(self):
         self.start_driver()     # 開啟 WebDriver
