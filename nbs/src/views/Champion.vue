@@ -1,6 +1,6 @@
 <template>
 <div class="champion px-5">
-  <div class="col-md-3 champion1" style="height:100%">
+  <div class="col-sm-12 col-md-3 champion1" >
     <div class="row ">
       <div class="col-md-12 test">
         <div class="col-md-8 bgimg">
@@ -85,8 +85,8 @@
       </div>
     </div>
   </div>
-  <div class="col-md-9" style="display:flex">
-    <div class="col-md-6 left-team">
+  <div class="col-sm-12 col-md-9" style="display:flex">
+    <div class="col-sm-12 col-md-6 left-team">
       <div @click="clickTeam('left')" style=" cursor: pointer;width:100% ;height:40%;background: url('https://stats.nba.com/media/img/teams/logos/HOU_logo.svg');background-position: center;background-repeat: no-repeat;"></div>
       <div style="display:flex;width:100%;height:15%">
         <div class="col player-btn" style="padding:0" v-for="(i, index) in leftTeam.player" :key="index">
@@ -112,7 +112,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6 left-team">
+    <div class="col-sm-12 col-md-6 right-team">
       <div @click="clickTeam('right')" style=" cursor: pointer;width:100% ;height:40%;background: url('https://stats.nba.com/media/img/teams/logos/HOU_logo.svg');background-position: center;background-repeat: no-repeat;"></div>
       <div style="display:flex;width:100%;height:15%">
         <div class="col player-btn" style="padding:0" v-for="(i, index) in rightTeam.player" :key="index">
@@ -436,10 +436,12 @@ export default {
   height: calc(100vh - 76px);
   width: 100%;
 }
-
 .champion1 {
+  height: calc(100vh - 76px);
   overflow: auto;
 }
+
+
 
 .test {
   display: flex;
@@ -472,12 +474,14 @@ export default {
   color: white;
   background-color: #1d1d1d;
   border: 12px solid white;
+  height: calc(100vh - 76px);
 }
 
 .right-team {
   color: white;
   background-color: #1d1d1d;
   border: 12px solid white;
+  height: calc(100vh - 76px);
 }
 
 .player-btn {
@@ -486,5 +490,16 @@ export default {
 
 .player-btn:hover {
   background-color: #272727;
+}
+@media (max-width:960px){
+  .champion {
+    display: block;
+  }
+  .champion1 {
+    height: 30vh;
+  }
+  .right-team{
+    display: none;
+  }
 }
 </style>

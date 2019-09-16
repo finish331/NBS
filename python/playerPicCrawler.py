@@ -3,15 +3,17 @@ from selenium import webdriver
 from bs4 import BeautifulSoup as BS
 import json
 import os
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException
+from selenium.webdriver.support import expected_conditions as EC
 # 目標URL網址
 URL = "https://stats.nba.com/players/list/?Historic=Y"
 
 class PlayerPictureCrawler:
-    def __init__(self, url):
+    def __init__(self, url, index):
         self.url_to_crawl = url
         self.result = []
         self.links = []
+        self.index = index
 
     def start_driver(self):
         print("啟動 WebDriver...")
@@ -23,16 +25,26 @@ class PlayerPictureCrawler:
         print("關閉 WebDriver...")
 
     def get_page(self, url):
-        print("取得網頁...")
+        # print("取得網頁...")
         self.driver.get(url)
         time.sleep(2)
 
-    def parse_link(self):
+    def save_to_json(self):
+        file_name = "./JSON/player_pic" + self.index + ".json"
+        with open(file_name, 'w') as file_object:
+            json.dump(self.result, file_object)
+            print(file_name + "完成！！！")
+
+    def parse_link(self, index):
+        print("取得球員列表...")
         domain = "https://stats.nba.com"
         res = BS(self.driver.page_source, 'lxml')
-        list = res.select('.players-list__name')
+        temp_index = ord(index) - 65
+        section = res.select('.players-list__section')[temp_index]
+        list = section.select('.players-list__name')
         for player in list:
             link = player.select('a')[0]
+            # print(link.text)
             self.links.append(domain + link.get('href'))
 
     def parse_player(self):
@@ -40,33 +52,59 @@ class PlayerPictureCrawler:
         res = BS(self.driver.page_source, 'lxml')
         first_name = res.select('.player-summary__first-name')[0].text
         last_name = res.select('.player-summary__last-name')[0].text
-        try:
-            player_pic_url = self.driver.find_element_by_xpath("//img[@class='player-img']").get_attribute('src')
-        except NoSuchElementException:
-            player_pic_url = self.driver.find_element_by_xpath("//img[@class='player-img not-found']").get_attribute('src')
+        attempts = 0
+        while(attempts < 2):
+            try:
+                player_pic_url = self.driver.find_element_by_xpath("//img[@class='player-img']").get_attribute('src')
+                break
+            except NoSuchElementException:  #沒有球員本身照片
+                while(True):
+                    try:
+                        player_pic_url = self.driver.find_element_by_xpath("//img[@class='ng-isolate-scope player-img not-found']").get_attribute('src')
+                        break
+                    except NoSuchElementException:
+                        try:
+                            player_pic_url = self.driver.find_element_by_xpath("//img[@class='ng-isolate-scope player-img']").get_attribute('src')
+                            break
+                        except:
+                            time.sleep(2)
+                            pass
+                break
+            except StaleElementReferenceException:
+                time.sleep(2)
+                pass
+            attempts += 1
         player["name"] = first_name + " " + last_name
         player["pic_url"] = player_pic_url
         self.result.append(player)
         print(player["name"] + " 爬取成功！")
+        # print(player["pic_url"])
 
+    # 進入各個球員頁面
     def go_each_player(self):
+        # i = 0
         for link in self.links:
             self.get_page(link)
             self.parse_player()
+            # i += 1
+            # if i == 15: #定時存檔
+            #     self.save_to_json(self.result)
+            #     print("存檔成功！")
+            #     i = 0
 
     def parse(self):
         self.start_driver()     # 開啟 WebDriver
-        self.get_page(self.url_to_crawl)
-        self.parse_link()
+        self.get_page(self.url_to_crawl)    # 進入球員index
+        self.parse_link(self.index)   # 取得所有球員url
         self.go_each_player()
+        self.save_to_json()
         self.close_driver()     # 關閉 WebDriver
 
-
-def save_to_json(result):
-    with open("./JSON/player_pic.json", 'w') as file_object:
-        json.dump(result, file_object)
-
 if __name__ == '__main__':
-    crawler = PlayerPictureCrawler(URL)
+    index = input("請輸入爬蟲球員字母開頭(A~Z)，注意要大寫：")
+    crawler = PlayerPictureCrawler(URL, index)
     crawler.parse()
-    save_to_json(crawler.result)
+    # endTime = time.clock()
+    # time = endTime - startTime
+    # print("完成耗時： ")
+    # print(time)
