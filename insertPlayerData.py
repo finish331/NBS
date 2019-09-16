@@ -6,6 +6,7 @@ from firebase_admin import firestore
 cred = credentials.Certificate('../project_key/PythonKey.json') 
 default_app = firebase_admin.initialize_app(cred)
 
+#2019/09/12
 #要取的球員屬性
 template = [
   'name', 
