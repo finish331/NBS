@@ -7,20 +7,12 @@
 
 import scrapy
 
-
 class NbsItem(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
-    # id = scrapy.Field()
-    # number = scrapy.Field()
-    # team = scrapy.Field()
-    # position = scrapy.Field()
-    # data = scrapy.Field()
-    pass
-
-class TeamItem(scrapy.Item):
+    name = scrapy.Field()
+    id = scrapy.Field()
+    number = scrapy.Field()
     team = scrapy.Field()
-    year = scrapy.Field()
-    rosters = scrapy.Field()
-    stats = scrapy.Field()
-    # pass
+    position = scrapy.Field()
+    data = scrapy.Field()
+    pass

@@ -1,17 +1,17 @@
 import json
 import random
-import firebase_admin 
-from firebase_admin import credentials 
+import firebase_admin
+from firebase_admin import credentials
 from firebase_admin import firestore
-cred = credentials.Certificate('../project_key/PythonKey.json') 
+cred = credentials.Certificate('../project_key/PythonKey.json')
 default_app = firebase_admin.initialize_app(cred)
 
 #2019/09/12
 #要取的球員屬性
 template = [
-  'name', 
-  'number', 
-  'team', 
+  'name',
+  'number',
+  'team',
   'position',
   'Season',
   'Age',
@@ -78,7 +78,7 @@ def AddData():
       #利用賽季的index(player_season)將賽季資料讀出來，判斷是否在要取的range內
       if(load_dict[player_no]['data']['Season'][str(player_season)] in SeasonRange):
         MapPlayerAttributes(player_no,player_season)
-        if not outputJson:  
+        if not outputJson:
           print(outputJson)
           doc_ref = db.collection('NBA').document(outputJson['Season']).collection('Player').document(outputJson['name'] + '-' + str(random.randint(10000,99999)))
           doc_ref.set(outputJson)
