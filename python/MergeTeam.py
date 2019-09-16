@@ -33,7 +33,6 @@ class ProcessTeamFile:
         self.picFile = self.openFile(picFile, 'r')
         self.Merge(self.statsFile, self.picFile)
         self.writeFile("team_final.json", 'w', self.statsFile)
-        # self.test()
 
     def test(self): #測試用
         for item in self.statsFile:
