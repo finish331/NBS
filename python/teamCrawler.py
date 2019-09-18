@@ -28,7 +28,6 @@ def GetTeamList():
     result = []
     team_names = []
     for link in links:
-        # result.append(domain + link.get('href'))
         result = GoToEachYear(domain, domain + link.get('href'), result)
         team_names.append(link.text)
     return result, team_names
@@ -59,22 +58,33 @@ def main(url):
         dict["stats"] = None
     return dict
 
+def test():
+    url = "https://www.basketball-reference.com/teams/ATL/"
+    res = requests.get(url).text
+    res = BS(res, 'lxml')
+    table = res.select('table')[0]
+    links = []
+    links = table.find_elements_by_xpath("//tbody/tr/th[@class='left']/a")
+    print(link)
+
 if __name__ == '__main__':
-    result = {}
-    links, team_names = GetTeamList()
-    count = 0
-    year = 2020
-    for link in links:
-        if count %10 == 0:
-            team = team_names.pop(0)
-            result[team] = {}
-            # print(team)
-        if count %10 == 1 and count > 10:
-            year = 2020
-        # print(year)
-        # print(link)
-        result[team][str(year)] = main(link)
-        year -= 1
-        count += 1
-    with open("test.json", 'w') as file_object:
-        json.dump(result, file_object)
+    # result = []
+    # links, team_names = GetTeamList()
+    # count = 0
+    # year = 2020
+    # temp = {}
+    # for link in links:
+    #     if count %10 == 0:
+    #         team = team_names.pop(0)
+    #         temp["name"] = team
+    #     if year == 2010:
+    #         year = 2020
+    #     temp[str(year)] = main(link)
+    #     year -= 1
+    #     count += 1
+    #     if count % 10 == 0 and count >= 10:
+    #         result.append(temp)
+    #         temp = {}
+    # with open("team_GSW.json", 'w') as file_object:
+    #     json.dump(result, file_object)
+    test()

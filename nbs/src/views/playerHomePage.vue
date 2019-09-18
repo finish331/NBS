@@ -1,6 +1,7 @@
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <template>
     <div class="playerHomePage px-5">
-        <div class="col-md-4" style="width: 100%;height: 100%;padding: 2%;">
+        <div id="searchPlayer" class="col-sm-12 col-md-4 " style="width: 100%;height: 100%;padding: 2%;">
            <div class="search-player">
                    <div style="width: 100%;height: 10%;">
                        <input v-model="playerName" placeholder="search" id="playerName" autocomplete="off">
@@ -27,7 +28,7 @@
                    </div>
             </div>
         </div>
-        <div class="col-md-8" style="width: 100%;height: 100%;padding: 2%;">
+        <div id="showPlayer" class="col-md-8" style="width: 100%;height: 100%;padding: 2%;">
             <div class="show-player">
                 <div class="row" style="width: 100%;height: 33%;">
                     <div class="col-md-3">
@@ -50,6 +51,16 @@
 </template>
 
 <script>
+
+    window.onresize = (function(){
+        var windowWidth =window.innerWidth;
+        if(windowWidth <960){
+            document.getElementById('showPlayer').style.display='none';
+        }
+        else{
+            document.getElementById('showPlayer').style.display='block';
+        }
+    })
 	export default {
 		components: {},
 		data() {
@@ -75,6 +86,12 @@
                     {name:"abbb",team:"TES"},
                     {name:"abbb",team:"TES"}
                 ]
+            }
+        },
+        mounted: function(){
+            console.log(window.innerWidth);
+            if(window.innerWidth <=960){
+                document.getElementById('showPlayer').style.display='none';
             }
         },
         methods:{

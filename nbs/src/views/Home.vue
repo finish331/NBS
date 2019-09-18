@@ -91,7 +91,7 @@
     position: absolute;
     padding: 0 3%;
     font-size: 40px;
-    border: 2px solid white;
+    border: 2px solid rgb(54, 91, 255);
     color: white;
     right:2%;
     bottom: 2%;

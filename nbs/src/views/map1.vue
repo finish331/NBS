@@ -12,25 +12,29 @@
             </div>
             <div style="display:flex;height:15%" >
                 <template v-for="(i, index) in List">
-					<div class="col-md-2" style="padding:2px" :key="index">
+					<div class="col-xs-3 col-sm-3 col-md-2" style="padding:2px" :key="index">
                         <div style="padding:10px;background:#666666;height:100%;color:white">
                             <div style="height:50%;text-align:left">{{i.title}}</div>
                             <div style="height:50%;">{{i.value}}</div>
                         </div>
                     </div>
 				</template>
-                <div class="col-md-4" style="padding:2px">
+                <div id="selectYear" class="col-xs-12 col-sm-12 col-md-4" style="padding:2px">
                     <div style="background:#666666;height:100%"></div>
                 </div>
+                
             </div>
+                <div id="selectYear1" class="col-xs-12 col-sm-12 col-md-4" style="">
+                    <div style="background:#666666;height:80px;width:100%"></div>
+                </div>
             <div style="display:flex;height:60% ;padding:0 2%;position: relative;" >
                 <button @click="left" style="position: absolute;left:1px" >123</button>
                 <button @click="right" style="position: absolute;right:1px">123</button>
                 <template v-for="(i, index) in playerData">
-                <div class="col-md-3" style="padding:10px" :key="index" v-if="index<4">
+                <div class="col-xs-12 col-sm-4 col-md-3" style="padding:10px" :key="index" v-if="index<4">
                     <div class="player-card" >
                         <div style="display:flex;align-items:center;height:40%;justify-content: space-around">
-                            <img height="100%"  src="../assets/jamesHarden.png" />
+                            <img width="60%"  src="../assets/jamesHarden.png" />
                             <div >
                                 <div>
                                     {{playerData[page+index].no}}
@@ -127,6 +131,19 @@
         height: 25%;
         background-color: #666666 ;
 
+    }
+    #selectYear1{
+        display:none;
+        padding:2px;
+
+    }
+    @media (max-width:960px){
+        #selectYear{
+            display:none;
+        }
+        #selectYear1{
+            display:inherit;
+        }
     }
 </style>
 <script>
