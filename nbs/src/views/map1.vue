@@ -2,7 +2,7 @@
 	<div class="map1">
         <div class="team-content">
             <div class="content-head" style="position: relative;display:flex; align-items: center;">
-                <div style="background: url('https://stats.nba.com/media/img/teams/logos/HOU_logo.svg');background-size: cover; 
+                <div style="background: url('https://stats.nba.com/media/img/teams/logos/HOU_logo.svg');background-size: cover;
                     background-position: center center ; height:100%;width:100%;opacity: .1;position: absolute;"     >
                 </div>
                 <img src="https://stats.nba.com/media/img/teams/logos/HOU_logo.svg" alt="" height="100%;">
@@ -111,7 +111,7 @@
         width: 100vw;
         height: calc(100vh - 76px);
         padding: 5%;
-        
+
     }
     .team-content{
         overflow: auto;
@@ -120,13 +120,13 @@
         background-color: rgb(253, 253, 253);
         /* border-radius:2%;  */
         box-shadow:10px 10px 20px rgba(0, 0, 0, .1);
-        
+
     }
     .content-head{
-        
+
         height: 25%;
         background-color: #666666 ;
-        
+
     }
 </style>
 <script>
@@ -253,13 +253,13 @@
                         'value': 1
                     }
                     ]
-                },	
+                },
 				List: [
 					{ title: "排名", value: 80 },
 					{ title: "戰績", value: 36.1 },
 					{ title: "教練", value: 6.6 },
 					{ title: "總管", value: 7.5 }
-					
+
 				]
 			};
         },
@@ -274,12 +274,12 @@
                 }
             },
             right(){
-                
+
                 if(this.page+4!=this.playerData.length){
                     console.log("0");
                     this.page+=4;
                 }
-                
+
             }
         }
 	};
