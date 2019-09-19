@@ -1,13 +1,17 @@
 <template>
 	<div class="container page-height px-5">
-		<div @click="test()" class="row mh-100 vh-100 align-items-center" >
-      <ve-map  class="col" width="80%" height="600px" :data="chartData" :settings="chartSettings" ></ve-map>
+		<div   class="row mh-100 vh-100 align-items-center" >
+      <ve-map class="col" width="80%" height="600px" :data="chartData" :settings="chartSettings"></ve-map>
+      
+      
     </div>
+    <div id="testttttt" ><map1 /></div>
 	</div>
 </template>
 
 <script>
   import usMap from '@/assets/json/custom-map.json'
+  import map1 from './map1'
 	export default {
 		data() {
 			return {
@@ -31,18 +35,25 @@
         }
       };
 		},
-		components: {},
+		components: {
+      map1
+    },
     mounted() {
     },
     methods:{
       test(){
-        console.log(usMap.features[0].id);
+        console.log('2')
       }
     }
-	};
+  };
+  
+
 </script>
 
-<style scoped lang="scss">
+<style>
+  #testttttt{
+    display: none;
+  }
   .page-height {
     height: calc(100vh - 80px);
   }
