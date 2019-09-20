@@ -97,8 +97,8 @@
                 </template>
 
             </div>
-            <div style="display:flex;height:100%;width:100%" >
-                <ve-histogram width="100%" height="100%" :textStyle="textStyles" :extend="series" :data="TeamData">
+            <div style="display:flex;height:100%;width:100%;" >
+                <ve-histogram width="90%" height="100%" :textStyle="textStyles" :extend="series" :data="TeamData">
                  </ve-histogram>
             </div>
         </div>
@@ -106,6 +106,7 @@
 </template>
 <style >
     .player-card{
+        
         padding: 5px;
         height: 100%;
         background-color: #f0f0f0;
@@ -264,6 +265,14 @@
                     {
                         'type': 'BLK',
                         'value': 5
+                    },
+                    {
+                        'type': 'STL',
+                        'value': 1
+                    },
+                    {
+                        'type': 'STL',
+                        'value': 1
                     },
                     {
                         'type': 'STL',
