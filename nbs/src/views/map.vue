@@ -4,9 +4,6 @@
       <ve-map class="col"  :events="{ click: clickHandler.bind(this, 1) }" width="80%" height="600px" :data="chartData" :settings="chartSettings"></ve-map>
     </div>
     <div id="testttttt" ><map1 /></div>
-    <div id="main" style="height:100vh">
-
-    </div>
 	</div>
 </template>
 
@@ -18,6 +15,7 @@
 			return {
         clickHandler (p, e) {
           console.log(e.name)
+          // document.getElementById('testttttt').style.display="block"
         },
         chartData: {
           columns: ['位置', '人口'],
