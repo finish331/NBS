@@ -22,11 +22,14 @@ class ProcessTeamFile:
 
     # 負責合併兩個List
     def Merge(self, mainList, secondaryList):
+        count = 0
         for team in mainList:
             for checkTeam in secondaryList:
                 if team['name'] == checkTeam['name']:   # 當球隊名稱相同
                     team['pic_url'] = checkTeam['pic_url']
                     print(team['name'] + "加入成功！")
+                    count += 1
+        print("總共合併" + str(count) + "支球隊")
 
     def process(self, statsFile, picFile):
         self.statsFile = self.openFile(statsFile, 'r')
@@ -40,4 +43,4 @@ class ProcessTeamFile:
 
 if __name__ == '__main__':
     process = ProcessTeamFile()
-    process.process("team.json", "team_pic.json")
+    process.process("team1.json", "team_pic.json")
