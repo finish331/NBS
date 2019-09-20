@@ -1,11 +1,12 @@
 <template>
 	<div class="container page-height px-5">
-		<div   class="row mh-100 vh-100 align-items-center" >
-      <ve-map class="col" width="80%" height="600px" :data="chartData" :settings="chartSettings"></ve-map>
-      
-      
+		<div class="row mh-100 vh-100 align-items-center" >
+      <ve-map class="col"  :events="{ click: clickHandler.bind(this, 1) }" width="80%" height="600px" :data="chartData" :settings="chartSettings"></ve-map>
     </div>
     <div id="testttttt" ><map1 /></div>
+    <div id="main" style="height:100vh">
+
+    </div>
 	</div>
 </template>
 
@@ -15,6 +16,9 @@
 	export default {
 		data() {
 			return {
+        clickHandler (p, e) {
+          console.log(e.name)
+        },
         chartData: {
           columns: ['位置', '人口'],
           rows: [

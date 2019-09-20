@@ -48,10 +48,9 @@ class NewTeamCrawler:
                     dict[inner_key] = self.GetData(inner_value)
                 self.result.append(dict)
                 print(key + " Done！")
-                i += 1
-            elif i > index_final:
+            elif i > int(index_final):
                 break
-
+            i += 1      
     # 取得各球隊各球季連結
     def GetEachYears(self, domain, url):
         temp = {}
@@ -98,4 +97,4 @@ if __name__ == '__main__':
     #crawler.save_to_json("team_link", crawler.data)
     crawler.openFile()
     crawler.process(index_start, index_final)
-    crawler.save_to_json("team", crawler.result)
+    crawler.save_to_json(file_name, crawler.result)
