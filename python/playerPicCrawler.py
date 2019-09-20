@@ -97,7 +97,3 @@ if __name__ == '__main__':
     index = input("請輸入爬蟲球員字母開頭(A~Z)，注意要大寫：")
     crawler = PlayerPictureCrawler(URL, index)
     crawler.parse()
-    # endTime = time.clock()
-    # time = endTime - startTime
-    # print("完成耗時： ")
-    # print(time)
