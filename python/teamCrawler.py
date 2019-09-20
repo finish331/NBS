@@ -8,6 +8,7 @@ class NewTeamCrawler:
     def __init__(self):
         self.result = []
         self.data = {}
+        self.headers = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.132 Safari/537.36'}
 
     # 取得球隊名單及當年數據
     def GetData(self, url):
@@ -18,7 +19,7 @@ class NewTeamCrawler:
         # 取得球員名單
         dict["rosters"] = pandas.read_html(url)[0].to_dict()
         # 取得球隊數據
-        html = requests.get(url).text
+        html = requests.get(url, headers = self.headers).text
         soup = BS(html, 'html.parser')
         placeholders = soup.find_all('div', {'class': 'placeholder'})
         table = None
@@ -46,15 +47,17 @@ class NewTeamCrawler:
                 dict["name"] = key
                 for inner_key, inner_value in value.items():
                     dict[inner_key] = self.GetData(inner_value)
+                    print(key + inner_key + "完成！")
                 self.result.append(dict)
                 print(key + " Done！")
             elif i > int(index_final):
                 break
-            i += 1      
+            i += 1
+
     # 取得各球隊各球季連結
     def GetEachYears(self, domain, url):
         temp = {}
-        res = requests.get(url).text
+        res = requests.get(url, headers = self.headers).text
         res = BS(res, 'lxml')
         links = res.select("tbody tr th a") #取得各球季連結
         i = 0
