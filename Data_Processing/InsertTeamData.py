@@ -6,7 +6,7 @@ cred = credentials.Certificate('../project_key/PythonKey.json')
 default_app = firebase_admin.initialize_app(cred)
 db = firestore.client()
 
-with open("team_final.json", 'r') as load_f:
+with open("../python/JSON/team_final.json", 'r') as load_f:
   load_dict = json.load(load_f)
 
 for data in load_dict :

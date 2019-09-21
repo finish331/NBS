@@ -9,11 +9,6 @@ default_app = firebase_admin.initialize_app(cred)
 #2019/09/12
 #要取的球員屬性
 template = [
-  'name',
-  'number',
-  'team',
-  'position',
-  'Season',
   'Age',
   'Tm',
   'Pos',
@@ -45,6 +40,7 @@ template = [
 
 # 要取的賽季範圍
 SeasonRange = [
+  '2009-10'
   '2010-11',
   '2011-12',
   '2012-13',
@@ -53,36 +49,44 @@ SeasonRange = [
   '2015-16',
   '2016-17',
   '2017-18',
-  '2018-19'
+  '2018-19',
+  '2019-20'
 ]
 
 outputJson = {}
+dataJson = {}
 
-with open("./python/reference.json", 'r') as load_f:
+with open("test_player.json", 'r') as load_f:
   load_dict = json.load(load_f)
 
 # 將要取得的屬性跟json檔map在一起
-def MapPlayerAttributes(player_no, player_season):
+def MapPlayerAttributes(nowPlayer, nowSeasonIndex):
   for attributes in template:
-    if attributes in load_dict[player_no] :
-      outputJson[attributes] = load_dict[player_no][attributes]
-    else:
-      outputJson[attributes] = load_dict[player_no]['data'][attributes][str(player_season)]
+      dataJson[attributes] = nowPlayer['data'][attributes][str(nowSeasonIndex)]
 
 #新增球員
 def AddData():
   # player_no代表目前在json檔中的第幾位球員
-  # player_season代表賽季的index
-  for player_no in range(len(load_dict)):
-    for player_season in range(len(load_dict[player_no]['data']['Season'])):
-      #利用賽季的index(player_season)將賽季資料讀出來，判斷是否在要取的range內
-      if(load_dict[player_no]['data']['Season'][str(player_season)] in SeasonRange):
-        MapPlayerAttributes(player_no,player_season)
-        if not outputJson:
-          print(outputJson)
-          doc_ref = db.collection('NBA').document(outputJson['Season']).collection('Player').document(outputJson['name'] + '-' + str(random.randint(10000,99999)))
-          doc_ref.set(outputJson)
-        outputJson.clear()
+  # nowSeasonIndex代表賽季的index，nowPlayer['data']['Season']的key
+  # json要透過copy的方式取得，如果用 a = b 會取得reference而非value
+  whetherInSeasonRange = False
+  for nowPlayer in load_dict:
+    outputJson = nowPlayer.copy()
+    del outputJson['data']
+    for nowSeasonIndex in nowPlayer['data']['Season']:
+      #利用賽季的index(nowSeasonIndex)將賽季資料讀出來，判斷是否在要取的range內
+      nowSeasonValue = nowPlayer['data']['Season'][nowSeasonIndex]
+      if(nowSeasonValue in SeasonRange):
+        MapPlayerAttributes(nowPlayer,nowSeasonIndex)
+        outputJson[nowSeasonValue] = dataJson.copy()
+        whetherInSeasonRange = True
+        dataJson.clear()
+    if whetherInSeasonRange: 
+      print(outputJson)
+      # doc_ref = db.collection('Player').document(outputJson['name'] + '-' + str(random.randint(10000,99999)))
+      # doc_ref.set(outputJson)
+    outputJson.clear()
+    whetherInSeasonRange = False
 
 if __name__ == '__main__' :
   db = firestore.client()
