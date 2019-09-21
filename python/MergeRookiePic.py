@@ -1,4 +1,5 @@
 import json
+from unidecode import unidecode
 
 class MergeRookiePic:
     def __init__(self):
@@ -22,7 +23,7 @@ class MergeRookiePic:
         for rookie in self.rookie:
             check = 0
             for pic in self.picture:
-                if rookie["name"] == pic["name"]:
+                if unidecode(rookie["name"]) == unidecode(pic["name"]):
                     rookie["pic_url"] = pic["pic_url"]
                     print(rookie["name"] + "有照片！！！")
                     check = 1
