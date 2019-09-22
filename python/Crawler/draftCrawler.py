@@ -49,6 +49,7 @@ class DraftCralwer:
                 temp["link"] = domain + item.select('a')[0].get('href')
                 self.rookies.append(temp)
 
+    # 取得球員資料
     def GetData(self, url):
         res = requests.get(url, headers = self.headers).text
         res = BS(res, 'html.parser')
@@ -67,8 +68,9 @@ class DraftCralwer:
             if soup_comment.find(id='all_college_stats') != None:
                 table = soup_comment.find(id='all_college_stats')
                 table = pandas.read_html(str(table))[0]
+                # 重設columns
                 table.columns = ['Season', 'Age', 'College', 'G', 'MP', 'FG', 'FGA', '3P', '3PA', 'FT', 'FTA', 'ORB', 'TRB', 'AST', 'STL',	'BLK', 'TOV', 'PF',	'PTS', 'FG%', '3P%', 'FT%',	'MP', 'PTS', 'TRB',	'AST']
-                table = table.loc[:, 'Season':'FT%']
+                table = table.loc[:, 'Season':'FT%']    # 刪掉不要的資料欄
                 table = table.to_dict()
                 break
 
