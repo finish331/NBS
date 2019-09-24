@@ -20,7 +20,7 @@ class TeamStandingCrawler:
         url = 'https://www.espn.com/nba/standings/_/season/{0}/group/league'
         for year in range(2010, 2020):
             self.result[str(year)] = self.GetTeamRank(url.format(str(year)))
-
+            
     # 最後寫入檔案
     def save_to_json(self, name, data):
         file_name = "../JSON/" + name + ".json"
