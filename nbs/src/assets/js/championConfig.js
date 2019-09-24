@@ -10,9 +10,16 @@ export const lineChart = {
     }
   },
   rightseries: {
-    label: { show: true, position: "right" },
+    label: { show: true, position: "left" },
     itemStyle:{
         color: '#f74672'
     }
+  },
+  xAxis: {
+    inverse: true,
+    nameLocation: "end"
+  },
+  yAxis: {
+    
   }
 }

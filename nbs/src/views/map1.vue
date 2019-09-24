@@ -28,8 +28,10 @@
                     <div style="background:#666666;height:80px;width:100%"></div>
                 </div>
             <div style="display:flex;height:60% ;padding:0 2%;position: relative;" >
-                <button @click="left" style="position: absolute;left:1px" >123</button>
-                <button @click="right" style="position: absolute;right:1px">123</button>
+                
+                <button @click="left" style="position: absolute;left:1px;top:calc(50% - 30px)" ><v-icon style="font-size:30px">arrow_back_ios</v-icon></button>
+                    
+                <button @click="right" style="position: absolute;right:1px;top:calc(50% - 30px)"><v-icon style="font-size:30px">arrow_forward_ios</v-icon></button>
                 <template v-for="(i, index) in playerData">
                 <div class="col-xs-12 col-sm-4 col-md-3" style="padding:10px" :key="index" v-if="index<4">
                     <div class="player-card" >
