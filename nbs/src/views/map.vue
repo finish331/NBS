@@ -27,10 +27,6 @@
           ]
         },
         chartSettings: {
-					series: [{
-			        name: 'uuu'
-			        // ...
-			    }],
           mapOrigin: usMap,
           itemStyle: {
             areaColor: '#fafafa'
@@ -52,7 +48,7 @@
       }
     }
   };
-  
+
 
 </script>
 
