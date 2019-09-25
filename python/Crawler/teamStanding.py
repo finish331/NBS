@@ -1,6 +1,8 @@
 from bs4 import BeautifulSoup as BS
 import requests
 import json
+import pandas
+from lxml import etree
 
 class TeamStandingCrawler:
     def __init__(self):
@@ -9,11 +11,12 @@ class TeamStandingCrawler:
 
     def GetTeamRank(self, url):
         res = requests.get(url, headers = self.headers)
-        res = BS(res.text, 'lxml')
-        list = res.select('table .hide-mobile a')
+        content = res.content.decode()
+        html = etree.HTML(content)
+        list = html.xpath('//tbody/tr/td[3]/span')
         temp = []
-        for team in list:
-            temp.append(team.text)
+        for item in list:
+            temp.append(float(item.text))
         return temp
 
     def GoEachYear(self):
@@ -31,4 +34,4 @@ class TeamStandingCrawler:
 if __name__ == '__main__':
     crawler = TeamStandingCrawler()
     crawler.GoEachYear()
-    crawler.save_to_json('TeamStanding', crawler.result)
+    crawler.save_to_json('teamWinPer', crawler.result)
