@@ -9,6 +9,7 @@ default_app = firebase_admin.initialize_app(cred)
 # 2019/09/12
 # 要取的球員屬性
 template = [
+    'Season',
     'Age',
     'Tm',
     'Pos',
@@ -56,20 +57,27 @@ SeasonRange = [
 outputJson = {}
 dataJson = {}
 playerCount = 0
+attributesIndex = []
 
 with open("../python/JSON/all_players.json", 'r') as load_f:
     load_dict = json.load(load_f)
 
 # 將要取得的屬性跟json檔map在一起
-def MapPlayerAttributes(nowPlayer, nowSeasonIndex, whichData):
+def MapPlayerAttributes(nowPlayer, attributesIndex, whichData):
+    attributesJson = {}
     for attributes in nowPlayer[whichData]:
-        dataJson[attributes] = nowPlayer[whichData][attributes][str(
-            nowSeasonIndex)]
+        for index,value in enumerate(attributesIndex):
+            attributesJson[str(index)] = nowPlayer[whichData][attributes][value]
+        dataJson[attributes] = attributesJson.copy()
+        attributesJson.clear()
 
 # 新增球員
 def AddData():
+    global attributesIndex
+    global playerCount
     # nowPlayer代表目前在json檔中的第幾位球員
     # nowSeasonIndex代表賽季的index，nowPlayer[whichData]['Season']的key
+    # index代表目前填到第幾個賽季
     # json要透過copy的方式取得，如果用 a = b 會取得reference而非value
     whetherInSeasonRange = False  # 判斷球員是否屬於Range內的球員
     whichData = 'data'  # 判斷是否是菜鳥 菜鳥:college_data 一般球員:data
@@ -85,22 +93,20 @@ def AddData():
                 # 利用賽季的index(nowSeasonIndex)將賽季資料讀出來，判斷是否在要取的range內
                 nowSeasonValue = nowPlayer[whichData]['Season'][nowSeasonIndex]
                 if(nowSeasonValue in SeasonRange):
-                    MapPlayerAttributes(nowPlayer, nowSeasonIndex, whichData)
-                    outputJson[nowSeasonValue] = dataJson.copy()
+                    attributesIndex.append(nowSeasonIndex)
                     whetherInSeasonRange = True
-                    dataJson.clear()
                 if(whetherInSeasonRange and nowSeasonValue == 'Career'):
-                    MapPlayerAttributes(nowPlayer, nowSeasonIndex, whichData)
-                    outputJson[nowSeasonValue] = dataJson.copy()
-                    dataJson.clear()
+                    attributesIndex.append(nowSeasonIndex)
         if whetherInSeasonRange:
+            MapPlayerAttributes(nowPlayer, attributesIndex, whichData)
+            outputJson[whichData] = dataJson.copy()
             print(outputJson)
             doc_ref = db.collection('Player').document(outputJson['name'] + '-' + str(random.randint(10000,99999)))
             doc_ref.set(outputJson)
-            global playerCount
             playerCount = playerCount + 1
         outputJson.clear()
         whetherInSeasonRange = False
+        attributesIndex.clear()
 
 
 if __name__ == '__main__':

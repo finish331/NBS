@@ -1,10 +1,17 @@
 <template>
-	<div class="container page-height px-5">
+	<div style="position: relative;">
+    <div class="container page-height px-5">
 		<div class="row mh-100 vh-100 align-items-center" >
       <ve-map class="col"  :events="{ click: clickHandler.bind(this, 1) }" width="80%" height="600px" :data="chartData" :settings="chartSettings"></ve-map>
     </div>
-    <div id="testttttt" ><map1 /></div>
+    
 	</div>
+  <div id="testttttt" v-if=showTeam >
+        
+        <map1 :user-name="teamName"  @close="parentClose"/>  
+  
+  </div>
+  </div>
 </template>
 
 <script>
@@ -13,10 +20,14 @@
 	export default {
 		data() {
 			return {
+        showTeam:false,
         clickHandler (p, e) {
-          console.log(e.name)
-          // document.getElementById('testttttt').style.display="block"
+          // console.log(e.name)
+          this.teamName=e.name
+          this.showTeam=true
         },
+        
+        teamName:'',
         chartData: {
           columns: ['位置', '人口'],
           rows: [
@@ -43,8 +54,8 @@
     mounted() {
     },
     methods:{
-      test(){
-        console.log('2')
+      parentClose(state){
+          this.showTeam=state // hello, parent
       }
     }
   };
@@ -54,7 +65,11 @@
 
 <style>
   #testttttt{
-    display: none;
+    width: 100%;
+    position: absolute;
+    top:0;
+    /* padding: 5%; */
+    /* display: none; */
   }
   .page-height {
     height: calc(100vh - 80px);
