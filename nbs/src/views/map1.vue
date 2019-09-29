@@ -2,6 +2,7 @@
 	<div class="map1">
         <div class="team-content">
             <div class="content-head" style="position: relative;display:flex; align-items: center;">
+                <button @click="close" style="position: absolute;z-index:9999;top:5px;right:5px" ><v-icon style="font-size:30px">cancel</v-icon></button>
                 <div style="background: url('https://stats.nba.com/media/img/teams/logos/HOU_logo.svg');background-size: cover; 
                     background-position: center center ; height:100%;width:100%;opacity: .1;position: absolute;"     >
                 </div>
@@ -115,7 +116,7 @@
         box-shadow: 2px 2px 10px rgb(0, 0, 0,.3);
     }
     .map1{
-        width: 100vw;
+        width: 100%;
         height: calc(100vh - 76px);
         padding: 5%;
         
@@ -152,7 +153,8 @@
 <script>
     import { barChart } from "@/assets/js/test.js";
 	export default {
-		components: {},
+        components: {},
+        props: ['userName','state'],
 		data() {
 			return {
                 ...barChart,
@@ -308,7 +310,10 @@
                     this.page+=4;
                 }
                 
-            }
+            },
+            close(){
+              this.$emit('close' , false);
+          }
         }
 	};
 </script>
