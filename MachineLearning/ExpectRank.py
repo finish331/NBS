@@ -1,5 +1,21 @@
 import json
 
+feature = [
+    'Age',
+    'PTS',
+    'FG%',
+    '3P',
+    '3PA',
+    'FT%',
+    'ORB',
+    'DRB',
+    'AST',
+    'STL',
+    'BLK',
+    'TOV',
+    'PF'
+]
+
 SeasonRange = [
     '2009-10',
     '2010-11',
