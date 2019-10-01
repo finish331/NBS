@@ -23,7 +23,7 @@ class PlayerDataCrawler:
             if self.SplitYear(year.get('href')) == '2020':
                 pass
             else:
-                url = year.get('href').replace('.html', '_advanced.html')
+                url = year.get('href').replace('.html', '_per_game.html')
                 self.GetPlayerData(domain + url)
                 file_name = 'all_player' + self.SplitYear(year.get('href'))
                 self.save_to_json(file_name, self.result)
