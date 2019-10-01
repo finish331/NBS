@@ -68,10 +68,10 @@ export const lineChart = {
   radars: {
     indicator: [
       { name: "PTS", max: 40 },
-      { name: "TRB", max: 15 },
-      { name: "AST", max: 13 },
-      { name: "BLK", max: 3 },
-      { name: "STL", max: 3 }
+      { name: "TRB", max: 20 },
+      { name: "AST", max: 15 },
+      { name: "BLK", max: 5 },
+      { name: "STL", max: 4 }
     ],
     center: ['50%', '55%'],
     name: {

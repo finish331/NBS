@@ -105,11 +105,11 @@
                  </ve-histogram>
             </div>
         </div>
+        
     </div>
 </template>
 <style >
     .player-card{
-        
         padding: 5px;
         height: 100%;
         background-color: #f0f0f0;
@@ -313,7 +313,7 @@
             },
             close(){
               this.$emit('close' , false);
-          }
+            }
         }
 	};
 </script>
