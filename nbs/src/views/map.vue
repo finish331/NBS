@@ -7,9 +7,7 @@
     
 	</div>
   <div id="testttttt" v-if=showTeam >
-        
-        <map1 :user-name="teamName"  @close="parentClose"/>  
-  
+    <map1 :user-name="teamName"  @close="parentClose"/>  
   </div>
   </div>
 </template>
