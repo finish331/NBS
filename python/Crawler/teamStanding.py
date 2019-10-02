@@ -13,10 +13,17 @@ class TeamStandingCrawler:
         res = requests.get(url, headers = self.headers)
         content = res.content.decode()
         html = etree.HTML(content)
-        list = html.xpath('//tbody/tr/td[3]/span')
+        list = html.xpath('//tbody[@class="Table__TBODY"]//span[@class="hide-mobile"]')
+        list2 = html.xpath('//span[@class="hide-mobile"]/a[@class="AnchorLink"]')
         temp = []
+        i = 0
         for item in list:
-            temp.append(float(item.text))
+            # temp.append(float(item.text))
+            if item.text != None:
+                temp.append(item.text)
+            else:
+                temp.append(list2[i].text)
+                i += 1
         return temp
 
     def GoEachYear(self):
@@ -34,4 +41,5 @@ class TeamStandingCrawler:
 if __name__ == '__main__':
     crawler = TeamStandingCrawler()
     crawler.GoEachYear()
-    crawler.save_to_json('teamWinPer', crawler.result)
+    crawler.save_to_json('team_standing', crawler.result)
+    # crawler.GetTeamRank('https://www.espn.com/nba/standings/_/season/2010/group/league')
