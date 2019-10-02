@@ -1,6 +1,7 @@
 <template>
 <div class="champion px-5">
-  <div class="col-sm-12 col-md-3 champion1" >
+  <!-- 左半部 -->
+  <div class="col-sm-12 col-md-3 champion-left">
     <div class="row ">
       <div class="col-md-12 test">
         <div class="col-md-8 bgimg">
@@ -85,56 +86,72 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-12 col-md-9" style="display:flex">
+  <!-- 右半部 -->
+  <div class="col-sm-12 col-md-9 champion-right">
+    <!-- 左邊隊伍 -->
     <div class="col-sm-12 col-md-6 left-team">
-      <div @click="clickTeam('left')" style=" cursor: pointer;width:100% ;height:40%;background: url('https://stats.nba.com/media/img/teams/logos/HOU_logo.svg');background-position: center;background-repeat: no-repeat;"></div>
-      <div style="display:flex;width:100%;height:15%">
+      <!-- 球隊下拉選單 -->
+      <div style="height:5%">
+        <form >
+          <select name="selectLeftTeam" id="selectLeftTeam" @change="print_value(0)">
+            <option v-for="(i, index) in teamData" :key="index"  :value=index >{{i.name}}</option>
+          </select>
+        </form>
+      </div>
+      <!-- 球隊LOGO -->
+      <div id="left-team-logo" @click="clickTeam('left')" style=""></div>
+
+      <div style="display:flex;width:100%;height:10%">
         <div class="col player-btn" style="padding:0" v-for="(i, index) in leftTeam.player" :key="index">
           <div @click="clickPlayer(index,0)" style="height:100%;background-color: #272727;" v-if=i.state>{{i.name}}</div>
           <div @click="clickPlayer(index,0)" style="height:100%;" v-else>{{i.name}}</div>
         </div>
-
       </div>
+      <!-- 圖表 -->
       <div style="width:100%;height:45%">
-        <div v-if="leftTeam.isTeam">
-          <ve-bar height="300px" :textStyle="textStyles" :data="leftTeamDate" :extend="leftseries">
+        <!-- 球隊圖表 -->
+        <div style="width:100%;height:100%" v-if="leftTeam.isTeam">
+          <ve-bar height="100%" :xAxis="xAxis" :legend="radarLegend" :textStyle="textStyles" :data="leftTeamDate" :extend="leftseries" >
           </ve-bar>
         </div>
-        <div v-else>
-          <div v-for="(i, index) in leftTeam.player" :key="index">
-            <div v-if="i.state">
-              <div>
-                <ve-bar height="300px"  :textStyle="textStyles" :data="leftPlayerData" :extend="leftseries">
+        <!-- 球員圖表 -->
+        <div style="width:100%;height:100%" v-else>
+          <ve-bar height="100%" :xAxis="xAxis" :textStyle="textStyles" :data="leftPlayerData" :extend="leftseries" :legend="radarLegend">
                 </ve-bar>
-              </div>
-            </div>
-          </div>
         </div>
+
       </div>
     </div>
+    <!-- 右邊隊伍 -->
     <div class="col-sm-12 col-md-6 right-team">
-      <div @click="clickTeam('right')" style=" cursor: pointer;width:100% ;height:40%;background: url('https://stats.nba.com/media/img/teams/logos/HOU_logo.svg');background-position: center;background-repeat: no-repeat;"></div>
-      <div style="display:flex;width:100%;height:15%">
+      <!-- 球隊下拉選單 -->
+      <div style="height:5%">
+        <form >
+          <select name="selectRightTeam" id="selectRightTeam" @change="print_value(1)">
+            <option v-for="(i, index) in teamData" :key="index"  :value=index >{{i.name}}</option>
+          </select>
+        </form>
+      </div>
+      <!-- 球隊LOGO -->
+      <div id="right-team-logo" @click="clickTeam('right')" ></div>
+
+      <div style="display:flex;width:100%;height:10%">
         <div class="col player-btn" style="padding:0" v-for="(i, index) in rightTeam.player" :key="index">
           <div @click="clickPlayer(index,1)" style="height:100%;background-color: #272727;" v-if=i.state>{{i.name}}</div>
           <div @click="clickPlayer(index,1)" style="height:100%;" v-else>{{i.name}}</div>
         </div>
-
       </div>
+
       <div style="width:100%;height:45%">
-        <div v-if="rightTeam.isTeam">
-          <ve-bar height="300px" :xAxis="xAxis" :textStyle="textStyles" :data="rightTeamDate" :extend="rightseries">
+        <!-- 球隊圖表 -->
+        <div style="width:100%;height:100%" v-if="rightTeam.isTeam">
+          <ve-bar height="100%"  :textStyle="textStyles" :legend="radarLegend"  :data="rightTeamDate" :extend="rightseries">
           </ve-bar>
         </div>
-        <div v-else>
-          <div v-for="(i, index) in rightTeam.player" :key="index">
-            <div v-if="i.state">
-              <div>
-                <ve-bar height="300px" :xAxis="xAxis" :textStyle="textStyles" :data="rightPlayerData" :extend="rightseries">
-                </ve-bar>
-              </div>
-            </div>
-          </div>
+        <!-- 球員圖表 -->
+        <div style="width:100%;height:100%" v-else>
+          <ve-bar height="100%"  :textStyle="textStyles" :legend="radarLegend"  :data="rightPlayerData" :extend="rightseries">
+          </ve-bar>
         </div>
       </div>
     </div>
@@ -142,13 +159,13 @@
 </div>
 </template>
 <script>
-import {
-  lineChart
-} from "@/assets/js/championConfig.js";
+import {lineChart} from "@/assets/js/championConfig.js";
+import teamData from "@/assets/json/team.json";
 export default {
   components: {},
   data() {
     return {
+      teamData:teamData,
       ...lineChart,
       leftTeamDate: {
         columns: ['type', 'value'],
@@ -248,6 +265,8 @@ export default {
       },
       rightTeam: {
         isTeam: true,
+         index: 0 ,
+        img:teamData[0].pic_url,
         team: {
           aa: 1,
           bc: 9,
@@ -303,6 +322,8 @@ export default {
         ],
       },
       leftTeam: {
+        index: 0 ,
+        img:teamData[0].pic_url,
         isTeam: true,
         team: {
           aa: 1,
@@ -363,9 +384,26 @@ export default {
   mounted: function(){
     this.clickTeam('left');
     this.clickTeam('right');
-
+    var url="url("+this.rightTeam.img+")"
+    document.getElementById('left-team-logo').style.backgroundImage = url
+    document.getElementById('right-team-logo').style.backgroundImage = url
   },
   methods: {
+    print_value(i){
+      var url
+      if(i==0){
+        this.leftTeam.index=document.getElementById("selectLeftTeam").value
+        this.leftTeam.img=teamData[this.leftTeam.index].pic_url
+        url="url("+this.leftTeam.img+")"
+        document.getElementById('left-team-logo').style.backgroundImage = url
+      }
+      else{
+        this.rightTeam.index=document.getElementById("selectRightTeam").value
+        this.rightTeam.img=teamData[this.rightTeam.index].pic_url
+        url="url("+this.rightTeam.img+")"
+        document.getElementById('right-team-logo').style.backgroundImage = url
+      }
+    },
     clickPlayer(i, lr) {
       if (lr == 0) {
         this.leftTeam.isTeam = false;
@@ -431,18 +469,48 @@ export default {
 };
 </script>
 <style>
+#left-team-logo{
+   cursor: pointer;
+   width:100% ;
+   height:40%;
+   filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, .5));
+   background-size: contain;
+   background-image:url(https://stats.nba.com/media/img/teams/logos/HOU_logo.svg);
+   background-position: center;
+   background-repeat: no-repeat;
+}
+#right-team-logo{
+   cursor: pointer;
+   width:100% ;
+   height:40%;
+   filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, .5));
+   background-size: contain;
+   background-image:url(https://stats.nba.com/media/img/teams/logos/HOU_logo.svg);
+   background-position: center;
+   background-repeat: no-repeat;
+}
+#selectLeftTeam{
+  background:#fff;
+  color:#1d1d1d
+}
+#selectRightTeam{
+  background:#fff;
+  color:#1d1d1d
+}
 .champion {
   display: flex;
   height: calc(100vh - 76px);
   width: 100%;
 }
-.champion1 {
+.champion-left {
   height: calc(100vh - 76px);
   overflow: auto;
 }
-
-
-
+.champion-right{
+  height: 100%;
+  display:flex;
+  
+}
 .test {
   display: flex;
   margin: 10px 0;
@@ -473,15 +541,15 @@ export default {
 .left-team {
   color: white;
   background-color: #1d1d1d;
-  border: 12px solid white;
-  height: calc(100vh - 76px);
+  /* border: 12px solid white; */
+  height: 100%;
 }
 
 .right-team {
   color: white;
   background-color: #1d1d1d;
-  border: 12px solid white;
-  height: calc(100vh - 76px);
+  /* border: 12px solid white; */
+  height: 100%
 }
 
 .player-btn {
@@ -495,7 +563,7 @@ export default {
   .champion {
     display: block;
   }
-  .champion1 {
+  .champion-left {
     height: 30vh;
   }
   .right-team{

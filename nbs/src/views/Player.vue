@@ -5,9 +5,12 @@
 		<div class="my-1 mx-2 text-white global-bg-gray">
 			<div class="container-fluid">
 				<div class="row mb-1 justify-content-start align-items-center" style="position: relative;">
-					<div style="background: url('https://stats.nba.com/media/img/teams/logos/HOU_logo.svg'); background-size: cover; background-position: center center ; width: 100%; height: 100%; position: absolute; opacity: .2;"></div>
+					<button @click="close" style="position: absolute;z-index:9999;top:5px;right:5px" ><v-icon style="font-size:30px">cancel</v-icon></button>
+					<div id="playerTeamLogo" style=" background-size: cover; background-position: center center ; width: 100%; height: 100%; position: absolute; opacity: .2;">
+					
+					</div>
 					<div class="col-12 col-sm-auto">
-						<img class="img-fluid" src="../assets/jamesHarden.png" />
+						<img class="img-fluid" :src=player.pic_url />
 					</div>
 					<div class="col-12 col-sm-auto">
 						<div
@@ -15,12 +18,12 @@
 							style="flex-wrap:nowrap"
 						>
 							<div class="col-auto">
-								<h1 class="font-italic number">#13</h1>
+								<h1 class="font-italic number">#{{player.number}}</h1>
 							</div>
 							<div class="col-auto pb-1">
 								<div class="ml-2">
-									<div class="name">James</div>
-									<div class="name">Harden</div>
+									<div class="name">{{player.name.split(" ")[0]}}</div>
+									<div class="name">{{player.name.split(" ")[1]}}</div>
 								</div>
 							</div>
 						</div>
@@ -28,7 +31,7 @@
 							<img class="mr-2 logo" src="../assets/basketball.svg" />
 							<span>G</span>
 							<div class="mx-2 pb-0 vl"></div>
-							<span>Houston Rocket</span>
+							<span>{{player.team}}</span>
 						</div>
 					</div>
 				</div>
@@ -106,11 +109,13 @@
 <script>
 	import { lineChart } from "@/assets/js/playerConfig.js";
 	import playerData from "@/assets/json/playerData.json";
-
+	import teamData from "@/assets/json/team.json";
 	export default {
 		components: {},
+		props: ['player'],
 		data() {
 			return {
+				teamData:teamData,
 				...lineChart, //展開lineChart
 				pointsData: {
 					columns: ["season", "points"],
@@ -127,25 +132,26 @@
 					rows: [
 						{
 							seasons: "2018-19",
-							PTS: 36.1,
-							TRB: 6.6,
-							AST: 7.5,
-							BLK: 0.7,
-							STL: 2.0
+							PTS: '',
+							TRB: '',
+							AST: '',
+							BLK: '',
+							STL: ''
 						}
 					]
 				},
 				數值List: [
-					{ title: "G", value: 80 },
-					{ title: "PTS", value: 36.1 },
-					{ title: "TRB", value: 6.6 },
-					{ title: "AST", value: 7.5 },
-					{ title: "FG%", value: 80.3 },
-					{ title: "FG3%", value: 45.3 },
-					{ title: "FT%", value: 88.6 },
-					{ title: "eFG%", value: 54.3 },
-					{ title: "PER", value: 30.2 },
-					{ title: "WS", value: 21 }
+					{ title: "G", value:''},
+					{ title: "PTS", value: ''},
+					{ title: "TRB", value: '' },
+					{ title: "AST", value: '' },
+					{ title: "STL", value: ''},
+					{ title: "BLK", value: ''},
+					{ title: "FG%", value: ''},
+					{ title: "3P%", value: ''},
+					{ title: "FT%", value: ''},
+					{ title: "Season", value: ''}
+					
 				],
 				dataFields: [
 					"Season",
@@ -181,6 +187,60 @@
 				],
 				items: playerData
 			};
+		},
+		mounted: function(){
+			var i
+			var url
+			for(i=0;i<this.teamData.length;i++){
+					if(this.player.team==this.teamData[i].name){
+						url="url("+this.teamData[i].pic_url+")"
+						document.getElementById('playerTeamLogo').style.backgroundImage = url
+					}
+				}
+			if(this.player['data']!=undefined){
+				
+
+				this.數值List[0].value=this.player.data.G[Object.keys(this.player.data.G).length-2]
+				this.數值List[1].value=this.player.data.PTS[Object.keys(this.player.data.PTS).length-2] 
+				this.數值List[2].value=this.player.data.TRB[Object.keys(this.player.data.TRB).length-2] 
+				this.數值List[3].value=this.player.data.AST[Object.keys(this.player.data.AST).length-2] 
+				this.數值List[4].value=this.player.data.STL[Object.keys(this.player.data.STL).length-2]  
+				this.數值List[5].value=this.player.data.BLK[Object.keys(this.player.data.BLK).length-2]  
+				this.數值List[6].value=Number(this.player.data['FG%'][Object.keys(this.player.data['FG%']).length-2]).toFixed(2)
+				this.數值List[7].value=Number(this.player.data['3P%'][Object.keys(this.player.data['3P%']).length-2]).toFixed(2)
+				this.數值List[8].value=Number(this.player.data['FT%'][Object.keys(this.player.data['FT%']).length-2]).toFixed(2)
+				this.數值List[9].value=this.player.data['Season'][Object.keys(this.player.data['Season']).length-2]
+
+				this.chartData.rows[0].PTS=this.player.data.PTS[Object.keys(this.player.data.PTS).length-2]
+				this.chartData.rows[0].TRB=this.player.data.TRB[Object.keys(this.player.data.TRB).length-2]
+				this.chartData.rows[0].AST=this.player.data.AST[Object.keys(this.player.data.AST).length-2]
+				this.chartData.rows[0].BLK=this.player.data.BLK[Object.keys(this.player.data.BLK).length-2]
+				this.chartData.rows[0].STL=this.player.data.STL[Object.keys(this.player.data.STL).length-2]
+			}
+			else if(this.player['college_data']!=undefined){
+				this.數值List[0].value=this.player.college_data.G[Object.keys(this.player.college_data.G).length-2]
+				this.數值List[1].value=this.player.college_data.PTS[Object.keys(this.player.college_data.PTS).length-2] 
+				this.數值List[2].value=this.player.college_data.TRB[Object.keys(this.player.college_data.TRB).length-2] 
+				this.數值List[3].value=this.player.college_data.AST[Object.keys(this.player.college_data.AST).length-2] 
+				this.數值List[4].value=this.player.college_data.STL[Object.keys(this.player.college_data.STL).length-2]  
+				this.數值List[5].value=this.player.college_data.BLK[Object.keys(this.player.college_data.BLK).length-2]  
+				this.數值List[6].value=Number(this.player.college_data['FG%'][Object.keys(this.player.college_data['FG%']).length-2]).toFixed(2)
+				this.數值List[7].value=Number(this.player.college_data['3P%'][Object.keys(this.player.college_data['3P%']).length-2]).toFixed(2)
+				this.數值List[8].value=Number(this.player.college_data['FT%'][Object.keys(this.player.college_data['FT%']).length-2]).toFixed(2)
+				this.數值List[9].value=this.player.college_data['Season'][Object.keys(this.player.college_data['Season']).length-2]
+
+				this.chartData.rows.PTS=this.player.college_data.PTS[Object.keys(this.player.college_data.PTS).length-2]
+				this.chartData.rows.TRB=this.player.college_data.TRB[Object.keys(this.player.college_data.TRB).length-2]
+				this.chartData.rows.AST=this.player.college_data.AST[Object.keys(this.player.college_data.AST).length-2]
+				this.chartData.rows.BLK=this.player.college_data.BLK[Object.keys(this.player.college_data.BLK).length-2]
+				this.chartData.rows.STL=this.player.college_data.STL[Object.keys(this.player.college_data.STL).length-2]
+			}
+			
+		},
+		methods:{
+			close(){
+              this.$emit('close' , false);
+            }
 		}
 	};
 </script>

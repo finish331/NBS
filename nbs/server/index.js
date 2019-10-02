@@ -3,32 +3,31 @@ const path = require('path')
 /* eslint-disable no-unused-vars */
 const express = require('express')
 const app = express()
+
 const routerapi = require('./router')
-
-const admin = require('firebase-admin');
-const serviceAccount = require('../../ServerKey.json');
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
-});
-
-const db = admin.firestore();
-
-var t = 123
-
-// app.use('/movie', routerapi)
-
-app.get('/movie/getName', (req, res) => {
-  db.collection('movies').doc('新世紀福爾摩').get().then(function(doc){
-    res.json({
-      data: req.query.ID,
-      data2: doc.data()
-    });
-  });
-});
+const testapi = require('./testApi')
+const playerapi = require('./playerApi')
+var fs=require("fs");
 
 app.use('/movie', routerapi)
 app.use('/test', testapi)
+app.use('/player',playerapi)
+
+const db = require('./firbaseInit')
+// var teamDataTemp = []
+// db.collection('Player').get().then(playerData => {
+//     playerData.forEach(doc => {
+//         teamDataTemp.push(doc.data())
+//   })
+//   var myJSON = JSON.stringify(teamDataTemp);
+//   fs.writeFile("../src/assets/json/player.json", myJSON, "UTF8", function(err) {
+//     if (err) throw err;
+//     console.log("檔案寫入操作完成!");
+//   })
+//   console.log("檔案寫入操作中 ... ");
+// });
+
+
 
 app.listen(3000)
 console.log('success listen at port:3000......')

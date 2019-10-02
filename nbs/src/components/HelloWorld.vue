@@ -79,6 +79,7 @@
     <el-button type="primary"
                @click="getName">{{buttonText}}</el-button>
     <el-input v-model="inpContent"></el-input>
+    {{inpContent}}
   </div>
 </template>
 
@@ -97,15 +98,16 @@ export default {
   },
   methods: {
     getName () {
-      this.$http.get('/api/test/testWhere', {
-        params:{
-          ID: '12345'
-        }
-      })
-        .then((res) => {
-          console.log('res',res) 
-          this.inpContent = res.data.data2.date
-        })
+      
+      // this.$http.get('/api/player/getPlayer', {
+      //   // params:{
+      //   //   ID: '12345'
+      //   // }
+      // })
+      //   .then((res) => {
+      //     console.log('res',res) 
+      //     this.inpContent = res.data
+      //   })
     },
     firebaseTest (){
       // db.collection('movies').doc('新世紀福爾摩').set({

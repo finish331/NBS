@@ -60,7 +60,8 @@
 	export default {
 		components: {},
 		data() {
-			return {};
+			return {
+			};
 		},
 		mounted() {
 			console.log(`仔入好了`);
