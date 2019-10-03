@@ -14,18 +14,18 @@ app.use('/test', testapi)
 app.use('/player',playerapi)
 
 const db = require('./firbaseInit')
-// var teamDataTemp = []
-// db.collection('Player').get().then(playerData => {
-//     playerData.forEach(doc => {
-//         teamDataTemp.push(doc.data())
-//   })
-//   var myJSON = JSON.stringify(teamDataTemp);
-//   fs.writeFile("../src/assets/json/player.json", myJSON, "UTF8", function(err) {
-//     if (err) throw err;
-//     console.log("檔案寫入操作完成!");
-//   })
-//   console.log("檔案寫入操作中 ... ");
-// });
+var teamDataTemp = []
+db.collection('Player').get().then(teamData => {
+    teamData.forEach(doc => {
+        teamDataTemp.push(doc.data())
+  })
+  var myJSON = JSON.stringify(teamDataTemp);
+  fs.writeFile("../src/assets/json/player.json", myJSON, "UTF8", function(err) {
+    if (err) throw err;
+    console.log("檔案寫入操作完成!");
+  })
+  console.log("檔案寫入操作中 ... ");
+});
 
 
 
