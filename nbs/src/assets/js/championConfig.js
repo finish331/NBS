@@ -17,9 +17,10 @@ export const lineChart = {
   },
   xAxis: {
     inverse: true,
-    nameLocation: "end"
+    nameLocation: "end",
+    position:"right"
   },
-  yAxis: {
-    
+  radarLegend:{
+    show:false
   }
 }
