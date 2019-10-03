@@ -22,6 +22,66 @@
         </div>
       </div>
     </div>
+    <div class="row ">
+      <div class="col-md-12 test">
+        <div class="col-md-8 bgimg">
+        </div>
+        <div class="col-md-4 test1">
+          87%<br>
+          Golden State Warriors
+        </div>
+      </div>
+    </div>
+    <div class="row ">
+      <div class="col-md-12 test">
+        <div class="col-md-8 bgimg">
+        </div>
+        <div class="col-md-4 test1">
+          87%<br>
+          Golden State Warriors
+        </div>
+      </div>
+    </div>
+    <div class="row ">
+      <div class="col-md-12 test">
+        <div class="col-md-8 bgimg">
+        </div>
+        <div class="col-md-4 test1">
+          87%<br>
+          Golden State Warriors
+        </div>
+      </div>
+    </div>
+    <div class="row ">
+      <div class="col-md-12 test">
+        <div class="col-md-8 bgimg">
+        </div>
+        <div class="col-md-4 test1">
+          87%<br>
+          Golden State Warriors
+        </div>
+      </div>
+    </div>
+    <div class="row ">
+      <div class="col-md-12 test">
+        <div class="col-md-8 bgimg">
+        </div>
+        <div class="col-md-4 test1">
+          87%<br>
+          Golden State Warriors
+        </div>
+      </div>
+    </div>
+    <div class="row ">
+      <div class="col-md-12 test">
+        <div class="col-md-8 bgimg">
+        </div>
+        <div class="col-md-4 test1">
+          87%<br>
+          Golden State Warriors
+        </div>
+      </div>
+    </div>
   </div>
   <!-- 右半部 -->
   <div class="col-sm-12 col-md-9 champion-right">
@@ -452,10 +512,9 @@ export default {
   display: flex;
   margin: 10px 0;
   padding: 0;
-  height: 80px;
-  border-radius: 2px;
-  background: linear-gradient(45deg, #1d1d1d 50%, #1d4289 100%);
-  box-shadow: 2px 2px 10px rgb(29, 29, 29, .75);
+  /* height: 100%; */
+  background: linear-gradient(to right, #1d1d1d, black);
+  box-shadow: 5px 5px 5px rgb(29, 29, 29, .75);
 }
 
 .bgimg {
@@ -466,64 +525,20 @@ export default {
   background-repeat: no-repeat;
   opacity: 1;
 }
-@keyframes rank-team-in {
-  from {
-    opacity: 0;
-    bottom: -2px;
-  }
-  to {
-    opacity: 1;
-    bottom: 0;
-    text-shadow:0 5px 10px black,0 0 10px black,0 0 10px black;
-  }
-}
-@keyframes rank-team-out {
-  from {
-    opacity: 1;
-    bottom: 0;
-    text-shadow:0 5px 10px black,0 0 10px black,0 0 10px black;
-  }
-  to {
-    opacity: 0;
-    bottom: -2px;
-  }
-}
-.rank-team-in{
-  animation: rank-team-in  .5s  forwards;
-}
-.rank-team-out{
-  animation: rank-team-out  .5s  forwards;
-}
-.rank-team{
-text-shadow:0 5px 10px black,0 0 10px black,0 0 10px black;
-  position: absolute;
-  bottom: 0px;
-  padding: 0;
+
+.test1 {
+  /* padding: 5% 0; */
   color: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 20px;
-  font-weight: bold;
-  opacity: 1;
-}
-.rank-percent {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding:  0 0 20px 0;
-  color: white;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 24px;
   font-weight: bold;
 }
 
 .left-team {
   color: white;
   background-color: #1d1d1d;
-  border: 12px solid white;
-  height: calc(100vh - 76px);
-  border-radius: 15px;
   /* border: 12px solid white; */
-  height: 100%;
+  height: 100%
 }
 
 .right-team {
