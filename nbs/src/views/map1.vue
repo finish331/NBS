@@ -2,12 +2,8 @@
 	<div class="map1">
         <div class="team-content">
             <div class="content-head" style="position: relative;display:flex; align-items: center;">
-<<<<<<< HEAD
-                <div style="background: url('https://stats.nba.com/media/img/teams/logos/HOU_logo.svg');background-size: cover;
-=======
                 <button @click="close" style="position: absolute;z-index:9999;top:5px;right:5px" ><v-icon style="font-size:30px">cancel</v-icon></button>
-                <div id="mapTeamLogo" style=";background-size: cover; 
->>>>>>> 9fc78a91cdce5c5562e3987a6dfa51d5841b0341
+                <div id="mapTeamLogo" style=";background-size: cover;
                     background-position: center center ; height:100%;width:100%;opacity: .1;position: absolute;"     >
                 </div>
                 <img :src=team.pic_url alt="" height="100%;">
@@ -27,15 +23,15 @@
                 <div id="selectYear" class="col-xs-12 col-sm-12 col-md-4" style="padding:2px">
                     <div style="background:#666666;height:100%"></div>
                 </div>
-                
+
             </div>
                 <div id="selectYear1" class="col-xs-12 col-sm-12 col-md-4" style="">
                     <div style="background:#666666;height:80px;width:100%"></div>
                 </div>
             <div style="display:flex;height:60% ;padding:0 2%;position: relative;" >
-                
+
                 <button @click="left" style="position: absolute;left:1px;top:calc(50% - 30px)" ><v-icon style="font-size:30px">arrow_back_ios</v-icon></button>
-                    
+
                 <button @click="right" style="position: absolute;right:1px;top:calc(50% - 30px)"><v-icon style="font-size:30px">arrow_forward_ios</v-icon></button>
                 <template v-for="(i, index) in playerData">
                 <div class="col-xs-12 col-sm-4 col-md-3" style="padding:10px" :key="index" v-if="index<page+4&&index>=page">
@@ -109,7 +105,7 @@
                  </ve-histogram>
             </div>
         </div>
-        
+
     </div>
 </template>
 <style >
@@ -166,7 +162,7 @@
                 page:0,
                 player:player,
                 playerData :[
-                    
+
                 ],
                  TeamData: {
                     columns: ['type', 'value'],
@@ -213,19 +209,11 @@
                     ]
                 },
 				List: [
-<<<<<<< HEAD
-					{ title: "排名", value: 80 },
-					{ title: "戰績", value: 36.1 },
-					{ title: "教練", value: 6.6 },
-					{ title: "總管", value: 7.5 }
-
-=======
 					{ title: "排名", value: this.team['2018-19'].summary['Rank'] },
 					{ title: "戰績", value: this.team['2018-19'].summary['Record'] },
 					{ title: "教練", value: this.team['2018-19'].summary['Coach'] },
 					{ title: "總管", value: this.team['2018-19'].summary['Executive'] }
-					
->>>>>>> 9fc78a91cdce5c5562e3987a6dfa51d5841b0341
+
 				]
 			};
         },
@@ -240,20 +228,11 @@
                 }
             },
             right(){
-<<<<<<< HEAD
-
-                if(this.page+4!=this.playerData.length){
-                    console.log("0");
-                    this.page+=4;
-                }
-
-=======
-                
                 if(this.page+4<this.playerData.length){
                     // console.log("0");
                     this.page+=4;
                 }
-                
+
             },
             close(){
               this.$emit('close' , false);
@@ -285,7 +264,7 @@
                         'exp':this.team['2018-19'].rosters['Exp'][i],
                         'college':this.team['2018-19'].rosters['College'][i]
                     })
->>>>>>> 9fc78a91cdce5c5562e3987a6dfa51d5841b0341
+
             }
         }
 	};

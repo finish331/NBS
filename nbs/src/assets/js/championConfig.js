@@ -17,12 +17,6 @@ export const lineChart = {
   },
   xAxis: {
     inverse: true,
-<<<<<<< HEAD
-    nameLocation: "end",
-    position:"right"
-=======
-    // nameLocation: "end"
->>>>>>> 9fc78a91cdce5c5562e3987a6dfa51d5841b0341
   },
   radarLegend:{
     show:false

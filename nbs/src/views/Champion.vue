@@ -1,12 +1,5 @@
 <template>
 <div class="champion px-5">
-<<<<<<< HEAD
-  <div class="col-sm-12 col-md-3 champion1" >
-    <div class="col-md-12 rank-bg"  @mouseover="test(0)" @mouseout="test(1)">
-      <div class="col-md-8 bgimg"></div>
-      <div class="col-md-4 rank-percent">
-        87%
-=======
   <!-- 左半部 -->
   <div class="col-sm-12 col-md-3 champion-left">
     <div class="row ">
@@ -17,41 +10,22 @@
           87%<br>
           Golden State Warriors
         </div>
->>>>>>> 9fc78a91cdce5c5562e3987a6dfa51d5841b0341
       </div>
-      <div class="col-md-12 rank-team" v-bind:class="{'rank-team-in':isTeamIn,'rank-team-out':isTeamOut}">
+    </div>
+    <div class="row ">
+      <div class="col-md-12 test">
+        <div class="col-md-8 bgimg">
+        </div>
+        <div class="col-md-4 test1">
+          87%<br>
           Golden State Warriors
+        </div>
       </div>
     </div>
-    <div class="col-md-12 rank-bg"  @mouseover="test(0)" @mouseout="test(1)">
-      <div class="col-md-8 bgimg"></div>
-      <div class="col-md-4 rank-percent">
-        87%
-      </div>
-      <div class="col-md-12 rank-team" v-bind:class="{'rank-team-in':isTeamIn,'rank-team-out':isTeamOut}">
-          Golden State Warriors
-      </div>
-    </div>
-    <div class="col-md-12 rank-bg"  @mouseover="test(0)" @mouseout="test(1)">
-      <div class="col-md-8 bgimg"></div>
-      <div class="col-md-4 rank-percent">
-        87%
-      </div>
-      <div class="col-md-12 rank-team" >
-          Golden State Warriors
-      </div>
-    </div>
-
-    </div>
-<<<<<<< HEAD
-  <!-- </div> -->
-  <div class="col-sm-12 col-md-9" style="display:flex">
-=======
   </div>
   <!-- 右半部 -->
   <div class="col-sm-12 col-md-9 champion-right">
     <!-- 左邊隊伍 -->
->>>>>>> 9fc78a91cdce5c5562e3987a6dfa51d5841b0341
     <div class="col-sm-12 col-md-6 left-team">
       <!-- 球隊下拉選單 -->
       <div style="height:5%">
@@ -72,17 +46,6 @@
       </div>
       <!-- 圖表 -->
       <div style="width:100%;height:45%">
-<<<<<<< HEAD
-        <div v-if="leftTeam.isTeam">
-          <ve-bar height="300px" :legend="radarLegend" :textStyle="textStyles" :data="leftTeamDate" :extend="leftseries">
-          </ve-bar>
-        </div>
-        <div v-else>
-          <div v-for="(i, index) in leftTeam.player" :key="index">
-            <div v-if="i.state">
-              <div>
-                <ve-bar height="300px" :legend="radarLegend" :textStyle="textStyles" :data="leftPlayerData" :extend="leftseries">
-=======
         <!-- 球隊圖表 -->
         <div style="width:100%;height:100%" v-if="leftTeam.isTeam">
           <ve-bar height="100%" :xAxis="xAxis" :legend="radarLegend" :textStyle="textStyles" :data="leftTeamDate" :extend="leftseries" >
@@ -91,7 +54,6 @@
         <!-- 球員圖表 -->
         <div style="width:100%;height:100%" v-else>
           <ve-bar height="100%" :xAxis="xAxis" :textStyle="textStyles" :data="leftPlayerData" :extend="leftseries" :legend="radarLegend">
->>>>>>> 9fc78a91cdce5c5562e3987a6dfa51d5841b0341
                 </ve-bar>
         </div>
 
@@ -118,21 +80,6 @@
       </div>
 
       <div style="width:100%;height:45%">
-<<<<<<< HEAD
-        <div v-if="rightTeam.isTeam">
-          <ve-bar height="300px"  :legend="radarLegend" :xAxis="xAxis" :textStyle="textStyles" :data="rightTeamDate" :extend="rightseries">
-          </ve-bar>
-        </div>
-        <div v-else>
-          <div v-for="(i, index) in rightTeam.player" :key="index">
-            <div v-if="i.state">
-              <div>
-                <ve-bar height="300px" :legend="radarLegend" :xAxis="xAxis" :textStyle="textStyles" :data="rightPlayerData" :extend="rightseries">
-                </ve-bar>
-              </div>
-            </div>
-          </div>
-=======
         <!-- 球隊圖表 -->
         <div style="width:100%;height:100%" v-if="rightTeam.isTeam">
           <ve-bar height="100%"  :textStyle="textStyles" :legend="radarLegend"  :data="rightTeamDate" :extend="rightseries">
@@ -142,7 +89,6 @@
         <div style="width:100%;height:100%" v-else>
           <ve-bar height="100%"  :textStyle="textStyles" :legend="radarLegend"  :data="rightPlayerData" :extend="rightseries">
           </ve-bar>
->>>>>>> 9fc78a91cdce5c5562e3987a6dfa51d5841b0341
         </div>
       </div>
     </div>
@@ -156,12 +102,7 @@ export default {
   components: {},
   data() {
     return {
-<<<<<<< HEAD
-      isTeamIn:false,
-      isTeamOut:false,
-=======
       teamData:teamData,
->>>>>>> 9fc78a91cdce5c5562e3987a6dfa51d5841b0341
       ...lineChart,
       leftTeamDate: {
         columns: ['type', 'value'],
@@ -385,16 +326,6 @@ export default {
     document.getElementById('right-team-logo').style.backgroundImage = url
   },
   methods: {
-<<<<<<< HEAD
-    test(i){
-      if(i==0){
-        this.isTeamIn=true
-        this.isTeamOut=false
-      }
-      else{
-        this.isTeamIn=false
-        this.isTeamOut=true
-=======
     print_value(i){
       var url
       if(i==0){
@@ -408,7 +339,6 @@ export default {
         this.rightTeam.img=teamData[this.rightTeam.index].pic_url
         url="url("+this.rightTeam.img+")"
         document.getElementById('right-team-logo').style.backgroundImage = url
->>>>>>> 9fc78a91cdce5c5562e3987a6dfa51d5841b0341
       }
     },
     clickPlayer(i, lr) {
@@ -513,17 +443,12 @@ export default {
   height: calc(100vh - 76px);
   overflow: auto;
 }
-<<<<<<< HEAD
-.rank-bg {
-  position: relative;
-=======
 .champion-right{
   height: 100%;
   display:flex;
-  
+
 }
 .test {
->>>>>>> 9fc78a91cdce5c5562e3987a6dfa51d5841b0341
   display: flex;
   margin: 10px 0;
   padding: 0;
@@ -594,14 +519,11 @@ text-shadow:0 5px 10px black,0 0 10px black,0 0 10px black;
 .left-team {
   color: white;
   background-color: #1d1d1d;
-<<<<<<< HEAD
   border: 12px solid white;
   height: calc(100vh - 76px);
   border-radius: 15px;
-=======
   /* border: 12px solid white; */
   height: 100%;
->>>>>>> 9fc78a91cdce5c5562e3987a6dfa51d5841b0341
 }
 
 .right-team {

@@ -1,21 +1,15 @@
 <template>
-<<<<<<< HEAD
-	<div class="container page-height px-5">
-		<div class="row mh-100 vh-100 align-items-center" >
-      <ve-map class="col" :extend="series" :legend="radarLegend" :events="{ click: clickHandler.bind(this, 1) }" width="100%" height="600px" :data="chartData" :settings="chartSettings"></ve-map>
-    </div>
-=======
 	<div style="position: relative;">
     <div class="container page-height px-5" style="position: relative;">
       <div id="selectTeam" v-if=showSelectTeam>
-        
+
         <div style="position: relative;height:100%;widht:100%;background:#f4f4f4;box-shadow:5px 5px 10px  rgb(29, 29, 29,.1);z-index:11;padding:5%">
           <button @click="close" style="position: absolute;z-index:9999;top:5px;right:5px" ><v-icon style="font-size:30px">cancel</v-icon></button>
           <div class="showTeam">
             <div  class="col-sm-4 col-md-3 team hover" v-for="(j, index1) in team[teamName]" :key="index1">
               <div   style="cursor: pointer;width:100%;height:0;padding-bottom:80%;position: relative;" >
                   <div v-for="(i, index) in teamData" :key="index">
-                      <img @click="setTeam(index)" :teamIndex=index :src=i.pic_url alt="" style="width:80%;position: absolute;top:0px;left:10%;" v-if="j==i.name"> 
+                      <img @click="setTeam(index)" :teamIndex=index :src=i.pic_url alt="" style="width:80%;position: absolute;top:0px;left:10%;" v-if="j==i.name">
                   </div>
               </div>
               <div style="cursor: pointer;" >
@@ -28,26 +22,16 @@
       <div class="row mh-100 vh-100 align-items-center" >
         <ve-map class="col"  :events="{ click: clickHandler.bind(this, 1) }" width="80%" height="600px" :data="chartData" :settings="chartSettings"></ve-map>
       </div>
-    
->>>>>>> 9fc78a91cdce5c5562e3987a6dfa51d5841b0341
+
 	</div>
   <div id="testttttt"  v-if="showTeam">
-    <map1 :team="teamData[teamIndex]"  @close="parentClose"/>  
+    <map1 :team="teamData[teamIndex]"  @close="parentClose"/>
   </div>
-  
+
   </div>
 </template>
 
 <script>
-<<<<<<< HEAD
-  import usMap from '@/assets/json/custom-map.json'
-	import { mapChart } from "@/assets/js/map.js";
-	export default {
-		data() {
-			return {
-				...mapChart,
-=======
-  
   import usMap from '@/assets/json/custom-map.json';
   import map1 from './map1';
   import teamData from "@/assets/json/team.json";
@@ -58,7 +42,6 @@
         teamData:teamData,
         showTeam:false,
         showSelectTeam:false,
->>>>>>> 9fc78a91cdce5c5562e3987a6dfa51d5841b0341
         clickHandler (p, e) {
           // console.log(e.name)
           if(this.team[e.name]!=null){
@@ -112,14 +95,12 @@
       };
 		},
 		components: {
+			map1
     },
     mounted() {
-      
+
     },
     methods:{
-<<<<<<< HEAD
-
-=======
       parentClose(state){
           this.showTeam=state // hello, parent
       },
@@ -130,8 +111,7 @@
                 this.teamIndex=index
                 this.showSelectTeam=false
                 this.showTeam=true
-            },
->>>>>>> 9fc78a91cdce5c5562e3987a6dfa51d5841b0341
+            }
     }
   };
 
@@ -139,10 +119,8 @@
 </script>
 
 <style>
-<<<<<<< HEAD
-=======
   .team{
-        
+
         margin-bottom: 20px;
         height: 30%;
         width:100%;
@@ -169,7 +147,6 @@
     /* padding: 5%; */
     /* display: none; */
   }
->>>>>>> 9fc78a91cdce5c5562e3987a6dfa51d5841b0341
   .page-height {
     height: calc(100vh - 80px);
   }
