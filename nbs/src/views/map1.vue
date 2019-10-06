@@ -11,17 +11,17 @@
                     {{team.name}}
                 </div>
             </div>
-            <div style="display:flex;height:15%" >
+            <div style="display:flex;height:20%" >
                 <template v-for="(i, index) in List">
 					<div class="col-xs-3 col-sm-3 col-md-2" style="padding:2px" :key="index">
                         <div style="padding:10px;background:#666666;height:100%;color:white">
-                            <div style="height:50%;text-align:left">{{i.title}}</div>
-                            <div style="height:50%;">{{i.value}}</div>
+                            <div style="height:40%;text-align:left">{{i.title}}</div>
+                            <div style="height:60%;">{{i.value}}</div>
                         </div>
                     </div>
 				</template>
                 <div id="selectYear" class="col-xs-12 col-sm-12 col-md-4" style="padding:2px">
-                    <div style="background:#666666;height:100%"></div>
+                    <div style="background:#666666;height:100%">123</div>
                 </div>
 
             </div>
@@ -36,7 +36,7 @@
                 <template v-for="(i, index) in playerData">
                 <div class="col-xs-12 col-sm-4 col-md-3" style="padding:10px" :key="index" v-if="index<page+4&&index>=page">
                     <div class="player-card" >
-                        <div style="display:flex;align-items:center;height:40%;justify-content: space-around">
+                        <div style="display:flex;align-items:center;height:30%;justify-content: space-around">
                             <img width="60%"  :src=playerData[index].pic_url />
                             <div >
                                 <div>
@@ -51,47 +51,47 @@
                             <div class="col-md-4" style="padding:2px;color:white;height:100%">
                                 <div style="background-color: #666666 ;padding:5px;height:100%">
                                     <div style="height:50%;text-align:left;">POS</div>
-                                    <div style="height:50%;">{{playerData[index].pos}}</div>
+                                    <div style="height:50%;font-size:16px">{{playerData[index].pos}}</div>
                                 </div>
                             </div>
                             <div class="col-md-4" style="padding:2px;color:white;height:100%">
                                 <div style="background-color: #666666 ;padding:5px;height:100%">
                                 <div style="height:50%;text-align:left;">HT</div>
-                                <div style="height:50%;">{{playerData[index].ht}}</div>
+                                <div style="height:50%;font-size:16px">{{playerData[index].ht}}</div>
                                 </div>
                             </div>
                             <div class="col-md-4" style="padding:2px;color:white;height:100%">
                                 <div style="background-color: #666666 ;padding:5px;height:100%">
                                 <div style="height:50%;text-align:left;">WT</div>
-                                <div style="height:50%;">{{playerData[index].wt}}</div>
+                                <div style="height:50%;font-size:16px">{{playerData[index].wt}}</div>
                                 </div>
                             </div>
                         </div>
-                        <div style="display:flex;align-items:center;height:20%;justify-content: space-around">
+                        <div style="display:flex;align-items:center;height:30%;justify-content: space-around">
                             <div class="col-md-6" style="padding:2px;color:white;height:100%">
                                 <div style="background-color: #666666 ;padding:5px;height:100%">
-                                    <div style="height:50%;text-align:left;">birthDate</div>
-                                    <div style="height:50%;">{{playerData[index].birthDate}}</div>
+                                    <div style="height:50%;text-align:left;">BirthDate</div>
+                                    <div style="height:50%;font-size:16px">{{playerData[index].birthDate}}</div>
                                 </div>
                             </div>
                             <div class="col-md-3" style="padding:2px;color:white;height:100%">
                                 <div style="background-color: #666666 ;padding:5px;height:100%">
                                 <div style="height:50%;text-align:left;">HT</div>
-                                <div style="height:50%;">{{playerData[index].ht}}</div>
+                                <div style="height:50%;font-size:16px">{{playerData[index].ht}}</div>
                                 </div>
                             </div>
                             <div class="col-md-3" style="padding:2px;color:white;height:100%">
                                 <div style="background-color: #666666 ;padding:5px;height:100%">
-                                <div style="height:50%;text-align:left;">exp</div>
-                                <div style="height:50%;">{{playerData[index].exp}}</div>
+                                <div style="height:50%;text-align:left;">Exp</div>
+                                <div style="height:50%;font-size:16px">{{playerData[index].exp}}</div>
                                 </div>
                             </div>
                         </div>
                         <div style="display:flex;align-items:center;height:20%;justify-content: space-around">
                             <div class="col-md-12" style="padding:2px;color:white;height:100%">
                                 <div style="background-color: #666666 ;padding:5px;height:100%">
-                                <div style="height:50%;text-align:left;">college</div>
-                                <div style="height:50%;">{{playerData[index].college}}</div>
+                                <div style="height:50%;text-align:left;">College</div>
+                                <div style="height:50%;font-size:16px">{{playerData[index].college}}</div>
                                 </div>
                             </div>
                         </div>

@@ -1,8 +1,8 @@
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <template>
-    <div>
-        <div style="width: 100%;height:100%;z-index:9;position: absolute;background:#ffffff" v-if="showPlayer">
-        <Player :player="playerData[playerIndex]" @close="parentClose"/>
+    <div >
+        <div style="width: 100%;height:100%;z-index:9;position: absolute;background:#ffffff" :class={playerIn:showPlayer} v-if="showPlayer">
+        <Player  :player="playerData[playerIndex]" @close="parentClose"/>
     </div>
     <div class="playerHomePage px-5" >
         <div id="searchPlayer" class="col-sm-12 col-md-4 " style="width: 100%;height: 100%;padding: 2%;">
@@ -169,5 +169,20 @@
     }
     .search-player  th, td {
         padding: 10px;
+    }
+    @keyframes playerIn {
+    from {
+       transform: scale(0.2)
+    }
+    to {
+        transform: scale(1)
+    }
+    }
+    .playerIn {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    font-weight: bold;
+    line-height: 1.3;
+    animation: playerIn .5s 1 backwards;  
     }
 </style>

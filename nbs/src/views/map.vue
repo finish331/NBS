@@ -1,7 +1,7 @@
 <template>
 	<div style="position: relative;">
     <div class="container page-height px-5" style="position: relative;">
-      <div id="selectTeam" v-if=showSelectTeam>
+      <div id="selectTeam" v-if=showSelectTeam :class={teamIn:showSelectTeam}>
 
         <div style="position: relative;height:100%;widht:100%;background:#f4f4f4;box-shadow:5px 5px 10px  rgb(29, 29, 29,.1);z-index:11;padding:5%">
           <button @click="close" style="position: absolute;z-index:9999;top:5px;right:5px" ><v-icon style="font-size:30px">cancel</v-icon></button>
@@ -24,7 +24,7 @@
       </div>
 
 	</div>
-  <div id="testttttt"  v-if="showTeam">
+  <div id="testttttt"  v-if="showTeam" :class={teamIn:showTeam}>
     <map1 :team="teamData[teamIndex]"  @close="parentClose"/>
   </div>
 
@@ -119,6 +119,21 @@
 </script>
 
 <style>
+@keyframes teamIn {
+    from {
+       transform: scale(0.5)
+    }
+    to {
+        transform: scale(1)
+    }
+    }
+    .teamIn {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    font-weight: bold;
+    line-height: 1.3;
+    animation: teamIn .5s 1 backwards;  
+    }
   .team{
 
         margin-bottom: 20px;
