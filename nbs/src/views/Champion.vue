@@ -24,64 +24,61 @@
     </div>
     <div class="row ">
       <div class="col-md-12 test">
-        <div class="col-md-8 bgimg"></div>
+        <div class="col-md-8 bgimg">
+        </div>
         <div class="col-md-4 test1">
           87%<br>
-
           Golden State Warriors
-
         </div>
       </div>
     </div>
     <div class="row ">
       <div class="col-md-12 test">
         <div class="col-md-8 bgimg">
-
         </div>
         <div class="col-md-4 test1">
           87%<br>
-
           Golden State Warriors
-
         </div>
       </div>
     </div>
     <div class="row ">
       <div class="col-md-12 test">
         <div class="col-md-8 bgimg">
-
         </div>
         <div class="col-md-4 test1">
           87%<br>
-
           Golden State Warriors
-
         </div>
       </div>
     </div>
     <div class="row ">
       <div class="col-md-12 test">
         <div class="col-md-8 bgimg">
-
         </div>
         <div class="col-md-4 test1">
           87%<br>
-
           Golden State Warriors
-
         </div>
       </div>
     </div>
     <div class="row ">
       <div class="col-md-12 test">
         <div class="col-md-8 bgimg">
-
         </div>
         <div class="col-md-4 test1">
           87%<br>
-
           Golden State Warriors
-
+        </div>
+      </div>
+    </div>
+    <div class="row ">
+      <div class="col-md-12 test">
+        <div class="col-md-8 bgimg">
+        </div>
+        <div class="col-md-4 test1">
+          87%<br>
+          Golden State Warriors
         </div>
       </div>
     </div>
@@ -170,11 +167,11 @@ export default {
       leftTeamDate: {
         columns: ['type', 'value'],
         rows: [{
-            'type': 'PTS',
+            'type': 'STL',
             'value': 3.1
           },
           {
-            'type': 'TRB',
+            'type': 'BLK',
             'value': 3
           },
           {
@@ -182,11 +179,11 @@ export default {
             'value': 5.3
           },
           {
-            'type': 'BLK',
+            'type': 'TRB',
             'value': 5
           },
           {
-            'type': 'STL',
+            'type': 'PTS',
             'value': 1
           }
         ]
@@ -194,11 +191,11 @@ export default {
       rightTeamDate: {
         columns: ['type', 'value'],
         rows: [{
-            'type': 'PTS',
+            'type': 'STL',
             'value': 3.1
           },
           {
-            'type': 'TRB',
+            'type': 'BLK',
             'value': 3
           },
           {
@@ -206,11 +203,11 @@ export default {
             'value': 5.3
           },
           {
-            'type': 'BLK',
+            'type': 'TRB',
             'value': 5
           },
           {
-            'type': 'STL',
+            'type': 'PTS',
             'value': 1
           }
         ]
@@ -218,11 +215,11 @@ export default {
       leftPlayerData: {
         columns: ['type', 'value'],
         rows: [{
-            'type': 'PTS',
-            'value': 36.1
+            'type': 'STL',
+            'value': 3.1
           },
           {
-            'type': 'TRB',
+            'type': 'BLK',
             'value': 3
           },
           {
@@ -230,11 +227,11 @@ export default {
             'value': 5.3
           },
           {
-            'type': 'BLK',
+            'type': 'TRB',
             'value': 5
           },
           {
-            'type': 'STL',
+            'type': 'PTS',
             'value': 1
           }
         ]
@@ -242,11 +239,11 @@ export default {
       rightPlayerData: {
         columns: ['type', 'value'],
         rows: [{
-            'type': 'PTS',
-            'value': 36.1
+            'type': 'STL',
+            'value': 3.1
           },
           {
-            'type': 'TRB',
+            'type': 'BLK',
             'value': 3
           },
           {
@@ -254,25 +251,25 @@ export default {
             'value': 5.3
           },
           {
-            'type': 'BLK',
+            'type': 'TRB',
             'value': 5
           },
           {
-            'type': 'STL',
+            'type': 'PTS',
             'value': 1
           }
         ]
       },
       rightTeam: {
         isTeam: true,
-         index: 0 ,
+        index: 0 ,
         img:teamData[0].pic_url,
         team: {
-          aa: 1,
-          bc: 9,
-          sc: 4,
-          sassad: 3,
-          se: 2
+          se: teamData[0]['2018-19']['stats']['STL'][1],
+          sassad: teamData[0]['2018-19']['stats']['BLK'][1],
+          sc: teamData[0]['2018-19']['stats']['AST'][1],
+          bc: teamData[0]['2018-19']['stats']['TRB'][1],
+          aa: teamData[0]['2018-19']['stats']['PTS'][1]
         },
         player: [{
             state: false,
@@ -326,11 +323,11 @@ export default {
         img:teamData[0].pic_url,
         isTeam: true,
         team: {
-          aa: 1,
-          bc: 9,
-          sc: 4,
-          sassad: 3,
-          se: 2
+          se: teamData[0]['2018-19']['stats']['STL'][1],
+          sassad: teamData[0]['2018-19']['stats']['BLK'][1],
+          sc: teamData[0]['2018-19']['stats']['AST'][1],
+          bc: teamData[0]['2018-19']['stats']['TRB'][1],
+          aa: teamData[0]['2018-19']['stats']['PTS'][1]
         },
         player: [{
             state: false,
@@ -382,6 +379,7 @@ export default {
     };
   },
   mounted: function(){
+    // console.log(this.teamData[0]['2018-19']['stats']['PTS'][1])
     this.clickTeam('left');
     this.clickTeam('right');
     var url="url("+this.rightTeam.img+")"
@@ -393,12 +391,24 @@ export default {
       var url
       if(i==0){
         this.leftTeam.index=document.getElementById("selectLeftTeam").value
+        this.leftTeam.team.aa=this.teamData[this.leftTeam.index]['2018-19']['stats']['PTS'][1]
+        this.leftTeam.team.bc=this.teamData[this.leftTeam.index]['2018-19']['stats']['TRB'][1]
+        this.leftTeam.team.sc=this.teamData[this.leftTeam.index]['2018-19']['stats']['AST'][1]
+        this.leftTeam.team.sassad=this.teamData[this.leftTeam.index]['2018-19']['stats']['BLK'][1]
+        this.leftTeam.team.se=this.teamData[this.leftTeam.index]['2018-19']['stats']['STL'][1]
+        this.clickTeam('left')
         this.leftTeam.img=teamData[this.leftTeam.index].pic_url
         url="url("+this.leftTeam.img+")"
         document.getElementById('left-team-logo').style.backgroundImage = url
       }
       else{
         this.rightTeam.index=document.getElementById("selectRightTeam").value
+        this.rightTeam.team.aa=this.teamData[this.rightTeam.index]['2018-19']['stats']['PTS'][1]
+        this.rightTeam.team.bc=this.teamData[this.rightTeam.index]['2018-19']['stats']['TRB'][1]
+        this.rightTeam.team.sc=this.teamData[this.rightTeam.index]['2018-19']['stats']['AST'][1]
+        this.rightTeam.team.sassad=this.teamData[this.rightTeam.index]['2018-19']['stats']['BLK'][1]
+        this.rightTeam.team.se=this.teamData[this.rightTeam.index]['2018-19']['stats']['STL'][1]
+        this.clickTeam('right')
         this.rightTeam.img=teamData[this.rightTeam.index].pic_url
         url="url("+this.rightTeam.img+")"
         document.getElementById('right-team-logo').style.backgroundImage = url
@@ -408,11 +418,11 @@ export default {
       if (lr == 0) {
         this.leftTeam.isTeam = false;
         this.leftTeam.player[i].state = true;
-        this.leftPlayerData.rows[0].value = this.leftTeam.player[i].PTS;
-        this.leftPlayerData.rows[1].value = this.leftTeam.player[i].TRB;
+        this.leftPlayerData.rows[0].value = this.leftTeam.player[i].STL;
+        this.leftPlayerData.rows[1].value = this.leftTeam.player[i].BLK;
         this.leftPlayerData.rows[2].value = this.leftTeam.player[i].AST;
-        this.leftPlayerData.rows[3].value = this.leftTeam.player[i].BLK;
-        this.leftPlayerData.rows[4].value = this.leftTeam.player[i].STL;
+        this.leftPlayerData.rows[3].value = this.leftTeam.player[i].TRB;
+        this.leftPlayerData.rows[4].value = this.leftTeam.player[i].PTS;
         for (var j = 0; j < this.leftTeam.player.length; j++) {
           if (i !== j) {
             this.leftTeam.player[j].state = false;
@@ -421,11 +431,11 @@ export default {
       } else {
         this.rightTeam.isTeam = false;
         this.rightTeam.player[i].state = true;
-        this.rightPlayerData.rows[0].value = this.rightTeam.player[i].PTS;
-        this.rightPlayerData.rows[1].value = this.rightTeam.player[i].TRB;
+        this.rightPlayerData.rows[0].value = this.rightTeam.player[i].STL;
+        this.rightPlayerData.rows[1].value = this.rightTeam.player[i].BLK;
         this.rightPlayerData.rows[2].value = this.rightTeam.player[i].AST;
-        this.rightPlayerData.rows[3].value = this.rightTeam.player[i].BLK;
-        this.rightPlayerData.rows[4].value = this.rightTeam.player[i].STL;
+        this.rightPlayerData.rows[3].value = this.rightTeam.player[i].TRB;
+        this.rightPlayerData.rows[4].value = this.rightTeam.player[i].PTS;
         for (j = 0; j < this.rightTeam.player.length; j++) {
           if (i !== j) {
             this.rightTeam.player[j].state = false;
@@ -437,11 +447,11 @@ export default {
     clickTeam(text) {
       if (text === 'left') {
         this.leftTeam.isTeam = true;
-        this.leftTeamDate.rows[0].value = this.leftTeam.team.aa;
-        this.leftTeamDate.rows[1].value = this.leftTeam.team.bc;
+        this.leftTeamDate.rows[0].value = this.leftTeam.team.se;
+        this.leftTeamDate.rows[1].value = this.leftTeam.team.sassad;
         this.leftTeamDate.rows[2].value = this.leftTeam.team.sc;
-        this.leftTeamDate.rows[3].value = this.leftTeam.team.sassad
-        this.leftTeamDate.rows[4].value = this.leftTeam.team.se;
+        this.leftTeamDate.rows[3].value = this.leftTeam.team.bc
+        this.leftTeamDate.rows[4].value = this.leftTeam.team.aa;
 
         for (var j = 0; j < this.leftTeam.player.length; j++) {
 
@@ -451,11 +461,11 @@ export default {
       }
       else{
         this.rightTeam.isTeam = true;
-        this.rightTeamDate.rows[0].value = this.rightTeam.team.aa;
-        this.rightTeamDate.rows[1].value = this.rightTeam.team.bc;
+        this.rightTeamDate.rows[0].value = this.rightTeam.team.se;
+        this.rightTeamDate.rows[1].value = this.rightTeam.team.sassad;
         this.rightTeamDate.rows[2].value = this.rightTeam.team.sc;
-        this.rightTeamDate.rows[3].value = this.rightTeam.team.sassad
-        this.rightTeamDate.rows[4].value = this.rightTeam.team.se;
+        this.rightTeamDate.rows[3].value = this.rightTeam.team.bc
+        this.rightTeamDate.rows[4].value = this.rightTeam.team.aa;
 
         for (j = 0; j < this.rightTeam.player.length; j++) {
 
@@ -509,7 +519,7 @@ export default {
 .champion-right{
   height: 100%;
   display:flex;
-  
+
 }
 .test {
   display: flex;
@@ -522,12 +532,11 @@ export default {
 
 .bgimg {
   width: 100%;
-  height: 100%;
   background: url('../assets/GSW_logo.svg');
   background-position: center;
-  background-size: 140%;
+  background-size: cover;
   background-repeat: no-repeat;
-  opacity: .75;
+  opacity: 1;
 }
 
 .test1 {
@@ -542,7 +551,7 @@ export default {
   color: white;
   background-color: #1d1d1d;
   /* border: 12px solid white; */
-  height: 100%;
+  height: 100%
 }
 
 .right-team {

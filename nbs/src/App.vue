@@ -64,7 +64,7 @@
 			};
 		},
 		mounted() {
-			console.log(`仔入好了`);
+			// console.log(`仔入好了`);
 		}
 	};
 </script>

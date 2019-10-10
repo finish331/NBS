@@ -17,7 +17,6 @@ export const lineChart = {
   },
   xAxis: {
     inverse: true,
-    // nameLocation: "end"
   },
   radarLegend:{
     show:false
