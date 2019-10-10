@@ -21,20 +21,178 @@
                     </div>
 				</template>
                 <div id="selectYear" class="col-xs-12 col-sm-12 col-md-4" style="padding:2px">
-                    <div style="background:#666666;height:100%">123</div>
+                    <div style="padding:10px;background:#666666;height:100%;color:white">
+                        <div style="height:40%;text-align:left">賽季</div>
+                         <form >
+                            <select name="selectSeason" id="selectSeason" @change="selectSeason()" style="background:#fff;height:100%;color:black;width:50%">
+                                <option value="2018-19" >2018-19</option>
+                                <option value="2017-18" >2017-18</option>
+                                <option value="2016-17" >2016-17</option>
+                                <option value="2015-16" >2015-16</option>
+                                <option value="2014-15" >2014-15</option>
+                                <option value="2013-14" >2013-14</option>
+                                <option value="2012-13" >2012-13</option>
+                                <option value="2011-12" >2011-12</option>
+                                <option value="2010-11" >2010-11</option>
+                                <option value="2009-10" >2009-10</option>
+                            </select>
+                        </form>
+                    </div>
                 </div>
 
             </div>
                 <div id="selectYear1" class="col-xs-12 col-sm-12 col-md-4" style="">
-                    <div style="background:#666666;height:80px;width:100%"></div>
+                    <div style="padding:10px;background:#666666;height:80px;color:white">
+                        <div style="height:40%;text-align:left">賽季</div>
+                         <form >
+                            <select name="selectSeason" id="selectSeason1" @change="selectSeason1()" style="background:#fff;height:100%;color:black;width:50%">
+                                <option value="2018-19" >2018-19</option>
+                                <option value="2017-18" >2017-18</option>
+                                <option value="2016-17" >2016-17</option>
+                                <option value="2015-16" >2015-16</option>
+                                <option value="2014-15" >2014-15</option>
+                                <option value="2013-14" >2013-14</option>
+                                <option value="2012-13" >2012-13</option>
+                                <option value="2011-12" >2011-12</option>
+                                <option value="2010-11" >2010-11</option>
+                                <option value="2009-10" >2009-10</option>
+                            </select>
+                        </form>
+                    </div>
                 </div>
             <div style="display:flex;height:60% ;padding:0 2%;position: relative;" >
 
-                <button @click="left" style="position: absolute;left:1px;top:calc(50% - 30px)" ><v-icon style="font-size:30px">arrow_back_ios</v-icon></button>
+                <button @click="left" style="z-index:999;position: absolute;left:1px;top:calc(50% - 30px)" ><v-icon style="font-size:30px">arrow_back_ios</v-icon></button>
 
-                <button @click="right" style="position: absolute;right:1px;top:calc(50% - 30px)"><v-icon style="font-size:30px">arrow_forward_ios</v-icon></button>
+                <button @click="right" style="z-index:999;position: absolute;right:1px;top:calc(50% - 30px)"><v-icon style="font-size:30px">arrow_forward_ios</v-icon></button>
                 <template v-for="(i, index) in playerData">
-                <div class="col-xs-12 col-sm-4 col-md-3" style="padding:10px" :key="index" v-if="index<page+4&&index>=page">
+                <div id="showPlayer1" class="col-xs-12 col-sm-4 col-md-3" style="padding:10px" :key="index" v-if="index<page+4&&index>=page&&windowWidth>=960">
+                    <div class="player-card" >
+                        <div style="display:flex;align-items:center;height:30%;justify-content: space-around">
+                            <img width="60%"  :src=playerData[index].pic_url />
+                            <div >
+                                <div>
+                                    {{playerData[index].no}}
+                                </div>
+                                <div>
+                                    {{playerData[index].player}}
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display:flex;align-items:center;height:20%;justify-content: space-around">
+                            <div class="col-md-4" style="padding:2px;color:white;height:100%">
+                                <div style="background-color: #666666 ;padding:5px;height:100%">
+                                    <div style="height:50%;text-align:left;">POS</div>
+                                    <div style="height:50%;font-size:16px">{{playerData[index].pos}}</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4" style="padding:2px;color:white;height:100%">
+                                <div style="background-color: #666666 ;padding:5px;height:100%">
+                                <div style="height:50%;text-align:left;">HT</div>
+                                <div style="height:50%;font-size:16px">{{playerData[index].ht}}</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4" style="padding:2px;color:white;height:100%">
+                                <div style="background-color: #666666 ;padding:5px;height:100%">
+                                <div style="height:50%;text-align:left;">WT</div>
+                                <div style="height:50%;font-size:16px">{{playerData[index].wt}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display:flex;align-items:center;height:30%;justify-content: space-around">
+                            <div class="col-md-6" style="padding:2px;color:white;height:100%">
+                                <div style="background-color: #666666 ;padding:5px;height:100%">
+                                    <div style="height:50%;text-align:left;">BirthDate</div>
+                                    <div style="height:50%;font-size:16px">{{playerData[index].birthDate}}</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3" style="padding:2px;color:white;height:100%">
+                                <div style="background-color: #666666 ;padding:5px;height:100%">
+                                <div style="height:50%;text-align:left;">HT</div>
+                                <div style="height:50%;font-size:16px">{{playerData[index].ht}}</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3" style="padding:2px;color:white;height:100%">
+                                <div style="background-color: #666666 ;padding:5px;height:100%">
+                                <div style="height:50%;text-align:left;">Exp</div>
+                                <div style="height:50%;font-size:16px">{{playerData[index].exp}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display:flex;align-items:center;height:20%;justify-content: space-around">
+                            <div class="col-md-12" style="padding:2px;color:white;height:100%">
+                                <div style="background-color: #666666 ;padding:5px;height:100%">
+                                <div style="height:50%;text-align:left;">College</div>
+                                <div style="height:50%;font-size:16px">{{playerData[index].college}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="showPlayer2" class="col-sm-6 col-md-6" style="padding:10px" :key="index" v-if="index<page+2&&index>=page&&windowWidth<960&&windowWidth>=620">
+                    <div class="player-card" >
+                        <div style="display:flex;align-items:center;height:30%;justify-content: space-around">
+                            <img width="60%"  :src=playerData[index].pic_url />
+                            <div >
+                                <div>
+                                    {{playerData[index].no}}
+                                </div>
+                                <div>
+                                    {{playerData[index].player}}
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display:flex;align-items:center;height:20%;justify-content: space-around">
+                            <div class="col-md-4" style="padding:2px;color:white;height:100%">
+                                <div style="background-color: #666666 ;padding:5px;height:100%">
+                                    <div style="height:50%;text-align:left;">POS</div>
+                                    <div style="height:50%;font-size:16px">{{playerData[index].pos}}</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4" style="padding:2px;color:white;height:100%">
+                                <div style="background-color: #666666 ;padding:5px;height:100%">
+                                <div style="height:50%;text-align:left;">HT</div>
+                                <div style="height:50%;font-size:16px">{{playerData[index].ht}}</div>
+                                </div>
+                            </div>
+                            <div class="col-md-4" style="padding:2px;color:white;height:100%">
+                                <div style="background-color: #666666 ;padding:5px;height:100%">
+                                <div style="height:50%;text-align:left;">WT</div>
+                                <div style="height:50%;font-size:16px">{{playerData[index].wt}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display:flex;align-items:center;height:30%;justify-content: space-around">
+                            <div class="col-md-6" style="padding:2px;color:white;height:100%">
+                                <div style="background-color: #666666 ;padding:5px;height:100%">
+                                    <div style="height:50%;text-align:left;">BirthDate</div>
+                                    <div style="height:50%;font-size:16px">{{playerData[index].birthDate}}</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3" style="padding:2px;color:white;height:100%">
+                                <div style="background-color: #666666 ;padding:5px;height:100%">
+                                <div style="height:50%;text-align:left;">HT</div>
+                                <div style="height:50%;font-size:16px">{{playerData[index].ht}}</div>
+                                </div>
+                            </div>
+                            <div class="col-md-3" style="padding:2px;color:white;height:100%">
+                                <div style="background-color: #666666 ;padding:5px;height:100%">
+                                <div style="height:50%;text-align:left;">Exp</div>
+                                <div style="height:50%;font-size:16px">{{playerData[index].exp}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div style="display:flex;align-items:center;height:20%;justify-content: space-around">
+                            <div class="col-md-12" style="padding:2px;color:white;height:100%">
+                                <div style="background-color: #666666 ;padding:5px;height:100%">
+                                <div style="height:50%;text-align:left;">College</div>
+                                <div style="height:50%;font-size:16px">{{playerData[index].college}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div id="showPlayer3" class="col-12 col-sm-12 col-md-12" style="padding:10px" :key="index" v-if="index<page+2&&index>=page&&windowWidth<620">
                     <div class="player-card" >
                         <div style="display:flex;align-items:center;height:30%;justify-content: space-around">
                             <img width="60%"  :src=playerData[index].pic_url />
@@ -141,6 +299,12 @@
         padding:2px;
 
     }
+    #showPlayer2{
+            display: none
+        }
+        #showPlayer3{
+            display: none
+        }
     @media (max-width:960px){
         #selectYear{
             display:none;
@@ -148,9 +312,24 @@
         #selectYear1{
             display:inherit;
         }
+        #showPlayer1{
+            display: none
+        }
+        #showPlayer2{
+            display: block
+        }
+    }
+    @media (max-width:620px){
+        #showPlayer2{
+            display: none
+        }
+        #showPlayer3{
+            display: block
+        }
     }
 </style>
 <script>
+    
     import player from "@/assets/json/player.json";
     import { barChart } from "@/assets/js/test.js";
 	export default {
@@ -158,8 +337,10 @@
         props: ['team'],
 		data() {
 			return {
+                season:"2018-19",
                 ...barChart,
                 page:0,
+                windowWidth:0,
                 player:player,
                 playerData :[
 
@@ -218,27 +399,137 @@
 			};
         },
         methods: {
-            left(){
-                if(this.page!=0){
-                    this.page-=4;
-                    // console.log("0");
-                }
-                else{
-                    // console.log("1");
+            selectSeason(){
+                this.playerData=[]
+                this.season=document.getElementById("selectSeason").value
+                this.List[0].value=this.team[this.season].summary['Rank']
+                this.List[1].value=this.team[this.season].summary['Record']
+                this.List[2].value=this.team[this.season].summary['Coach']
+                this.List[3].value=this.team[this.season].summary['Executive']
+                var i
+                var j
+                var pic_url
+
+                var url="url("+this.team.pic_url+")"
+                document.getElementById('mapTeamLogo').style.backgroundImage = url
+
+
+                for(i=0;i<Object.keys(this.team[this.season].rosters['No.']).length;i++){
+                    for(j=0;j<this.player.length;j++){
+                        if(this.team[this.season].rosters['Player'][i]==this.player[j].name){
+                            pic_url=this.player[j].pic_url
+                        }
+                    }
+                this.playerData.push({
+                            'pic_url':pic_url,
+                            'no':this.team[this.season].rosters['No.'][i],
+                            'player':this.team[this.season].rosters['Player'][i],
+                            'pos':this.team[this.season].rosters['Pos'][i],
+                            'ht':this.team[this.season].rosters['Ht'][i],
+                            'wt':this.team[this.season].rosters['Wt'][i],
+                            'birthDate':this.team[this.season].rosters['Birth Date'][i],
+                            'exp':this.team[this.season].rosters['Exp'][i],
+                            'college':this.team[this.season].rosters['College'][i]
+                        })
+
                 }
             },
+             selectSeason1(){
+                this.playerData=[]
+                this.season=document.getElementById("selectSeason1").value
+                this.List[0].value=this.team[this.season].summary['Rank']
+                this.List[1].value=this.team[this.season].summary['Record']
+                this.List[2].value=this.team[this.season].summary['Coach']
+                this.List[3].value=this.team[this.season].summary['Executive']
+                var i
+                var j
+                var pic_url
+
+                var url="url("+this.team.pic_url+")"
+                document.getElementById('mapTeamLogo').style.backgroundImage = url
+
+
+                for(i=0;i<Object.keys(this.team[this.season].rosters['No.']).length;i++){
+                    for(j=0;j<this.player.length;j++){
+                        if(this.team[this.season].rosters['Player'][i]==this.player[j].name){
+                            pic_url=this.player[j].pic_url
+                        }
+                    }
+                this.playerData.push({
+                            'pic_url':pic_url,
+                            'no':this.team[this.season].rosters['No.'][i],
+                            'player':this.team[this.season].rosters['Player'][i],
+                            'pos':this.team[this.season].rosters['Pos'][i],
+                            'ht':this.team[this.season].rosters['Ht'][i],
+                            'wt':this.team[this.season].rosters['Wt'][i],
+                            'birthDate':this.team[this.season].rosters['Birth Date'][i],
+                            'exp':this.team[this.season].rosters['Exp'][i],
+                            'college':this.team[this.season].rosters['College'][i]
+                        })
+
+                }
+            },
+            left(){
+
+                    if(this.windowWidth >=620&&this.windowWidth <960){
+                        if(this.page!=0){
+                            this.page-=2;
+                            // console.log("0");
+                        }
+                        else{
+                                // console.log("1");
+                        }
+                    }
+                    else if(this.windowWidth <620){
+                        if(this.page!=0){
+                            this.page-=1;
+                            // console.log("0");
+                        }
+                        else{
+                                // console.log("1");
+                        }
+                    }
+                    else{
+                        if(this.page!=0){
+                            this.page-=4;
+                            // console.log("0");
+                        }
+                        else{
+                                // console.log("1");
+                        }
+                    }
+
+            },
             right(){
-                if(this.page+4<this.playerData.length){
+                
+                    if(this.windowWidth >=620&&this.windowWidth <960){
+                        if(this.page+2<this.playerData.length){
+                    // console.log("0");
+                            this.page+=2;
+                        }
+
+                    }
+                    else if(this.windowWidth <620){
+                        if(this.page+1<this.playerData.length){
+                    // console.log("0");
+                            this.page+=1;
+                        }
+                    }
+                    else{
+                        if(this.page+4<this.playerData.length){
                     // console.log("0");
                     this.page+=4;
                 }
 
+                    }             
             },
             close(){
               this.$emit('close' , false);
             }
         },
          mounted() {
+             
+            this.windowWidth =window.innerWidth;
             var i
             var j
             var pic_url
@@ -247,22 +538,22 @@
             document.getElementById('mapTeamLogo').style.backgroundImage = url
 
 
-            for(i=0;i<Object.keys(this.team['2018-19'].rosters['No.']).length;i++){
+            for(i=0;i<Object.keys(this.team[this.season].rosters['No.']).length;i++){
                 for(j=0;j<this.player.length;j++){
-                    if(this.team['2018-19'].rosters['Player'][i]==this.player[j].name){
+                    if(this.team[this.season].rosters['Player'][i]==this.player[j].name){
                         pic_url=this.player[j].pic_url
                     }
                 }
                this.playerData.push({
                         'pic_url':pic_url,
-                        'no':this.team['2018-19'].rosters['No.'][i],
-                        'player':this.team['2018-19'].rosters['Player'][i],
-                        'pos':this.team['2018-19'].rosters['Pos'][i],
-                        'ht':this.team['2018-19'].rosters['Ht'][i],
-                        'wt':this.team['2018-19'].rosters['Wt'][i],
-                        'birthDate':this.team['2018-19'].rosters['Birth Date'][i],
-                        'exp':this.team['2018-19'].rosters['Exp'][i],
-                        'college':this.team['2018-19'].rosters['College'][i]
+                        'no':this.team[this.season].rosters['No.'][i],
+                        'player':this.team[this.season].rosters['Player'][i],
+                        'pos':this.team[this.season].rosters['Pos'][i],
+                        'ht':this.team[this.season].rosters['Ht'][i],
+                        'wt':this.team[this.season].rosters['Wt'][i],
+                        'birthDate':this.team[this.season].rosters['Birth Date'][i],
+                        'exp':this.team[this.season].rosters['Exp'][i],
+                        'college':this.team[this.season].rosters['College'][i]
                     })
 
             }
