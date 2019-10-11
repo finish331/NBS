@@ -259,7 +259,7 @@
 
             </div>
             <div style="display:flex;height:100%;width:100%;" >
-                <ve-histogram width="100%" height="100%" :textStyle="textStyles" :extend="series" :data="TeamData">
+                <ve-histogram width="100%" height="100%" :textStyle="textStyles" :extend="series" :data="TeamData" :legend="legend">
                  </ve-histogram>
             </div>
         </div>
@@ -329,7 +329,6 @@
     }
 </style>
 <script>
-    
     import player from "@/assets/json/player.json";
     import { barChart } from "@/assets/js/test.js";
 	export default {
@@ -337,6 +336,9 @@
         props: ['team'],
 		data() {
 			return {
+                legend: {
+                show: false
+                },
                 season:"2018-19",
                 ...barChart,
                 page:0,
@@ -345,47 +347,79 @@
                 playerData :[
 
                 ],
-                 TeamData: {
+                TeamData: {
                     columns: ['type', 'value'],
                     rows: [{
-                        'type': 'PTS',
-                        'value': 3.1
+                        'type': 'MP',
+                        'value': this.team['2018-19'].stats['MP'][1]
+                    },
+                    {
+                        'type': 'FG',
+                        'value': this.team['2018-19'].stats['FG'][1]
+                    },
+                    {
+                        'type': 'FGA',
+                        'value': this.team['2018-19'].stats['FGA'][1]
+                    },
+                    {
+                        'type': '3P',
+                        'value': this.team['2018-19'].stats['3P'][1]
+                    },
+                    {
+                        'type': '3PA',
+                        'value': this.team['2018-19'].stats['3PA'][1]
+                    },
+                    {
+                        'type': '2P',
+                        'value': this.team['2018-19'].stats['2P'][1]
+                    },
+                    {
+                        'type': '2PA',
+                        'value': this.team['2018-19'].stats['2PA'][1]
+                    },
+                    {
+                        'type': 'FT',
+                        'value': this.team['2018-19'].stats['FT'][1]
+                    },
+                    {
+                        'type': 'FTA',
+                        'value': this.team['2018-19'].stats['FTA'][1]
+                    },
+                    {
+                        'type': 'ORB',
+                        'value': this.team['2018-19'].stats['ORB'][1]
+                    },
+                    {
+                        'type': 'DRB',
+                        'value': this.team['2018-19'].stats['DRB'][1]
                     },
                     {
                         'type': 'TRB',
-                        'value': 3
+                        'value': this.team['2018-19'].stats['TRB'][1]
                     },
                     {
                         'type': 'AST',
-                        'value': 5.3
-                    },
-                    {
-                        'type': 'BLK',
-                        'value': 5
-                    },
-                    {
-                        'type': 'BLK',
-                        'value': 5
-                    },
-                    {
-                        'type': 'BLK',
-                        'value': 5
-                    },
-                    {
-                        'type': 'BLK',
-                        'value': 5
+                        'value': this.team['2018-19'].stats['AST'][1]
                     },
                     {
                         'type': 'STL',
-                        'value': 1
+                        'value': this.team['2018-19'].stats['STL'][1]
                     },
                     {
-                        'type': 'STL',
-                        'value': 1
+                        'type': 'BLK',
+                        'value': this.team['2018-19'].stats['BLK'][1]
                     },
                     {
-                        'type': 'STL',
-                        'value': 1
+                        'type': 'TOV',
+                        'value': this.team['2018-19'].stats['TOV'][1]
+                    },
+                    {
+                        'type': 'PF',
+                        'value': this.team['2018-19'].stats['PF'][1]
+                    },
+                    {
+                        'type': 'PTS',
+                        'value': this.team['2018-19'].stats['PTS'][1]
                     }
                     ]
                 },
@@ -406,6 +440,24 @@
                 this.List[1].value=this.team[this.season].summary['Record']
                 this.List[2].value=this.team[this.season].summary['Coach']
                 this.List[3].value=this.team[this.season].summary['Executive']
+                this.TeamData.rows[0].value=this.team[this.season].stats['MP'][1]
+                this.TeamData.rows[1].value=this.team[this.season].stats['FG'][1]
+                this.TeamData.rows[2].value=this.team[this.season].stats['FGA'][1]
+                this.TeamData.rows[3].value=this.team[this.season].stats['3P'][1]
+                this.TeamData.rows[4].value=this.team[this.season].stats['3PA'][1]
+                this.TeamData.rows[5].value=this.team[this.season].stats['2P'][1]
+                this.TeamData.rows[6].value=this.team[this.season].stats['2PA'][1]
+                this.TeamData.rows[7].value=this.team[this.season].stats['FT'][1]
+                this.TeamData.rows[8].value=this.team[this.season].stats['FTA'][1]
+                this.TeamData.rows[9].value=this.team[this.season].stats['ORB'][1]
+                this.TeamData.rows[10].value=this.team[this.season].stats['DRB'][1]
+                this.TeamData.rows[11].value=this.team[this.season].stats['TRB'][1]
+                this.TeamData.rows[12].value=this.team[this.season].stats['AST'][1]
+                this.TeamData.rows[13].value=this.team[this.season].stats['STL'][1]
+                this.TeamData.rows[14].value=this.team[this.season].stats['BLK'][1]
+                this.TeamData.rows[15].value=this.team[this.season].stats['TOV'][1]
+                this.TeamData.rows[16].value=this.team[this.season].stats['PF'][1]
+                this.TeamData.rows[17].value=this.team[this.season].stats['PTS'][1]
                 var i
                 var j
                 var pic_url

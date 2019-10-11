@@ -1,5 +1,6 @@
 export const lineChart = {
   chartSettings: {
+    
     area: true,
     scale: [true, true], //基本值是否為0，true為否
     smooth: true,
@@ -34,6 +35,7 @@ export const lineChart = {
     }
   },
   legendSetting: {
+    show: false,
     textStyle: {
       color: "white",
       fontSize: 14
@@ -67,11 +69,11 @@ export const lineChart = {
   },
   radars: {
     indicator: [
-      { name: "PTS", max: 40 },
-      { name: "TRB", max: 20 },
-      { name: "AST", max: 15 },
-      { name: "BLK", max: 5 },
-      { name: "STL", max: 4 }
+      { name: "PTS 得分", max: 5},
+      { name: "TRB 籃板", max: 5 },
+      { name: "AST 助攻", max: 5 },
+      { name: "BLK 火鍋", max: 5 },
+      { name: "STL 抄截", max: 5 }
     ],
     center: ['50%', '55%'],
     name: {
@@ -82,5 +84,8 @@ export const lineChart = {
   radarLegend: {
     show: false
   },
+  tooltip:{
+    show:false
+  }
 }
 

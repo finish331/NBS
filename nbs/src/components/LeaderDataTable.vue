@@ -257,8 +257,8 @@ export default {
   // 接來自父層傳遞的參數
   props:['test','test2'],
   mounted: function(){
-    console.log(this.test);
-    console.log(this.test2);
+    // console.log(this.test);
+    // console.log(this.test2);
   },
   data(){
     return{
@@ -341,13 +341,13 @@ export default {
           this.items.push(this.temp[key])
         // }
       }
-      console.log(this.items)
+      // console.log(this.items)
       return this.items
     },
     TestClick(output){
       this.dialog = true;
       this.dialogItem = output;
-      console.log(this.dialogItem);
+      // console.log(this.dialogItem);
     }
     
   }
