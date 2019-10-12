@@ -98,10 +98,10 @@
       <!-- 球隊LOGO -->
       <div id="left-team-logo" @click="clickTeam('left')" style=""></div>
 
-      <div style="display:flex;width:100%;height:10%">
-        <div class="col player-btn" style="padding:0" v-for="(i, index) in leftTeam.player" :key="index">
-          <div @click="clickPlayer(index,0)" style="height:100%;background-color: #272727;" v-if=i.state>{{i.name}}</div>
-          <div @click="clickPlayer(index,0)" style="height:100%;" v-else>{{i.name}}</div>
+      <div style="display:flex;width:100%;height:10%;align-items:center">
+        <div class="col player-btn" style="height:100%;padding:0;" v-for="(i, index) in leftTeam.player" :key="index">
+          <div @click="clickPlayer(index,0)" style="height:100%;background-color: #272727;display:flex; align-items:center " v-if=i.state>{{i.name}}</div>
+          <div @click="clickPlayer(index,0)" style="height:100%;display:flex; align-items:center " v-else>{{i.name}}</div>
         </div>
       </div>
       <!-- 圖表 -->
@@ -133,9 +133,9 @@
       <div id="right-team-logo" @click="clickTeam('right')" ></div>
 
       <div style="display:flex;width:100%;height:10%">
-        <div class="col player-btn" style="padding:0" v-for="(i, index) in rightTeam.player" :key="index">
-          <div @click="clickPlayer(index,1)" style="height:100%;background-color: #272727;" v-if=i.state>{{i.name}}</div>
-          <div @click="clickPlayer(index,1)" style="height:100%;" v-else>{{i.name}}</div>
+        <div class="col player-btn" style="height:100%;padding:0;" v-for="(i, index) in rightTeam.player" :key="index">
+          <div @click="clickPlayer(index,1)" style="height:100%;background-color: #272727;display:flex; align-items:center;justify-content: center " v-if=i.state>{{i.name}}</div>
+          <div @click="clickPlayer(index,1)" style="height:100%;display:flex; align-items:center; " v-else>{{i.name}}</div>
         </div>
       </div>
 
@@ -571,6 +571,7 @@ export default {
 </script>
 <style>
 #left-team-logo{
+  
    cursor: pointer;
    width:100% ;
    height:40%;

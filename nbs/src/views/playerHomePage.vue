@@ -112,7 +112,7 @@
     }
     .player{
         
-        margin-bottom: 20px;
+        margin-bottom: 40px;
         height: 30%;
         width:100%;
     }

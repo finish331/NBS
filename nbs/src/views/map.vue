@@ -20,7 +20,7 @@
         </div>
       </div>
       <div class="row mh-100 vh-100 align-items-center" >
-        <ve-map class="col"  :events="{ click: clickHandler.bind(this, 1) }" width="80%" height="600px" :data="chartData" :settings="chartSettings" :legend="legend"></ve-map>
+        <ve-map class="col"  :events="{ click: clickHandler.bind(this, 1) }" width="80%" height="100%" :data="chartData" :settings="chartSettings" :legend="legend"></ve-map>
       </div>
 
 	</div>

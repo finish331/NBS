@@ -10,7 +10,7 @@
             <div style="display:flex">B<div class="title-span"><span>asketball</span></div><br></div>
             <div style="display:flex">S<div class="title-span"><span>cout</span></div></div>
           </div>
-          <a href="'/player'"><div class="content-bnt">
+          <a href="/#/playerHomePage"><div class="content-bnt">
             →
 
           </div></a>
