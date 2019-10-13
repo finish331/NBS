@@ -1,5 +1,0 @@
-INFO:root:Starting with estimator: LinearRegression
-INFO:root:Starting with estimator: Ridge
-INFO:root:Starting with estimator: RandomForestRegressor
-INFO:root:Starting with estimator: GradientBoostingRegressor
-INFO:root:Starting with estimator: SVR
