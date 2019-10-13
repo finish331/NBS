@@ -3,7 +3,7 @@
     <div class="container page-height px-5" style="position: relative;">
       <div id="selectTeam" v-if=showSelectTeam :class={teamIn:showSelectTeam}>
 
-        <div style="position: relative;height:100%;widht:100%;background:#f4f4f4;box-shadow:5px 5px 10px  rgb(29, 29, 29,.1);z-index:11;padding:5%">
+        <div style="overflow: auto;position: relative;height:100%;widht:100%;background:#f4f4f4;box-shadow:5px 5px 10px  rgb(29, 29, 29,.1);z-index:11;padding:5%">
           <button @click="close" style="position: absolute;z-index:9999;top:5px;right:5px" ><v-icon style="font-size:30px">cancel</v-icon></button>
           <div class="showTeam">
             <div  class="col-sm-4 col-md-3 team hover" v-for="(j, index1) in team[teamName]" :key="index1">
@@ -20,11 +20,11 @@
         </div>
       </div>
       <div class="row mh-100 vh-100 align-items-center" >
-        <ve-map class="col"  :events="{ click: clickHandler.bind(this, 1) }" width="80%" height="600px" :data="chartData" :settings="chartSettings"></ve-map>
+        <ve-map class="col"  :events="{ click: clickHandler.bind(this, 1) }" width="80%" height="100%" :data="chartData" :settings="chartSettings" :legend="legend"></ve-map>
       </div>
 
 	</div>
-  <div id="testttttt"  v-if="showTeam" :class={teamIn:showTeam}>
+  <div id="testttttt"  v-if="showTeam" :class={teamIn:showTeam}>  
     <map1 :team="teamData[teamIndex]"  @close="parentClose"/>
   </div>
 
@@ -38,6 +38,9 @@
 	export default {
 		data() {
 			return {
+         legend: {
+          show: false
+        },
         teamIndex:0,
         teamData:teamData,
         showTeam:false,

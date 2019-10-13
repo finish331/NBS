@@ -98,10 +98,10 @@
       <!-- 球隊LOGO -->
       <div id="left-team-logo" @click="clickTeam('left')" style=""></div>
 
-      <div style="display:flex;width:100%;height:10%">
-        <div class="col player-btn" style="padding:0" v-for="(i, index) in leftTeam.player" :key="index">
-          <div @click="clickPlayer(index,0)" style="height:100%;background-color: #272727;" v-if=i.state>{{i.name}}</div>
-          <div @click="clickPlayer(index,0)" style="height:100%;" v-else>{{i.name}}</div>
+      <div style="display:flex;width:100%;height:10%;align-items:center">
+        <div class="col player-btn" style="height:100%;padding:0;" v-for="(i, index) in leftTeam.player" :key="index">
+          <div @click="clickPlayer(index,0)" style="height:100%;background-color: #272727;display:flex; align-items:center " v-if=i.state>{{i.name}}</div>
+          <div @click="clickPlayer(index,0)" style="height:100%;display:flex; align-items:center " v-else>{{i.name}}</div>
         </div>
       </div>
       <!-- 圖表 -->
@@ -133,9 +133,9 @@
       <div id="right-team-logo" @click="clickTeam('right')" ></div>
 
       <div style="display:flex;width:100%;height:10%">
-        <div class="col player-btn" style="padding:0" v-for="(i, index) in rightTeam.player" :key="index">
-          <div @click="clickPlayer(index,1)" style="height:100%;background-color: #272727;" v-if=i.state>{{i.name}}</div>
-          <div @click="clickPlayer(index,1)" style="height:100%;" v-else>{{i.name}}</div>
+        <div class="col player-btn" style="height:100%;padding:0;" v-for="(i, index) in rightTeam.player" :key="index">
+          <div @click="clickPlayer(index,1)" style="height:100%;background-color: #272727;display:flex; align-items:center;justify-content: center " v-if=i.state>{{i.name}}</div>
+          <div @click="clickPlayer(index,1)" style="height:100%;display:flex; align-items:center; " v-else>{{i.name}}</div>
         </div>
       </div>
 
@@ -158,10 +158,12 @@
 <script>
 import {lineChart} from "@/assets/js/championConfig.js";
 import teamData from "@/assets/json/team.json";
+import playerData from "@/assets/json/player.json";
 export default {
   components: {},
   data() {
     return {
+      playerData:playerData,
       teamData:teamData,
       ...lineChart,
       leftTeamDate: {
@@ -385,12 +387,100 @@ export default {
     var url="url("+this.rightTeam.img+")"
     document.getElementById('left-team-logo').style.backgroundImage = url
     document.getElementById('right-team-logo').style.backgroundImage = url
+    this.leftplayer()
+     this.rightplayer()
+    // console.log(leftPlayerTemp)
   },
   methods: {
+    leftplayer(){
+      var leftPlayerTemp=[]
+      var i
+      var j
+      for(i=0;i<Object.keys(this.teamData[this.leftTeam.index]['2018-19'].rosters.Player).length;i++){
+        leftPlayerTemp.push({name:this.teamData[this.leftTeam.index]['2018-19'].rosters.Player[i],MP:0,PTS:0, TRB: 0, AST: 0, BLK: 0, STL: 0})
+      }
+      
+      for(i=0;i<this.playerData.length;i++){
+        for(j=0;j<Object.keys(this.teamData[this.leftTeam.index]['2018-19'].rosters.Player).length;j++){
+          if(this.playerData[i].name==this.teamData[this.leftTeam.index]['2018-19'].rosters.Player[j]){
+            if(this.playerData[i]['data']!=undefined){
+              leftPlayerTemp[j].MP=this.playerData[i]['data'].MP[Object.keys(this.playerData[i]['data'].MP).length-2]
+              leftPlayerTemp[j].PTS=this.playerData[i]['data'].PTS[Object.keys(this.playerData[i]['data'].PTS).length-2]
+              leftPlayerTemp[j].TRB=this.playerData[i]['data'].TRB[Object.keys(this.playerData[i]['data'].TRB).length-2]
+              leftPlayerTemp[j].AST=this.playerData[i]['data'].AST[Object.keys(this.playerData[i]['data'].AST).length-2]
+              leftPlayerTemp[j].BLK=this.playerData[i]['data'].BLK[Object.keys(this.playerData[i]['data'].BLK).length-2]
+              leftPlayerTemp[j].STL=this.playerData[i]['data'].STL[Object.keys(this.playerData[i]['data'].STL).length-2]
+            }
+          }
+        }
+      }
+      var temp
+      for(i=0;i<leftPlayerTemp.length;i++){
+        for(j=i+1;j<leftPlayerTemp.length;j++){
+          if(leftPlayerTemp[i].MP<leftPlayerTemp[j].MP){
+            temp=leftPlayerTemp[i].MP
+            leftPlayerTemp[i].MP=leftPlayerTemp[j].MP
+            leftPlayerTemp[j].MP=temp
+          }
+        }
+    }
+    for(i=0;i<5;i++){
+      this.leftTeam.player[i].name=leftPlayerTemp[i].name
+      this.leftTeam.player[i].PTS=leftPlayerTemp[i].PTS
+      this.leftTeam.player[i].TRB=leftPlayerTemp[i].TRB
+      this.leftTeam.player[i].AST=leftPlayerTemp[i].AST
+      this.leftTeam.player[i].BLK=leftPlayerTemp[i].BLK
+      this.leftTeam.player[i].STL=leftPlayerTemp[i].STL
+
+    }
+    },
+    rightplayer(){
+    var rightPlayerTemp=[]
+    var i
+    var j
+    for(i=0;i<Object.keys(this.teamData[this.rightTeam.index]['2018-19'].rosters.Player).length;i++){
+      rightPlayerTemp.push({name:this.teamData[this.rightTeam.index]['2018-19'].rosters.Player[i],MP:0,PTS:0, TRB: 0, AST: 0, BLK: 0, STL: 0})
+    }
+    
+    for(i=0;i<this.playerData.length;i++){
+      for(j=0;j<Object.keys(this.teamData[this.rightTeam.index]['2018-19'].rosters.Player).length;j++){
+        if(this.playerData[i].name==this.teamData[this.rightTeam.index]['2018-19'].rosters.Player[j]){
+          if(this.playerData[i]['data']!=undefined){
+            rightPlayerTemp[j].MP=this.playerData[i]['data'].MP[Object.keys(this.playerData[i]['data'].MP).length-2]
+            rightPlayerTemp[j].PTS=this.playerData[i]['data'].PTS[Object.keys(this.playerData[i]['data'].PTS).length-2]
+            rightPlayerTemp[j].TRB=this.playerData[i]['data'].TRB[Object.keys(this.playerData[i]['data'].TRB).length-2]
+            rightPlayerTemp[j].AST=this.playerData[i]['data'].AST[Object.keys(this.playerData[i]['data'].AST).length-2]
+            rightPlayerTemp[j].BLK=this.playerData[i]['data'].BLK[Object.keys(this.playerData[i]['data'].BLK).length-2]
+            rightPlayerTemp[j].STL=this.playerData[i]['data'].STL[Object.keys(this.playerData[i]['data'].STL).length-2]
+          }
+        }
+      }
+    }
+    var temp
+    for(i=0;i<rightPlayerTemp.length;i++){
+      for(j=i+1;j<rightPlayerTemp.length;j++){
+        if(rightPlayerTemp[i].MP<rightPlayerTemp[j].MP){
+          temp=rightPlayerTemp[i].MP
+          rightPlayerTemp[i].MP=rightPlayerTemp[j].MP
+          rightPlayerTemp[j].MP=temp
+        }
+      }
+    }
+    for(i=0;i<5;i++){
+      this.rightTeam.player[i].name=rightPlayerTemp[i].name
+      this.rightTeam.player[i].PTS=rightPlayerTemp[i].PTS
+      this.rightTeam.player[i].TRB=rightPlayerTemp[i].TRB
+      this.rightTeam.player[i].AST=rightPlayerTemp[i].AST
+      this.rightTeam.player[i].BLK=rightPlayerTemp[i].BLK
+      this.rightTeam.player[i].STL=rightPlayerTemp[i].STL
+
+    }
+    },
     print_value(i){
       var url
       if(i==0){
         this.leftTeam.index=document.getElementById("selectLeftTeam").value
+        this.leftplayer()
         this.leftTeam.team.aa=this.teamData[this.leftTeam.index]['2018-19']['stats']['PTS'][1]
         this.leftTeam.team.bc=this.teamData[this.leftTeam.index]['2018-19']['stats']['TRB'][1]
         this.leftTeam.team.sc=this.teamData[this.leftTeam.index]['2018-19']['stats']['AST'][1]
@@ -403,6 +493,7 @@ export default {
       }
       else{
         this.rightTeam.index=document.getElementById("selectRightTeam").value
+        this.rightplayer()
         this.rightTeam.team.aa=this.teamData[this.rightTeam.index]['2018-19']['stats']['PTS'][1]
         this.rightTeam.team.bc=this.teamData[this.rightTeam.index]['2018-19']['stats']['TRB'][1]
         this.rightTeam.team.sc=this.teamData[this.rightTeam.index]['2018-19']['stats']['AST'][1]
@@ -480,6 +571,7 @@ export default {
 </script>
 <style>
 #left-team-logo{
+  
    cursor: pointer;
    width:100% ;
    height:40%;

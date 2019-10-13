@@ -56,6 +56,7 @@
 					<ve-radar
 						id="radarChartDiv"
 						:radar="radars"
+						:tooltip="tooltip"
 						:legend="radarLegend"
 						:data="chartData"
 						:settings="radarSettings"
@@ -185,6 +186,7 @@
 			};
 		},
 		mounted: function(){
+			
 			this.items=[]
 			var i
 			var j
@@ -275,11 +277,7 @@
 				this.數值List[9].value=this.player.data['Season'][Object.keys(this.player.data['Season']).length-2]
 
 				this.chartData.rows[0].seasons=this.player.data['Season'][Object.keys(this.player.data['Season']).length-2]
-				this.chartData.rows[0].PTS=this.player.data.PTS[Object.keys(this.player.data.PTS).length-2]
-				this.chartData.rows[0].TRB=this.player.data.TRB[Object.keys(this.player.data.TRB).length-2]
-				this.chartData.rows[0].AST=this.player.data.AST[Object.keys(this.player.data.AST).length-2]
-				this.chartData.rows[0].BLK=this.player.data.BLK[Object.keys(this.player.data.BLK).length-2]
-				this.chartData.rows[0].STL=this.player.data.STL[Object.keys(this.player.data.STL).length-2]
+				this.level(this.player.data.PTS[Object.keys(this.player.data.PTS).length-2],this.player.data.TRB[Object.keys(this.player.data.TRB).length-2],this.player.data.AST[Object.keys(this.player.data.AST).length-2],this.player.data.BLK[Object.keys(this.player.data.BLK).length-2],this.player.data.STL[Object.keys(this.player.data.STL).length-2])
 			}
 			else if(this.player['college_data']!=undefined){
 				for(i=0;i<Object.keys(this.player.college_data.PTS).length;i++){
@@ -355,18 +353,94 @@
                 this.數值List[8].value=Number(this.player.college_data['FT%'][Object.keys(this.player.college_data['FT%']).length-2]).toFixed(2)
                 this.數值List[9].value=this.player.college_data['Season'][Object.keys(this.player.college_data['Season']).length-2]
 
+
                 this.chartData.rows[0].seasons=this.player.college_data['Season'][Object.keys(this.player.college_data['Season']).length-2]
-                this.chartData.rows[0].PTS=this.player.college_data.PTS[Object.keys(this.player.college_data.PTS).length-2]
-                this.chartData.rows[0].TRB=this.player.college_data.TRB[Object.keys(this.player.college_data.TRB).length-2]
-                this.chartData.rows[0].AST=this.player.college_data.AST[Object.keys(this.player.college_data.AST).length-2]
-                this.chartData.rows[0].BLK=this.player.college_data.BLK[Object.keys(this.player.college_data.BLK).length-2]
-                this.chartData.rows[0].STL=this.player.college_data.STL[Object.keys(this.player.college_data.STL).length-2]
-
-
+				this.level(this.player.college_data.PTS[Object.keys(this.player.college_data.PTS).length-2]/this.數值List[0].value,this.player.college_data.TRB[Object.keys(this.player.college_data.TRB).length-2]/this.數值List[0].value,this.player.college_data.AST[Object.keys(this.player.college_data.AST).length-2]/this.數值List[0].value,this.player.college_data.BLK[Object.keys(this.player.college_data.BLK).length-2]/this.數值List[0].value,this.player.college_data.STL[Object.keys(this.player.college_data.STL).length-2]/this.數值List[0].value)
 			}
 			
 		},
 		methods:{
+			level(PTS,TRB,AST,BLK,STL){
+				if(PTS>=0&&PTS<=3.7){
+					this.chartData.rows[0].PTS=1
+				}
+				else if(PTS>3.7&&PTS<=6.9){
+					this.chartData.rows[0].PTS=2
+				}
+				else if(PTS>6.9&&PTS<=11.7){
+					this.chartData.rows[0].PTS=3
+				}
+				else if(PTS>17.7&&PTS<=32){
+					this.chartData.rows[0].PTS=4
+				}
+				else{
+					this.chartData.rows[0].PTS=5
+				}
+				
+				if(TRB>=0&&TRB<=1.8){
+					this.chartData.rows[0].TRB=1
+				}
+				else if(TRB>1.8&&TRB<=3){
+					this.chartData.rows[0].TRB=2
+				}
+				else if(TRB>3&&TRB<=4.7){
+					this.chartData.rows[0].TRB=3
+				}
+				else if(TRB>4.7&&TRB<=7.1){
+					this.chartData.rows[0].TRB=4
+				}
+				else{
+					this.chartData.rows[0].TRB=5
+				}
+
+				if(AST>=0&&AST<=0.6){
+					this.chartData.rows[0].AST=1
+				}
+				else if(AST>0.6&&AST<=1.2){
+					this.chartData.rows[0].AST=2
+				}
+				else if(AST>1.2&&AST<=2.4){
+					this.chartData.rows[0].AST=3
+				}
+				else if(AST>2.4&&AST<=4.1){
+					this.chartData.rows[0].AST=4
+				}
+				else{
+					this.chartData.rows[0].AST=5
+				}
+
+				if(BLK>=0&&BLK<=0.1){
+					this.chartData.rows[0].BLK=1
+				}
+				else if(BLK>0.1&&BLK<=0.3){
+					this.chartData.rows[0].BLK=2
+				}
+				else if(BLK>0.3&&BLK<=0.5){
+					this.chartData.rows[0].BLK=3
+				}
+				else if(BLK>0.5&&BLK<=0.9){
+					this.chartData.rows[0].BLK=4
+				}
+				else{
+					this.chartData.rows[0].BLK=5
+				}
+
+				if(STL>=0&&STL<=0.3){
+					this.chartData.rows[0].STL=1
+				}
+				else if(STL>0.3&&STL<=0.6){
+					this.chartData.rows[0].STL=2
+				}
+				else if(STL>0.6&&STL<=0.9){
+					this.chartData.rows[0].STL=3
+				}
+				else if(STL>0.9&&STL<=1.3){
+					this.chartData.rows[0].STL=4
+				}
+				else{
+					this.chartData.rows[0].STL=5
+				}
+			},
 			close(){
               this.$emit('close' , false);
             }

@@ -20,8 +20,9 @@
             dark
             color="#666666 darken-5"
             class="mb-1"
+            style="padding:1% 0"
           >
-            <v-text-field
+            <!-- <v-text-field
               v-model="search"
               clearable
               flat
@@ -29,7 +30,7 @@
               hide-details
               prepend-inner-icon="search"
               label="Search"
-            ></v-text-field>
+            ></v-text-field> -->
             <template v-if="$vuetify.breakpoint.lgAndUp">  
               <v-spacer></v-spacer>
               <v-flex lg2 md3 d-flex>
@@ -41,10 +42,11 @@
                   outlined
                   hide-details
                   color="red"
+                  v-on:change="changeData"
                 ></v-select>
               </v-flex>
               <v-spacer></v-spacer>
-              <v-flex lg2 md3 d-flex>
+              <!-- <v-flex lg2 md3 d-flex>
                 <v-select
                   v-model="nowSelectSeasonType"
                   :items="seasonTypeFilter"
@@ -53,9 +55,9 @@
                   outlined
                   hide-details
                 ></v-select>
-              </v-flex>
+              </v-flex> -->
               <v-spacer></v-spacer>
-              <v-flex lg2 md3 d-flex>
+              <!-- <v-flex lg2 md3 d-flex>
                 <v-select
                   v-model="nowSelectStatCategory"
                   :items="statCategoryFilter"
@@ -64,7 +66,7 @@
                   outlined
                   hide-details
                 ></v-select>
-              </v-flex>
+              </v-flex> -->
               <v-spacer></v-spacer>
               <v-flex lg2 md3>
                 <v-select
@@ -103,7 +105,7 @@
             </template>
           </v-toolbar>
         </template>
-  
+
         <template v-slot:default="props">
           <v-layout
             wrap
@@ -119,7 +121,10 @@
               lg2
             >
               <v-card @click="TestClick(item)">
-                <v-card-title class="subheading font-weight-bold">James Harden</v-card-title>
+                <v-card-title class="subheading font-weight-bold" style="font-size:20px;height:200px ">
+                  {{item.name}}
+                  <img :src=item.pic_url height="80%" >  
+                </v-card-title>
                 <!-- 分隔線 -->
                 <v-divider></v-divider>
                 <!-- 產生屬性 -->
@@ -204,7 +209,7 @@
         width="500"
       >
         <v-card>
-          <v-card-title class="subheading font-weight-bold">James Harden</v-card-title>
+          <v-card-title class="subheading font-weight-bold">{{name}}</v-card-title>
           <!-- 分隔線 -->
           <v-divider></v-divider>
           <!-- 產生屬性 -->
@@ -250,18 +255,18 @@
 </template>
 
 <script>
-import playerData from "@/assets/json/playerData.json";
+import playerData from "@/assets/json/player.json";
 
 export default {
   components: {},
   // 接來自父層傳遞的參數
   props:['test','test2'],
   mounted: function(){
-    console.log(this.test);
-    console.log(this.test2);
+    this.changeData()
   },
   data(){
     return{
+      name:'',
       dialog: false,
       itemsPerPageArray: [6, 12, 18],
       search: '',
@@ -271,8 +276,6 @@ export default {
       itemsPerPage: 6,
       sortBy: 'name',
       keys: [
-        'Season',
-        'AGE',
         'PTS',
         'TRB',
         'AST',
@@ -282,11 +285,19 @@ export default {
         '2P%',
       ],
       // Select的資料
-      nowSelectSeason: '2018-19',
+      nowSelectSeason: 'Career',
       seasonFilter: [
+        { value: 'Career', text:'Career' },
         { value: '2018-19', text:'2018-2019' },
         { value: '2017-18', text:'2017-2018' },
-        { value: '2016-17', text:'2016-2017' }
+        { value: '2016-17', text:'2016-2017' },
+        { value: '2015-16', text:'2015-2016' },
+        { value: '2014-15', text:'2014-2015' },
+        { value: '2013-14', text:'2013-2014' },
+        { value: '2012-13', text:'2012-2013' },
+        { value: '2011-12', text:'2011-2012' },
+        { value: '2010-11', text:'2010-2011' },
+        { value: '2009-10', text:'2009-2010' },
       ],
       nowSelectSeasonType: { value: '0', text:'Regular Season' },
       seasonTypeFilter: [
@@ -304,16 +315,18 @@ export default {
       ],
       dialogItem:[],
       items:[],
-      temp: playerData
+      temp: [],
+      playerData: playerData
     };
   },
   computed:{
+    
     numberOfPages () {
       return Math.ceil(this.items.length / this.itemsPerPage)
     },
     // 把Name以外的屬性列出來
     filteredKeys () {
-      return this.keys.filter(key => key !== `Name`)
+      return this.keys.filter(key => key !== 'Name')
     },
     cloneLeaderSelect: {
       get: function(){
@@ -326,6 +339,63 @@ export default {
     }
   },
   methods:{
+    changeData(){
+      this.items=[]
+      // console.log(this.nowSelectSeason)
+      this.temp=[]
+      var dataTemp=[]
+      var i
+      var j
+      var state
+      var index
+      var temp1
+      var temp2
+      var temp3
+      var temp4
+      var temp5
+      var temp6
+      var temp7
+      for(i=0;i<this.playerData.length;i++){
+        index=0
+        temp1=0
+        temp2=0
+        temp3=0
+        temp4=0
+        temp5=0
+        temp6=0
+        temp7=0
+        state=0
+        if(this.playerData[i]['data']!=undefined){
+          for(j=0;j<Object.keys(this.playerData[i].data.Season).length;j++){
+            if(this.playerData[i].data.Season[j]==this.nowSelectSeason){
+              state=1
+              index++
+              temp1+=Number(this.playerData[i].data.PTS[j])
+              temp2+=Number(this.playerData[i].data.TRB[j])
+              temp3+=Number(this.playerData[i].data.AST[j])
+              temp4+=Number(this.playerData[i].data['3PA'][j])
+              temp5+=Number(this.playerData[i].data['3P%'][j])
+              temp6+=Number(this.playerData[i].data['2PA'][j])
+              temp7+=Number(this.playerData[i].data['2P%'][j])
+            }
+          }
+          if(state==1){
+            dataTemp.push({'pic_url':this.playerData[i].pic_url,'name':this.playerData[i].name,'Season':this.nowSelectSeason,'PTS':(temp1/index).toFixed(1),'TRB':(temp2/index).toFixed(1),'AST':(temp3/index).toFixed(1),'3PA':(temp4/index).toFixed(1),'3P%':(temp5/index).toFixed(1),'2PA':(temp6/index).toFixed(1),'2P%':(temp7/index).toFixed(1)})
+          }
+        }
+      }
+      // console.log(dataTemp)
+      for(i=0;i<dataTemp.length;i++){
+        if(dataTemp[i].PTS == "NaN"){
+          dataTemp.splice(i--, 1)
+          
+        }
+      }
+      // console.log(dataTemp)
+      this.temp=dataTemp
+
+      // console.log(this.temp)
+    },
     nextPage () {
       if (this.page + 1 <= this.numberOfPages) this.page += 1
     },
@@ -336,18 +406,20 @@ export default {
       this.itemsPerPage = number
     },
     FilterPlayerData (){
+      
       for(var key in this.temp){
         // if(this.nowSelectSeason == this.temp[key].Season){
           this.items.push(this.temp[key])
         // }
       }
-      console.log(this.items)
+      // console.log(this.items)
       return this.items
     },
     TestClick(output){
       this.dialog = true;
       this.dialogItem = output;
-      console.log(this.dialogItem);
+      this.name=output.name
+      // console.log(this.name);
     }
     
   }
