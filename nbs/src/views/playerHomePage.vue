@@ -55,15 +55,15 @@
 </template>
 
 <script>
-    window.onresize = (function(){
-        var windowWidth =window.innerWidth;
-        if(windowWidth <960){
-            document.getElementById('showPlayer').style.display='none';
-        }
-        else{
-            document.getElementById('showPlayer').style.display='block';
-        }
-    })
+    // window.onresize = (function(){
+    //     var windowWidth =window.innerWidth;
+    //     if(windowWidth <960){
+    //         document.getElementById('showPlayer').style.display='none';
+    //     }
+    //     else{
+    //         document.getElementById('showPlayer').style.display='block';
+    //     }
+    // })
     import playerData from "@/assets/json/player.json";
     import teamData from "@/assets/json/team.json";
     import Player from './Player'
