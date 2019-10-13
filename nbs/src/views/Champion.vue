@@ -86,22 +86,36 @@
   <!-- 右半部 -->
   <div class="col-sm-12 col-md-9 champion-right">
     <!-- 左邊隊伍 -->
-    <div class="col-sm-12 col-md-6 left-team">
+    <div class="col-sm-5 col-md-6 left-team">
       <!-- 球隊下拉選單 -->
       <div style="height:5%">
         <form >
-          <select name="selectLeftTeam" id="selectLeftTeam" @change="print_value(0)">
-            <option v-for="(i, index) in teamData" :key="index"  :value=index >{{i.name}}</option>
+          <select style="background:#2f2f2f;color:white;padding:0 12px" name="selectLeftTeam" id="selectLeftTeam" @change="print_value(0)">
+            <option v-for="(i, index) in teamData" :key="index" :value=index>
+              {{i.name}}
+            </option>
           </select>
         </form>
       </div>
-      <!-- 球隊LOGO -->
-      <div id="left-team-logo" @click="clickTeam('left')" style=""></div>
 
-      <div style="display:flex;width:100%;height:10%;align-items:center">
+
+      <!-- 球隊LOGO -->
+      <div id="left-team-logo" style="height:30%" @click="clickTeam('left')" ></div>
+
+      <div style="display:flex;width:100%;height:20%;align-items:center">
         <div class="col player-btn" style="height:100%;padding:0;" v-for="(i, index) in leftTeam.player" :key="index">
-          <div @click="clickPlayer(index,0)" style="height:100%;background-color: #272727;display:flex; align-items:center " v-if=i.state>{{i.name}}</div>
-          <div @click="clickPlayer(index,0)" style="height:100%;display:flex; align-items:center " v-else>{{i.name}}</div>
+          <div @click="clickPlayer(index,0)" style="height:100%;background-color: #272727;display:flex; align-items:center " v-if=i.state>
+            <div>
+              <img :src=i.pic_url width="100%">
+              {{i.name}}
+            </div>
+          </div>
+          <div @click="clickPlayer(index,0)" style="height:100%;display:flex; align-items:center " v-else>
+            <div>
+              <img :src=i.pic_url width="100%">
+              {{i.name}}
+            </div>
+          </div>
         </div>
       </div>
       <!-- 圖表 -->
@@ -120,22 +134,33 @@
       </div>
     </div>
     <!-- 右邊隊伍 -->
-    <div class="col-sm-12 col-md-6 right-team">
+    <div class="col-sm-5 col-md-6 right-team">
       <!-- 球隊下拉選單 -->
       <div style="height:5%">
         <form >
-          <select name="selectRightTeam" id="selectRightTeam" @change="print_value(1)">
+          <select style="background:#2f2f2f;
+          color:white;padding:0 12px;" name="selectRightTeam" id="selectRightTeam" @change="print_value(1)">
             <option v-for="(i, index) in teamData" :key="index"  :value=index >{{i.name}}</option>
           </select>
         </form>
       </div>
       <!-- 球隊LOGO -->
-      <div id="right-team-logo" @click="clickTeam('right')" ></div>
+      <div id="right-team-logo" style="height:30%" @click="clickTeam('right')" ></div>
 
-      <div style="display:flex;width:100%;height:10%">
+      <div style="display:flex;width:100%;height:20%">
         <div class="col player-btn" style="height:100%;padding:0;" v-for="(i, index) in rightTeam.player" :key="index">
-          <div @click="clickPlayer(index,1)" style="height:100%;background-color: #272727;display:flex; align-items:center;justify-content: center " v-if=i.state>{{i.name}}</div>
-          <div @click="clickPlayer(index,1)" style="height:100%;display:flex; align-items:center; " v-else>{{i.name}}</div>
+          <div @click="clickPlayer(index,1)" style="height:100%;background-color: #272727;display:flex; align-items:center;justify-content: center " v-if=i.state>
+            <div >
+              <img :src=i.pic_url width="100%">
+              {{i.name}}
+            </div>
+          </div>
+          <div @click="clickPlayer(index,1)" style="height:100%;display:flex; align-items:center; " v-else>
+            <div >
+              <img :src=i.pic_url width="100%">
+              {{i.name}}
+            </div>
+          </div>
         </div>
       </div>
 
@@ -169,23 +194,23 @@ export default {
       leftTeamDate: {
         columns: ['type', 'value'],
         rows: [{
-            'type': 'STL',
+            'type': '',
             'value': 3.1
           },
           {
-            'type': 'BLK',
+            'type': '',
             'value': 3
           },
           {
-            'type': 'AST',
+            'type': '',
             'value': 5.3
           },
           {
-            'type': 'TRB',
+            'type': '',
             'value': 5
           },
           {
-            'type': 'PTS',
+            'type': '',
             'value': 1
           }
         ]
@@ -193,23 +218,23 @@ export default {
       rightTeamDate: {
         columns: ['type', 'value'],
         rows: [{
-            'type': 'STL',
+            'type': '',
             'value': 3.1
           },
           {
-            'type': 'BLK',
+            'type': '',
             'value': 3
           },
           {
-            'type': 'AST',
+            'type': '',
             'value': 5.3
           },
           {
-            'type': 'TRB',
+            'type': '',
             'value': 5
           },
           {
-            'type': 'PTS',
+            'type': '',
             'value': 1
           }
         ]
@@ -217,23 +242,23 @@ export default {
       leftPlayerData: {
         columns: ['type', 'value'],
         rows: [{
-            'type': 'STL',
+            'type': '',
             'value': 3.1
           },
           {
-            'type': 'BLK',
+            'type': '',
             'value': 3
           },
           {
-            'type': 'AST',
+            'type': '',
             'value': 5.3
           },
           {
-            'type': 'TRB',
+            'type': '',
             'value': 5
           },
           {
-            'type': 'PTS',
+            'type': '',
             'value': 1
           }
         ]
@@ -274,6 +299,7 @@ export default {
           aa: teamData[0]['2018-19']['stats']['PTS'][1]
         },
         player: [{
+            pic_url:'',
             state: false,
             name: "player1",
             PTS: 6.1,
@@ -283,6 +309,8 @@ export default {
             STL: 2.0
           },
           {
+            pic_url:'',
+
             state: false,
             name: "player2",
             PTS: 36.1,
@@ -292,6 +320,8 @@ export default {
             STL: 2.0
           },
           {
+            pic_url:'',
+
             state: false,
             name: "player3",
             PTS: 3.1,
@@ -301,6 +331,8 @@ export default {
             STL: 2.0
           },
           {
+            pic_url:'',
+
             state: false,
             name: "player4",
             PTS: 8.1,
@@ -310,6 +342,8 @@ export default {
             STL: 2.0
           },
           {
+            pic_url:'',
+
             state: false,
             name: "player5",
             PTS: 16.1,
@@ -332,6 +366,8 @@ export default {
           aa: teamData[0]['2018-19']['stats']['PTS'][1]
         },
         player: [{
+          pic_url:'',
+
             state: false,
             name: "player1",
             PTS: 6.1,
@@ -341,6 +377,8 @@ export default {
             STL: 2.0
           },
           {
+            pic_url:'',
+
             state: false,
             name: "player2",
             PTS: 36.1,
@@ -350,6 +388,8 @@ export default {
             STL: 2.0
           },
           {
+            pic_url:'',
+
             state: false,
             name: "player3",
             PTS: 3.1,
@@ -359,6 +399,8 @@ export default {
             STL: 2.0
           },
           {
+            pic_url:'',
+
             state: false,
             name: "player4",
             PTS: 8.1,
@@ -368,6 +410,8 @@ export default {
             STL: 2.0
           },
           {
+            pic_url:'',
+
             state: false,
             name: "player5",
             PTS: 16.1,
@@ -397,13 +441,14 @@ export default {
       var i
       var j
       for(i=0;i<Object.keys(this.teamData[this.leftTeam.index]['2018-19'].rosters.Player).length;i++){
-        leftPlayerTemp.push({name:this.teamData[this.leftTeam.index]['2018-19'].rosters.Player[i],MP:0,PTS:0, TRB: 0, AST: 0, BLK: 0, STL: 0})
+        leftPlayerTemp.push({pic_url:'',name:this.teamData[this.leftTeam.index]['2018-19'].rosters.Player[i],MP:0,PTS:0, TRB: 0, AST: 0, BLK: 0, STL: 0})
       }
-      
+
       for(i=0;i<this.playerData.length;i++){
         for(j=0;j<Object.keys(this.teamData[this.leftTeam.index]['2018-19'].rosters.Player).length;j++){
           if(this.playerData[i].name==this.teamData[this.leftTeam.index]['2018-19'].rosters.Player[j]){
             if(this.playerData[i]['data']!=undefined){
+              leftPlayerTemp[j].pic_url=this.playerData[i].pic_url
               leftPlayerTemp[j].MP=this.playerData[i]['data'].MP[Object.keys(this.playerData[i]['data'].MP).length-2]
               leftPlayerTemp[j].PTS=this.playerData[i]['data'].PTS[Object.keys(this.playerData[i]['data'].PTS).length-2]
               leftPlayerTemp[j].TRB=this.playerData[i]['data'].TRB[Object.keys(this.playerData[i]['data'].TRB).length-2]
@@ -414,17 +459,19 @@ export default {
           }
         }
       }
+
       var temp
       for(i=0;i<leftPlayerTemp.length;i++){
         for(j=i+1;j<leftPlayerTemp.length;j++){
           if(leftPlayerTemp[i].MP<leftPlayerTemp[j].MP){
-            temp=leftPlayerTemp[i].MP
-            leftPlayerTemp[i].MP=leftPlayerTemp[j].MP
-            leftPlayerTemp[j].MP=temp
+            temp=leftPlayerTemp[i]
+            leftPlayerTemp[i]=leftPlayerTemp[j]
+            leftPlayerTemp[j]=temp
           }
         }
     }
     for(i=0;i<5;i++){
+      this.leftTeam.player[i].pic_url=leftPlayerTemp[i].pic_url
       this.leftTeam.player[i].name=leftPlayerTemp[i].name
       this.leftTeam.player[i].PTS=leftPlayerTemp[i].PTS
       this.leftTeam.player[i].TRB=leftPlayerTemp[i].TRB
@@ -439,13 +486,14 @@ export default {
     var i
     var j
     for(i=0;i<Object.keys(this.teamData[this.rightTeam.index]['2018-19'].rosters.Player).length;i++){
-      rightPlayerTemp.push({name:this.teamData[this.rightTeam.index]['2018-19'].rosters.Player[i],MP:0,PTS:0, TRB: 0, AST: 0, BLK: 0, STL: 0})
+      rightPlayerTemp.push({pic_url:'',name:this.teamData[this.rightTeam.index]['2018-19'].rosters.Player[i],MP:0,PTS:0, TRB: 0, AST: 0, BLK: 0, STL: 0})
     }
-    
+
     for(i=0;i<this.playerData.length;i++){
       for(j=0;j<Object.keys(this.teamData[this.rightTeam.index]['2018-19'].rosters.Player).length;j++){
         if(this.playerData[i].name==this.teamData[this.rightTeam.index]['2018-19'].rosters.Player[j]){
           if(this.playerData[i]['data']!=undefined){
+            rightPlayerTemp[j].pic_url=this.playerData[i].pic_url
             rightPlayerTemp[j].MP=this.playerData[i]['data'].MP[Object.keys(this.playerData[i]['data'].MP).length-2]
             rightPlayerTemp[j].PTS=this.playerData[i]['data'].PTS[Object.keys(this.playerData[i]['data'].PTS).length-2]
             rightPlayerTemp[j].TRB=this.playerData[i]['data'].TRB[Object.keys(this.playerData[i]['data'].TRB).length-2]
@@ -460,13 +508,14 @@ export default {
     for(i=0;i<rightPlayerTemp.length;i++){
       for(j=i+1;j<rightPlayerTemp.length;j++){
         if(rightPlayerTemp[i].MP<rightPlayerTemp[j].MP){
-          temp=rightPlayerTemp[i].MP
-          rightPlayerTemp[i].MP=rightPlayerTemp[j].MP
-          rightPlayerTemp[j].MP=temp
+          temp=rightPlayerTemp[i]
+          rightPlayerTemp[i]=rightPlayerTemp[j]
+          rightPlayerTemp[j]=temp
         }
       }
     }
     for(i=0;i<5;i++){
+      this.rightTeam.player[i].pic_url=rightPlayerTemp[i].pic_url
       this.rightTeam.player[i].name=rightPlayerTemp[i].name
       this.rightTeam.player[i].PTS=rightPlayerTemp[i].PTS
       this.rightTeam.player[i].TRB=rightPlayerTemp[i].TRB
@@ -571,10 +620,10 @@ export default {
 </script>
 <style>
 #left-team-logo{
-  
+
    cursor: pointer;
    width:100% ;
-   height:40%;
+   height:30%;
    filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, .5));
    background-size: contain;
    background-image:url(https://stats.nba.com/media/img/teams/logos/HOU_logo.svg);
@@ -584,25 +633,25 @@ export default {
 #right-team-logo{
    cursor: pointer;
    width:100% ;
-   height:40%;
+   height:30%;
    filter: drop-shadow(0px 0px 10px rgba(0, 0, 0, .5));
    background-size: contain;
    background-image:url(https://stats.nba.com/media/img/teams/logos/HOU_logo.svg);
    background-position: center;
    background-repeat: no-repeat;
 }
-#selectLeftTeam{
-  background:#fff;
-  color:#1d1d1d
+.selectTeam{
+  background:#2f2f2f;
+  color:white;
 }
 #selectRightTeam{
-  background:#fff;
-  color:#1d1d1d
+  background:#2f2f2f;
+  color:white;
 }
 .champion {
   display: flex;
   height: calc(100vh - 76px);
-  width: 100%;
+  width: 10%;
 }
 .champion-left {
   height: calc(100vh - 76px);
@@ -668,7 +717,7 @@ export default {
     height: 30vh;
   }
   .right-team{
-    display: none;
+    /* display: none; */
   }
 }
 </style>

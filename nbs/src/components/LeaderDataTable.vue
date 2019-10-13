@@ -31,7 +31,7 @@
               prepend-inner-icon="search"
               label="Search"
             ></v-text-field> -->
-            <template v-if="$vuetify.breakpoint.lgAndUp">  
+            <template >
               <v-spacer></v-spacer>
               <v-flex lg2 md3 d-flex>
                 <v-select
@@ -41,7 +41,7 @@
                   flat
                   outlined
                   hide-details
-                  color="red"
+                  color="blue"
                   v-on:change="changeData"
                 ></v-select>
               </v-flex>
@@ -99,7 +99,7 @@
                   color="#666666"
                   :value="true"
                 >
-                  <v-icon>arrow_downward</v-icon>
+                  <v-icon>keyboard_arrow_down</v-icon>
                 </v-btn>
               </v-btn-toggle>
             </template>
@@ -123,7 +123,7 @@
               <v-card @click="TestClick(item)">
                 <v-card-title class="subheading font-weight-bold" style="font-size:20px;height:200px ">
                   {{item.name}}
-                  <img :src=item.pic_url height="80%" >  
+                  <img :src=item.pic_url height="80%" >
                 </v-card-title>
                 <!-- 分隔線 -->
                 <v-divider></v-divider>
@@ -142,7 +142,7 @@
             </v-flex>
           </v-layout>
         </template>
-  
+
         <template v-slot:footer>
           <v-layout mt-2 wrap align-center justify-center>
             <span class="grey--text">Items per page</span>
@@ -169,9 +169,9 @@
                 </v-list-item>
               </v-list>
             </v-menu>
-  
+
             <v-spacer></v-spacer>
-  
+
             <span
               class="mr-4
               grey--text"
@@ -231,13 +231,13 @@
           >
             {{dialogItem.name}}
           </v-card-title>
-  
+
           <v-card-text>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </v-card-text>
-  
+
           <v-divider></v-divider>
-  
+
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn
@@ -262,6 +262,7 @@ export default {
   // 接來自父層傳遞的參數
   props:['test','test2'],
   mounted: function(){
+    console.log(this.test)
     this.changeData()
   },
   data(){
@@ -320,7 +321,7 @@ export default {
     };
   },
   computed:{
-    
+
     numberOfPages () {
       return Math.ceil(this.items.length / this.itemsPerPage)
     },
@@ -388,7 +389,7 @@ export default {
       for(i=0;i<dataTemp.length;i++){
         if(dataTemp[i].PTS == "NaN"){
           dataTemp.splice(i--, 1)
-          
+
         }
       }
       // console.log(dataTemp)
@@ -406,7 +407,7 @@ export default {
       this.itemsPerPage = number
     },
     FilterPlayerData (){
-      
+
       for(var key in this.temp){
         // if(this.nowSelectSeason == this.temp[key].Season){
           this.items.push(this.temp[key])
@@ -421,10 +422,7 @@ export default {
       this.name=output.name
       // console.log(this.name);
     }
-    
+
   }
 }
 </script>
-
-
-

@@ -1,6 +1,6 @@
 export const lineChart = {
   chartSettings: {
-    
+
     area: true,
     scale: [true, true], //基本值是否為0，true為否
     smooth: true,
@@ -88,4 +88,3 @@ export const lineChart = {
     show:false
   }
 }
-
