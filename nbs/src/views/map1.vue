@@ -276,7 +276,7 @@
     .map1{
         width: 100%;
         height: calc(100vh - 76px);
-        padding: 5%;
+        padding: 3%;
 
     }
     .team-content{

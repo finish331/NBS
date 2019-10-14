@@ -7,7 +7,7 @@
 				<div class="row mb-1 justify-content-start align-items-center" style="position: relative;">
 					<button @click="close" style="position: absolute;z-index:9999;top:5px;right:5px" ><v-icon style="font-size:30px">cancel</v-icon></button>
 					<div id="playerTeamLogo" style=" background-size: cover; background-position: center center ; width: 100%; height: 100%; position: absolute; opacity: .2;">
-					
+
 					</div>
 					<div class="col-12 col-sm-auto">
 						<img class="img-fluid" :src=player.pic_url />
@@ -39,8 +39,13 @@
 				<div class="row no-gutters base-data-row">
 					<!-- 如果v-for會用到兩種以上不同的方式則要用template -->
 					<template v-for="(i, index) in 數值List">
-						<div class="col base-data" :key="index">
-							<div class="title">{{ i.title }}</div>
+						<div class="col base-data subTitleHover" :key="index" >
+							<div style="display:flex">
+								<div class="title">{{ i.title }}</div>
+								<div class="subTitle">
+									&nbsp;&nbsp;{{i.subTitle}}
+								</div>
+							</div>
 							<div class="value">{{ i.value }}</div>
 						</div>
 						<div class="w-100" :key="'divider' + index" v-if="(index + 1) % 5 === 0"></div>
@@ -121,7 +126,7 @@
 				pointsData: {
 					columns: ["season", "points"],
 					rows: [
-						
+
 					]
 				},
 				chartData: {
@@ -138,17 +143,17 @@
 					]
 				},
 				數值List: [
-					{ title: "G", value:''},
-					{ title: "PTS", value: ''},
-					{ title: "TRB", value: '' },
-					{ title: "AST", value: '' },
-					{ title: "STL", value: ''},
-					{ title: "BLK", value: ''},
-					{ title: "FG%", value: ''},
-					{ title: "3P%", value: ''},
-					{ title: "FT%", value: ''},
-					{ title: "Season", value: ''}
-					
+					{ title: "G",subTitle:"場次",value:''},
+					{ title: "PTS",subTitle:"平均得分", value: ''},
+					{ title: "TRB",subTitle:"籃板", value: '' },
+					{ title: "AST",subTitle:"助攻", value: '' },
+					{ title: "STL",subTitle:"抄截", value: ''},
+					{ title: "BLK",subTitle:"火鍋", value: ''},
+					{ title: "FG%",subTitle:"命中率", value: ''},
+					{ title: "3P%",subTitle:"3分球命中率", value: ''},
+					{ title: "FT%",subTitle:"罰球命中率", value: ''},
+					{ title: "Season",subTitle:"賽季", value: ''}
+
 				],
 				dataFields: [
 					"Season",
@@ -186,7 +191,7 @@
 			};
 		},
 		mounted: function(){
-			
+
 			this.items=[]
 			var i
 			var j
@@ -214,8 +219,8 @@
 							this.pointsData.rows.push({season:temp.season,points:""})
 						}
 					}
-					
-					
+
+
 					teamData.Season=this.player.data['Season'][i]
 					teamData.Age=this.player.data['Age'][i]
 					teamData.Tm=this.player.data['Tm'][i]
@@ -266,11 +271,11 @@
 				this.items=test
 
 				this.數值List[0].value=this.player.data.G[Object.keys(this.player.data.G).length-2]
-				this.數值List[1].value=this.player.data.PTS[Object.keys(this.player.data.PTS).length-2] 
-				this.數值List[2].value=this.player.data.TRB[Object.keys(this.player.data.TRB).length-2] 
-				this.數值List[3].value=this.player.data.AST[Object.keys(this.player.data.AST).length-2] 
-				this.數值List[4].value=this.player.data.STL[Object.keys(this.player.data.STL).length-2]  
-				this.數值List[5].value=this.player.data.BLK[Object.keys(this.player.data.BLK).length-2]  
+				this.數值List[1].value=this.player.data.PTS[Object.keys(this.player.data.PTS).length-2]
+				this.數值List[2].value=this.player.data.TRB[Object.keys(this.player.data.TRB).length-2]
+				this.數值List[3].value=this.player.data.AST[Object.keys(this.player.data.AST).length-2]
+				this.數值List[4].value=this.player.data.STL[Object.keys(this.player.data.STL).length-2]
+				this.數值List[5].value=this.player.data.BLK[Object.keys(this.player.data.BLK).length-2]
 				this.數值List[6].value=Number(this.player.data['FG%'][Object.keys(this.player.data['FG%']).length-2]).toFixed(2)
 				this.數值List[7].value=Number(this.player.data['3P%'][Object.keys(this.player.data['3P%']).length-2]).toFixed(2)
 				this.數值List[8].value=Number(this.player.data['FT%'][Object.keys(this.player.data['FT%']).length-2]).toFixed(2)
@@ -291,8 +296,8 @@
                             this.pointsData.rows.push({season:temp.season,points:""})
                         }
                     }
-                    
-                    
+
+
                     teamData.Season=this.player.college_data['Season'][i]
                     teamData.Age=this.player.college_data['Age'][i]
                     teamData.Tm=this.player.college_data['Tm'][i]
@@ -337,27 +342,27 @@
                         }
                     }
                     this.pointsData.rows[i].points=(pointTemp/pointIndexTemp).toFixed(1)
-                
+
                 }
 
                 this.items=test
 
                 this.數值List[0].value=this.player.college_data.G[Object.keys(this.player.college_data.G).length-2]
-                this.數值List[1].value=this.player.college_data.PTS[Object.keys(this.player.college_data.PTS).length-2] 
-                this.數值List[2].value=this.player.college_data.TRB[Object.keys(this.player.college_data.TRB).length-2] 
-                this.數值List[3].value=this.player.college_data.AST[Object.keys(this.player.college_data.AST).length-2] 
-                this.數值List[4].value=this.player.college_data.STL[Object.keys(this.player.college_data.STL).length-2]  
-                this.數值List[5].value=this.player.college_data.BLK[Object.keys(this.player.college_data.BLK).length-2]  
-                this.數值List[6].value=Number(this.player.college_data['FG%'][Object.keys(this.player.college_data['FG%']).length-2]).toFixed(2)
-                this.數值List[7].value=Number(this.player.college_data['3P%'][Object.keys(this.player.college_data['3P%']).length-2]).toFixed(2)
-                this.數值List[8].value=Number(this.player.college_data['FT%'][Object.keys(this.player.college_data['FT%']).length-2]).toFixed(2)
+                this.數值List[1].value=(Number(this.player.college_data.PTS[Object.keys(this.player.college_data.PTS).length-2])/this.數值List[0].value).toFixed(1)
+                this.數值List[2].value=(Number(this.player.college_data.TRB[Object.keys(this.player.college_data.TRB).length-2])/this.數值List[0].value).toFixed(1)
+                this.數值List[3].value=(Number(this.player.college_data.AST[Object.keys(this.player.college_data.AST).length-2])/this.數值List[0].value).toFixed(1)
+                this.數值List[4].value=(Number(this.player.college_data.STL[Object.keys(this.player.college_data.STL).length-2])/this.數值List[0].value).toFixed(1)
+                this.數值List[5].value=(Number(this.player.college_data.BLK[Object.keys(this.player.college_data.BLK).length-2])/this.數值List[0].value).toFixed(1)
+                this.數值List[6].value=Number(this.player.college_data['FG%'][Object.keys(this.player.college_data['FG%']).length-2]).toFixed(1)
+                this.數值List[7].value=Number(this.player.college_data['3P%'][Object.keys(this.player.college_data['3P%']).length-2]).toFixed(1)
+                this.數值List[8].value=Number(this.player.college_data['FT%'][Object.keys(this.player.college_data['FT%']).length-2]).toFixed(1)
                 this.數值List[9].value=this.player.college_data['Season'][Object.keys(this.player.college_data['Season']).length-2]
 
 
                 this.chartData.rows[0].seasons=this.player.college_data['Season'][Object.keys(this.player.college_data['Season']).length-2]
 				this.level(this.player.college_data.PTS[Object.keys(this.player.college_data.PTS).length-2]/this.數值List[0].value,this.player.college_data.TRB[Object.keys(this.player.college_data.TRB).length-2]/this.數值List[0].value,this.player.college_data.AST[Object.keys(this.player.college_data.AST).length-2]/this.數值List[0].value,this.player.college_data.BLK[Object.keys(this.player.college_data.BLK).length-2]/this.數值List[0].value,this.player.college_data.STL[Object.keys(this.player.college_data.STL).length-2]/this.數值List[0].value)
 			}
-			
+
 		},
 		methods:{
 			level(PTS,TRB,AST,BLK,STL){
@@ -376,7 +381,7 @@
 				else{
 					this.chartData.rows[0].PTS=5
 				}
-				
+
 				if(TRB>=0&&TRB<=1.8){
 					this.chartData.rows[0].TRB=1
 				}
@@ -447,7 +452,23 @@
 		}
 	};
 </script>
+<style>
+	.subTitle{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 12px;
+		opacity: 0;
+		transform: translateX(-5px);
+		transition: all .5s;
+	}
+	.subTitleHover:hover .subTitle{
+		transform: translateX(0);
+		transition: all .5s;
+		opacity: 1;
+	}
 
+</style>
 <style scoped lang="scss">
 	@import "@/assets/scss/player.scss";
 </style>

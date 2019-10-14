@@ -104,11 +104,25 @@
 
     },
     methods:{
+
       parentClose(state){
-          this.showTeam=state // hello, parent
+          var temp = document.getElementById('testttttt')
+              temp.classList.add('teamOut')
+              this.showSelectTeam=!state
+              setTimeout(this.setShowTeam, 500)
       },
       close(){
-          this.showSelectTeam=false
+        var temp = document.getElementById('selectTeam')
+              temp.classList.add('teamOut')
+              setTimeout(this.setTeamShow, 500)
+         
+      },
+      setShowTeam(){
+        this.showTeam=false
+        // this.showSelectTeam=true
+      },
+      setTeamShow(){
+        this.showSelectTeam=false
       },
        setTeam(index){
                 this.teamIndex=index
@@ -136,6 +150,21 @@
     font-weight: bold;
     line-height: 1.3;
     animation: teamIn .5s 1 backwards;  
+    }
+    @keyframes teamOut {
+      from {
+         transform: scale(1)
+      }
+      to {
+          transform: scale(0)
+      }
+    }
+    .teamOut {
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      font-weight: bold;
+      line-height: 1.3;
+      animation: teamOut .5s 1 backwards;
     }
   .team{
 

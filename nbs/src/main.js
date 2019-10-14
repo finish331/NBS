@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
 import BootstrapVue from 'bootstrap-vue'
 import VCharts from 'v-charts'
 import App from './App.vue'
@@ -12,11 +13,13 @@ import 'vue-loading-overlay/dist/vue-loading.css'
 import vuetify from './plugins/vuetify';
 import '@/assets/scss/global.scss'
 import 'firebase/firestore'
+import 'swiper/dist/css/swiper.css'
 
 Vue.use(BootstrapVue)
 Vue.use(VCharts)
 Vue.use(ElementUI)
 Vue.use(VueFirestore)
+Vue.use(VueAwesomeSwiper)
 
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
