@@ -1,6 +1,6 @@
 <template>
 	<div id="app">
-		<b-navbar toggleable="lg" type="dark" variant="custom-dark">
+		<b-navbar toggleable="lg" type="dark" style="background:#1d1d1d">
 			<b-navbar-brand v-bind:to="'/'">
 				<img src="./assets/brand.png" height="50px" />
 			</b-navbar-brand>
@@ -23,7 +23,7 @@
 				</b-navbar-nav>
 
 				<b-navbar-nav>
-					<b-nav-item v-bind:to="'/compare'">Compare</b-nav-item>
+					<b-nav-item v-bind:to="'/compare'">MVP Predict</b-nav-item>
 				</b-navbar-nav>
 				<!-- Right aligned nav items -->
 				<b-navbar-nav class="ml-auto">

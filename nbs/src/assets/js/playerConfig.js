@@ -14,6 +14,12 @@ export const lineChart = {
     }
   },
   radarSettings: {
+    itemStyle:{
+      opacity:0
+    },
+    lineStyle:{
+      color:'red'
+    },
     areaStyle: {
       color: {
         type: "radial",
@@ -78,7 +84,7 @@ export const lineChart = {
     center: ['50%', '55%'],
     name: {
       color: "white",
-      fontSize: 14
+      fontSize: 12
     }
   },
   radarLegend: {

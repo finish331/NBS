@@ -4,6 +4,7 @@ import TestView from './components/HelloWorld.vue'
 import Home from './views/Home.vue'
 import Player from './views/Player.vue'
 import Leader from './views/Leader.vue'
+import Mvp from './views/mvp.vue'
 import Champion from './views/Champion.vue'
 import ComparePlayer from './views/ComparePlayer.vue'
 import Map from './views/map.vue'
@@ -17,6 +18,11 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/mvp',
+      name: 'mvp',
+      component: Mvp
     },
     {
       path: '/test',
