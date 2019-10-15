@@ -366,80 +366,95 @@
 		},
 		methods:{
 			level(PTS,TRB,AST,BLK,STL){
-				if(PTS>=0&&PTS<=3.7){
+				if(PTS==0){
+					this.chartData.rows[0].PTS=0
+				}
+				else if(PTS>0&&PTS<=6.9){
 					this.chartData.rows[0].PTS=1
 				}
-				else if(PTS>3.7&&PTS<=6.9){
+				else if(PTS>6.9&&PTS<=11.7){
 					this.chartData.rows[0].PTS=2
 				}
-				else if(PTS>6.9&&PTS<=11.7){
+				else if(PTS>11.7&&PTS<=17.4){
 					this.chartData.rows[0].PTS=3
 				}
-				else if(PTS>17.7&&PTS<=32){
-					this.chartData.rows[0].PTS=4
+				else if(PTS>17.4&&PTS<=23.1){
+					this.chartData.rows[0].PTS=3
 				}
 				else{
 					this.chartData.rows[0].PTS=5
 				}
 
-				if(TRB>=0&&TRB<=1.8){
+				if(TRB==0){
+					this.chartData.rows[0].TRB=0
+				}
+				else if(TRB>0&&TRB<=3){
 					this.chartData.rows[0].TRB=1
 				}
-				else if(TRB>1.8&&TRB<=3){
+				else if(TRB>3&&TRB<=4.7){
 					this.chartData.rows[0].TRB=2
 				}
-				else if(TRB>3&&TRB<=4.7){
+				else if(TRB>4.7&&TRB<=6.4){
 					this.chartData.rows[0].TRB=3
 				}
-				else if(TRB>4.7&&TRB<=7.1){
+				else if(TRB>6.4&&TRB<=8.1){
 					this.chartData.rows[0].TRB=4
 				}
 				else{
 					this.chartData.rows[0].TRB=5
 				}
 
-				if(AST>=0&&AST<=0.6){
+				if(AST==0){
+					this.chartData.rows[0].AST=0
+				}
+				else if(AST>0&&AST<=2.9){
 					this.chartData.rows[0].AST=1
 				}
-				else if(AST>0.6&&AST<=1.2){
+				else if(AST>2.9&&AST<=4.6){
 					this.chartData.rows[0].AST=2
 				}
-				else if(AST>1.2&&AST<=2.4){
+				else if(AST>4.6&&AST<=6.3){
 					this.chartData.rows[0].AST=3
 				}
-				else if(AST>2.4&&AST<=4.1){
+				else if(AST>6.3&&AST<=8){
 					this.chartData.rows[0].AST=4
 				}
 				else{
 					this.chartData.rows[0].AST=5
 				}
 
-				if(BLK>=0&&BLK<=0.1){
+				if(BLK==0){
+					this.chartData.rows[0].BLK=0
+				}
+				else if(BLK>0&&BLK<=0.3){
 					this.chartData.rows[0].BLK=1
 				}
-				else if(BLK>0.1&&BLK<=0.3){
+				else if(BLK>0.3&&BLK<=0.7){
 					this.chartData.rows[0].BLK=2
 				}
-				else if(BLK>0.3&&BLK<=0.5){
+				else if(BLK>0.7&&BLK<=1.1){
 					this.chartData.rows[0].BLK=3
 				}
-				else if(BLK>0.5&&BLK<=0.9){
+				else if(BLK>1.1&&BLK<=1.5){
 					this.chartData.rows[0].BLK=4
 				}
 				else{
 					this.chartData.rows[0].BLK=5
 				}
 
-				if(STL>=0&&STL<=0.3){
+				if(STL==0){
+					this.chartData.rows[0].STL=0
+				}
+				else if(STL>0&&STL<=0.3){
 					this.chartData.rows[0].STL=1
 				}
-				else if(STL>0.3&&STL<=0.6){
+				else if(STL>0.3&&STL<=0.7){
 					this.chartData.rows[0].STL=2
 				}
-				else if(STL>0.6&&STL<=0.9){
+				else if(STL>0.7&&STL<=1.1){
 					this.chartData.rows[0].STL=3
 				}
-				else if(STL>0.9&&STL<=1.3){
+				else if(STL>1.1&&STL<=1.5){
 					this.chartData.rows[0].STL=4
 				}
 				else{

@@ -91,12 +91,13 @@
     position: absolute;
     padding: 0 3%;
     font-size: 40px;
-    border: 2px solid rgb(54, 91, 255);
+    border: 3px solid rgb(255, 255, 255);
     color: white;
+    font-weight: 900;
     right:2%;
     bottom: 2%;
     opacity: .75;
-    border-radius: 5px;
+    border-radius: 10px;
     transition:all .25s;
   }
   .content-bnt:hover{
