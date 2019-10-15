@@ -12,7 +12,6 @@
         {{player.name}}
         <v-icon style="color:yellow" v-if="index==0">emoji_events</v-icon>
         <v-icon style="color:#d6d6d6" v-if="index==1">emoji_events</v-icon>
-
         <v-icon style="color:#c58354" v-if="index==2">emoji_events</v-icon>
 
       </div>
@@ -277,17 +276,25 @@ export default {
   top: 0;
 }
 .mvp-name {
+  display: flex;
   width: 100%;
   height: 5%;
   background: #1d1d1d;
   font-size: 20px;
   color: white;
   font-weight: 800;
+  justify-content: center;
+  align-items: center
+}
+@media (max-width:440px){
+  .mvp-name {
+  font-size: 14px;
+  }
 }
 .mvp-radar {
   width: 100%;
-  height: 30%;
+  height: 32%;
   background: #666;
-  margin-top: 5%;
+  margin-top: 2%;
 }
 </style>

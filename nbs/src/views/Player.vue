@@ -1,6 +1,6 @@
 <template>
 
-	<div id="app" class="px-5">
+	<div id="" style="padding-top:2px">
 		<!-- 球員基本資料區 -->
 		<div class="my-1 mx-2 text-white global-bg-gray">
 			<div class="container-fluid">
@@ -283,6 +283,8 @@
 
 				this.chartData.rows[0].seasons=this.player.data['Season'][Object.keys(this.player.data['Season']).length-2]
 				this.level(this.player.data.PTS[Object.keys(this.player.data.PTS).length-2],this.player.data.TRB[Object.keys(this.player.data.TRB).length-2],this.player.data.AST[Object.keys(this.player.data.AST).length-2],this.player.data.BLK[Object.keys(this.player.data.BLK).length-2],this.player.data.STL[Object.keys(this.player.data.STL).length-2])
+				
+				
 			}
 			else if(this.player['college_data']!=undefined){
 				for(i=0;i<Object.keys(this.player.college_data.PTS).length;i++){

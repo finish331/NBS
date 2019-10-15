@@ -13,9 +13,9 @@
       >
         <template v-slot:header>
           <!-- <v-toolbar dark color="#666666 darken-5" class="md-1 vtoolbar" > -->
-            <div style="padding:2.5%;background:rgb(29, 29, 29);display:flex;align-items:center">
+          <div style="padding:2.5%;background:rgb(29, 29, 29);display:flex;align-items:center">
             <template>
-              <v-layout wrap >
+              <v-layout wrap>
                 <!-- <v-spacer></v-spacer> -->
                 <v-flex lg4 md3 sm2 xs12 d-flex>
                   <v-select
@@ -46,7 +46,7 @@
 
                 <v-spacer></v-spacer>
                 <v-btn-toggle dark v-model="sortDesc" mandatory style="background:rgb(29, 29, 29);">
-                  <v-btn large depressed color="#666666"  :value="false">
+                  <v-btn large depressed color="#666666" :value="false">
                     <v-icon>keyboard_arrow_up</v-icon>
                   </v-btn>
                   <v-btn large depressed color="#666666" :value="true">
@@ -56,7 +56,7 @@
                 <!-- <v-spacer></v-spacer> -->
               </v-layout>
             </template>
-            </div>
+          </div>
           <!-- </v-toolbar> -->
         </template>
 
@@ -142,69 +142,31 @@
       </v-data-iterator>
     </v-container>
     <!-- 球員彈跳視窗 -->
-    <div class="text-center">
-      <v-dialog v-model="dialog" width="500">
+    <div class="text-center" v-if="showPlayer">
+      <v-dialog v-model="dialog" width="100%">
         <v-card>
-          <v-card-title class="subheading font-weight-bold">{{name}}</v-card-title>
-          <!-- 分隔線 -->
-          <v-divider></v-divider>
-          <!-- 產生屬性 -->
-          <v-list dense>
-            <v-list-item
-              v-for="(key, index) in filteredKeys"
-              :key="index"
-              :color="sortBy === key ? `blue lighten-4` : `white`"
-            >
-              <v-list-item-content>{{ key }}:</v-list-item-content>
-              <v-list-item-content class="align-end">{{ dialogItem[key.toUpperCase()] }}</v-list-item-content>
-            </v-list-item>
-          </v-list>
+          <Player :player="playerData[indexTemp]" @close="parentClose" />
         </v-card>
-        <!-- <v-card :item="dialogItem">
-          <v-card-title
-            class="headline grey lighten-2"
-            primary-title
-          >
-            {{dialogItem.name}}
-          </v-card-title>
-
-          <v-card-text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </v-card-text>
-
-          <v-divider></v-divider>
-
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn
-              color="primary"
-              text
-              @click="dialog = false"
-            >
-              I accept
-            </v-btn>
-          </v-card-actions>
-        </v-card>-->
       </v-dialog>
     </div>
   </div>
 </template>
 
 <style>
-  .vtoolbar{
-    padding:2.5%;
+.vtoolbar {
+  padding: 2.5%;
+}
+@media (max-width: 599px) {
+  .vtoolbar {
+    padding: 15% 2.5%;
   }
-  @media (max-width:599px) {
-    .vtoolbar{
-      padding:15% 2.5%;
-    }
-  }
+}
 </style>
 <script>
 import playerData from "@/assets/json/player.json";
-
+import Player from "../views/Player";
 export default {
-  components: {},
+  components: { Player },
   // 接來自父層傳遞的參數
   props: ["test", "test2"],
   mounted: function() {
@@ -213,6 +175,8 @@ export default {
   },
   data() {
     return {
+      indexTemp: "",
+      showPlayer: false,
       name: "",
       dialog: false,
       itemsPerPageArray: [6, 12, 18],
@@ -258,6 +222,11 @@ export default {
       playerData: playerData
     };
   },
+  watch: {
+    dialog(val) {
+      !val && setTimeout(this.setShowPlayerF, 250);
+    }
+  },
   computed: {
     numberOfPages() {
       return Math.ceil(this.items.length / this.itemsPerPage);
@@ -285,6 +254,7 @@ export default {
       var j;
       var state;
       var index;
+      var indexTemp;
       var temp1;
       var temp2;
       var temp3;
@@ -310,6 +280,7 @@ export default {
           ) {
             if (this.playerData[i].data.Season[j] == this.nowSelectSeason) {
               state = 1;
+              indexTemp = i;
               index++;
               temp1 += Number(this.playerData[i].data.PTS[j]);
               temp2 += Number(this.playerData[i].data.TRB[j]);
@@ -331,7 +302,8 @@ export default {
               "3PA": (temp4 / index).toFixed(1),
               "3P%": (temp5 / index).toFixed(1),
               "2PA": (temp6 / index).toFixed(1),
-              "2P%": (temp7 / index).toFixed(1)
+              "2P%": (temp7 / index).toFixed(1),
+              index: indexTemp
             });
           }
         }
@@ -369,8 +341,20 @@ export default {
       this.dialog = true;
       this.dialogItem = output;
       this.name = output.name;
+      this.indexTemp = output.index;
+      this.showPlayer=true
+                setTimeout(this.setDialogT,50)
       // console.log(this.name);
-    }
+    },
+   parentClose(){
+                this.dialog=false
+            },
+            setDialogT(){
+              this.dialog=true
+            },
+            setShowPlayerF(){
+              this.showPlayer=false
+            }
   }
 };
 </script>

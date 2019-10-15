@@ -62,7 +62,18 @@
     bottom: 0;
     animation: contenr-title-in .5s .25s 1 ease-in backwards;
   }
+  .contenr-title span{
+    font-size: 90px;
+  }
+  @media (max-width: 620px){
+    .contenr-title{
+    font-size: 70px;
 
+    }
+    .contenr-title span{
+      font-size: 50px;
+    }
+  }
   @keyframes contenr-title-in {
     from {
       opacity: 0;
@@ -72,9 +83,7 @@
       opacity: .75;
     }
   }
-  .contenr-title span{
-    font-size: 90px;
-  }
+  
   .title-span{
     animation: title-in .75s .75s 1 ease-in backwards;
   }
