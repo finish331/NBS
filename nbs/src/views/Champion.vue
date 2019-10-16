@@ -167,12 +167,12 @@
       <div style="width:100%;height:45%">
         <!-- 球隊圖表 -->
         <div style="width:100%;height:100%;" v-if="rightTeam.isTeam">
-          <ve-bar height="100%"  :textStyle="textStyles" :legend="radarLegend" :yAxis="yAxiss" :data="rightTeamDate" :settings="rightseries">
+          <ve-bar height="100%" :xAxis="xAxiss" :textStyle="textStyles" :legend="radarLegend" :yAxis="yAxiss" :data="rightTeamDate" :settings="rightseries">
           </ve-bar>
         </div>
         <!-- 球員圖表 -->
         <div style="width:100%;height:100%" v-else>
-          <ve-bar height="100%"  :textStyle="textStyles" :legend="radarLegend" :yAxis="yAxiss" :data="rightPlayerData" :settings="rightseries">
+          <ve-bar height="100%" :xAxis="xAxiss" :textStyle="textStyles" :legend="radarLegend" :yAxis="yAxiss" :data="rightPlayerData" :settings="rightseries">
           </ve-bar>
         </div>
       </div>
@@ -188,6 +188,13 @@ export default {
   components: {},
   data() {
     return {
+      xAxiss:[
+        {
+          axisLabel:{
+                fontSize:10
+              }
+        }
+      ],
       playerData:playerData,
       teamData:teamData,
       ...lineChart,

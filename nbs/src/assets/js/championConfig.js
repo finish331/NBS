@@ -1,7 +1,7 @@
 export const lineChart = {
   textStyles: {
     color: "white",
-    fontSize: 14
+    fontSize: 10
   },
   leftseries: {
     label: { show: true, position: "insideTop" },
@@ -21,7 +21,9 @@ export const lineChart = {
   xAxis: {
     // show:false,
     inverse: true,
-    
+    axisLabel:{
+      fontSize:10
+    } 
   },
   radarLegend:{
     show:false

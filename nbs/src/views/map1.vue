@@ -265,7 +265,7 @@
 
     </div>
     <div style="display:flex;height:100%;width:100%;padding:2%">
-      <ve-histogram style="background:#666666" width="100%" height="100%" :textStyle="textStyles" :extend="series" :data="TeamData" :legend="legend">
+      <ve-histogram :xAxis="xAxis" style="background:#666666" width="100%" height="100%" :textStyle="textStyles" :extend="series"  :data="TeamData" :legend="legend">
       </ve-histogram>
     </div>
   </div>
