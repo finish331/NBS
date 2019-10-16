@@ -15,7 +15,7 @@
         <v-icon style="color:#c58354" v-if="index==2">emoji_events</v-icon>
 
       </div>
-      <div class="mvp-radar">
+      <div class="mvp-radar" @mouseover="over()" @mouseleave="leave()">
         <ve-radar
           :radar="radars"
           :tooltip="tooltip"
@@ -90,6 +90,20 @@ export default {
           }
         ]
       },
+      radars: {
+					indicator: [
+					{ name: "PTS", max: 5},
+					{ name: "TRB", max: 5 },
+					{ name: "AST", max: 5 },
+					{ name: "BLK", max: 5 },
+					{ name: "STL", max: 5 }
+					],
+					center: ['50%', '55%'],
+					name: {
+					color: "white",
+					fontSize: 12
+					}
+				},
       teamData: teamData
     };
   },
@@ -150,6 +164,21 @@ export default {
     // console.log(this.playerData);
   },
   methods: {
+    leave(){
+				this.radars.indicator[0].name='PTS'
+				this.radars.indicator[1].name='TRB'
+				this.radars.indicator[2].name='AST'
+				this.radars.indicator[3].name='BLK'
+				this.radars.indicator[4].name='STL'
+			},
+			over(){
+				this.radars.indicator[0].name='得分'
+				this.radars.indicator[1].name='籃板'
+				this.radars.indicator[2].name='助攻'
+				this.radars.indicator[3].name='火鍋'
+				this.radars.indicator[4].name='抄截'
+				
+			},
     level(PTS, TRB, AST, BLK, STL) {
       if(PTS==0){
 					this.chartData.rows[0].PTS=0

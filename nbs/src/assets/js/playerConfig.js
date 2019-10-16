@@ -73,20 +73,6 @@ export const lineChart = {
     top: 50,
     bottom: 30
   },
-  radars: {
-    indicator: [
-      { name: "PTS 得分", max: 5},
-      { name: "TRB 籃板", max: 5 },
-      { name: "AST 助攻", max: 5 },
-      { name: "BLK 火鍋", max: 5 },
-      { name: "STL 抄截", max: 5 }
-    ],
-    center: ['50%', '55%'],
-    name: {
-      color: "white",
-      fontSize: 12
-    }
-  },
   radarLegend: {
     show: false
   },
