@@ -1,14 +1,22 @@
 import json
 import pandas as pd
 
+#計算球員屬性，回傳為一個List，順序會依照featureList
 def ComputePlayerFeature(playerData,seasonIndex):
     playerFeature = []
     for feature in featureList:
+        #當float轉型失敗時，會透過except接住，並將其值設為0，以利計算屬性時不將其納入計算
         try:
+            #判斷NaN
             if playerData[feature][seasonIndex] != playerData[feature][seasonIndex]:
                 playerFeature.append(0.0)
             else:
-                playerFeature.append(float(playerData[feature][seasonIndex]))
+                #平均出場時間需大於12分鐘且該賽季需出場40場以上者才納入計算
+                if float(playerData['MP'][seasonIndex]) > 12.0 and \
+                float(playerData['G'][seasonIndex] > 40.0):
+                    playerFeature.append(float(playerData[feature][seasonIndex]))
+                else:
+                    playerFeature.append(0.0)
         except:
             playerFeature.append(0.0)
     return playerFeature
@@ -49,12 +57,13 @@ def MatchPlayerData(teamPlayer, season, teamName):
         playerExist = False
         tempFeature.clear()
     
+    #index控制目前計算哪個feature
     for index in range(len(playerFeature[0])):
         for feature in playerFeature:
             if(feature[index] == 0):
                 errorResult += 1
             sumResult += feature[index]
-        teamSeasonList.append(sumResult / (len(playerFeature) - errorResult))
+        teamSeasonList.append(sumResult / (len(playerFeature) - errorResult))   #將該feature總和除以(球隊球員 - 資料不符合者)
         sumResult = 0.0
         errorResult = 0
     return teamSeasonList
@@ -64,12 +73,18 @@ def MatchPlayerData(teamPlayer, season, teamName):
 #確認資料是否OK
 def ConfirmData():
     trainingData = []
+    i=0
     for team in loadTeamData:
         teamName = team['Tm']
         for season in team:
             if(season in SeasonRange):
                 temp = MatchPlayerData(team[season]['rosters']['Player'], season, teamName)
                 temp.append(int(team[season]['rosters']['Rank']))
+                #以下新增賽季及球隊名稱，無實質作用，方便觀看數據，之後訓練時要拿掉
+                temp.append(season)
+                temp.append(team['name'])
+                i += 1
+                print(i)
                 trainingData.append(temp)
     return trainingData 
 
@@ -80,18 +95,21 @@ def ConfirmRepeatData():
             if(value['name'] == value2['name'] and index != index2):
                 RepeatPlayer.append(value['name'])
 
-def main():
+def ExportCSV():
     trainingData = ConfirmData()
-    print(trainingData)
     print(len(trainingData))
+    featureList.append('Rank')
+    #以下新增賽季及球隊名稱，無實質作用，方便觀看數據，之後訓練時要拿掉
+    featureList.append('Season')
+    featureList.append('Name')
     df = pd.DataFrame(trainingData, columns = featureList)
+    print (df)
     df.to_csv('training_data.csv')
-    print(df)
-    # for player in loadPlayerData:
-    #     if player['name'] == 'JaKarr Sampson':
-    #         temp = player['data']['3P%']['4']
-    #         print(float(temp))
 
+
+def main():
+    #匯出CSV用
+    ExportCSV()
 
 if __name__ == '__main__':
     notFoundPlayer = []
@@ -100,7 +118,7 @@ if __name__ == '__main__':
         'Age',
         'PTS',
         'FG%',
-        '3P',
+        '3P%',
         '3PA',
         'FT%',
         'ORB',
@@ -109,7 +127,7 @@ if __name__ == '__main__':
         'STL',
         'BLK',
         'TOV',
-        'PF'
+        'PF',
     ]
 
     SeasonRange = [
