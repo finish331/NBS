@@ -292,9 +292,9 @@
 				this.數值List[3].value=this.player.data.AST[Object.keys(this.player.data.AST).length-2]
 				this.數值List[4].value=this.player.data.STL[Object.keys(this.player.data.STL).length-2]
 				this.數值List[5].value=this.player.data.BLK[Object.keys(this.player.data.BLK).length-2]
-				this.數值List[6].value=Number(this.player.data['FG%'][Object.keys(this.player.data['FG%']).length-2]).toFixed(2)
-				this.數值List[7].value=Number(this.player.data['3P%'][Object.keys(this.player.data['3P%']).length-2]).toFixed(2)
-				this.數值List[8].value=Number(this.player.data['FT%'][Object.keys(this.player.data['FT%']).length-2]).toFixed(2)
+				this.數值List[6].value=(Number(this.player.data['FG%'][Object.keys(this.player.data['FG%']).length-2])*100).toFixed(1)+'%'
+				this.數值List[7].value=(Number(this.player.data['3P%'][Object.keys(this.player.data['3P%']).length-2])*100).toFixed(1)+'%'
+				this.數值List[8].value=(Number(this.player.data['FT%'][Object.keys(this.player.data['FT%']).length-2])*100).toFixed(1)+'%'
 				this.數值List[9].value=this.player.data['Season'][Object.keys(this.player.data['Season']).length-2]
 
 				this.chartData.rows[0].seasons=this.player.data['Season'][Object.keys(this.player.data['Season']).length-2]
@@ -371,9 +371,9 @@
                 this.數值List[3].value=(Number(this.player.college_data.AST[Object.keys(this.player.college_data.AST).length-2])/this.數值List[0].value).toFixed(1)
                 this.數值List[4].value=(Number(this.player.college_data.STL[Object.keys(this.player.college_data.STL).length-2])/this.數值List[0].value).toFixed(1)
                 this.數值List[5].value=(Number(this.player.college_data.BLK[Object.keys(this.player.college_data.BLK).length-2])/this.數值List[0].value).toFixed(1)
-                this.數值List[6].value=Number(this.player.college_data['FG%'][Object.keys(this.player.college_data['FG%']).length-2]).toFixed(1)
-                this.數值List[7].value=Number(this.player.college_data['3P%'][Object.keys(this.player.college_data['3P%']).length-2]).toFixed(1)
-                this.數值List[8].value=Number(this.player.college_data['FT%'][Object.keys(this.player.college_data['FT%']).length-2]).toFixed(1)
+                this.數值List[6].value=(Number(this.player.college_data['FG%'][Object.keys(this.player.college_data['FG%']).length-2])*100).toFixed(1)+'%'
+                this.數值List[7].value=(Number(this.player.college_data['3P%'][Object.keys(this.player.college_data['3P%']).length-2])*100).toFixed(1)+'%'
+                this.數值List[8].value=(Number(this.player.college_data['FT%'][Object.keys(this.player.college_data['FT%']).length-2])*100).toFixed(1)+'%'
                 this.數值List[9].value=this.player.college_data['Season'][Object.keys(this.player.college_data['Season']).length-2]
 
 

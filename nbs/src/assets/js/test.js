@@ -6,7 +6,7 @@ export const barChart = {
 
       },
       xAxis:{
-        data:['Mp','FG','FGA','3P','3PA','2P','2PA','FT','FTA','ORB','DRB','TRB','AST','STL','BLK','TOV','PF','PTS'],
+        data:['MP','FG','FGA','3P','3PA','2P','2PA','FT','FTA','ORB','DRB','TRB','AST','STL','BLK','TOV','PF','PTS'],
         axisLabel:{
           fontSize:10
         } 

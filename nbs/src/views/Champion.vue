@@ -1,7 +1,7 @@
 <template>
   <div class="champion px-5">
     <!-- 左半部 -->
-    <div class="col-sm-12 col-md-3" style="height:100%;padding-right:0;padding-left:0">
+    <div class="col-sm-12 col-md-3 left-champion" style="padding-right:0;padding-left:0">
       <div style="height:10%;display:flex;align-items: center;justify-content: center">
         <div class="btn-team" @click="change()">{{content}}</div>
       </div>
@@ -499,7 +499,7 @@ export default {
         var i
         var j
         var tempURL
-        console.log(this.content);
+        // console.log(this.content);
         
         for(i=0;i<Object.keys(this.expectData['2018-19']).length;i++){
           for(j=0;j<this.teamData.length;j++){
@@ -704,6 +704,9 @@ export default {
 };
 </script>
 <style>
+.left-champion{
+  height: 100%;
+}
 .btn-team {
   cursor: pointer;
   width: 100%;
@@ -823,8 +826,8 @@ export default {
   .champion {
     display: block;
   }
-  .champion-left {
-    height: 30vh;
+  .left-champion {
+    height: 90vh;
   }
   .left-team {
     display: none;

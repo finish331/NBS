@@ -24,7 +24,7 @@
                                     <td style="text-align: center;">{{i.name}}</td>
                                     <td style="text-align: center;">{{i.team}}</td>
                                 </tr>
-                                <tr @click="setPlayer(index)"  v-else-if="playerName.length>=2&&i.name.match(RegExp(playerName))" style="cursor: pointer;">
+                                <tr @click="setPlayer(index)"  v-else-if="playerName.length>=2&&(i.name.toLowerCase()).match(playerName.toLowerCase())" style="cursor: pointer;">
                                     <td style="text-align: center;">{{i.name}}</td>
                                     <td style="text-align: center;">{{i.team}}</td>
                                 </tr>

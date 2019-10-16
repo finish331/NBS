@@ -300,9 +300,9 @@ export default {
               TRB: (temp2 / index).toFixed(1),
               AST: (temp3 / index).toFixed(1),
               "3PA": (temp4 / index).toFixed(1),
-              "3P%": (temp5 / index).toFixed(1),
+              "3P%": ((temp5 / index)*100).toFixed(1) +'%',
               "2PA": (temp6 / index).toFixed(1),
-              "2P%": (temp7 / index).toFixed(1),
+              "2P%": ((temp7 / index)*100).toFixed(1) +'%',
               index: indexTemp
             });
           }
