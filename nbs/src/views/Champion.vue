@@ -751,13 +751,13 @@ export default {
   #selectLeftTeam{
   background:#fff;
   color:#1d1d1d;
-    font-size: 5px
+    font-size: 10px
 
 }
 #selectRightTeam{
   background:#fff;
   color:#1d1d1d;
-    font-size: 5px
+    font-size: 10px
 
 }
 }
