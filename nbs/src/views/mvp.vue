@@ -322,8 +322,9 @@ export default {
 }
 .mvp-radar {
   width: 100%;
-  height: 32%;
+  height: 35%;
   background: #666;
   margin-top: 2%;
 }
+
 </style>

@@ -1,7 +1,33 @@
 <template>
   <div style="position: relative;width:100%;height:calc(100vh - 76px);padding:5%">
     <div style="position: relative;width:100%;height:100%">
-      <v-dialog v-model="dialog" width="100%">
+      
+      <div class="map-now align-items-center" style="height:100%;width:100%;padding-right:10%">
+        <ve-map
+          height="100%"
+          width="100%"
+          :visualMap="visualMap"
+          :events="{ click: clickHandler.bind(this, 1),mouseover:test.bind(this,1) }"
+          :tooltip="tooltip"
+          :data="chartData"
+          :settings="chartSettings"
+          :legend="legend"
+        ></ve-map>
+      </div>
+      <div class="map-rwd align-items-center" style="height:100%;width:100%;padding-right:10%">
+        <ve-map
+          height="100%"
+          width="100%"
+          :visualMap="visualMap"
+          :events="{ click: clickHandler.bind(this, 1),mouseover:test.bind(this,1) }"
+          :tooltip="tooltips"
+          :data="chartData"
+          :settings="chartSettings"
+          :legend="legend"
+        ></ve-map>
+      </div>
+    </div>
+    <v-dialog v-model="dialog" width="100%">
         <v-card>
           <div
             style="overflow:auto;position: relative;max-height:100%;widht:100%;background:#f4f4f4;box-shadow:5px 5px 10px  rgb(29, 29, 29,.1);z-index:11;padding:5%"
@@ -37,31 +63,6 @@
           </div>
         </v-card>
       </v-dialog>
-      <div class="map-now align-items-center" style="height:100%;width:100%;padding-right:10%">
-        <ve-map
-          height="100%"
-          width="100%"
-          :visualMap="visualMap"
-          :events="{ click: clickHandler.bind(this, 1),mouseover:test.bind(this,1) }"
-          :tooltip="tooltip"
-          :data="chartData"
-          :settings="chartSettings"
-          :legend="legend"
-        ></ve-map>
-      </div>
-      <div class="map-rwd align-items-center" style="height:100%;width:100%;padding-right:10%">
-        <ve-map
-          height="100%"
-          width="100%"
-          :visualMap="visualMap"
-          :events="{ click: clickHandler.bind(this, 1),mouseover:test.bind(this,1) }"
-          :tooltip="tooltips"
-          :data="chartData"
-          :settings="chartSettings"
-          :legend="legend"
-        ></ve-map>
-      </div>
-    </div>
     <v-dialog v-model="dialogTeam" width="100%" v-if="showTeam">
       <v-card>
         <!-- <div id="testttttt"  v-if="showTeam" :class={teamIn:showTeam}> -->
@@ -205,28 +206,32 @@ export default {
   },
   watch: {
             dialogTeam (val) {
-            !val && setTimeout(this.setShowTeamF,250)
+            !val && setTimeout(this.setShowTeamF,250) 
             }
         },
   mounted() {},
   methods: {
     parentClose() {
       this.dialogTeam = false;
+      // this.showTeam = true;
+      // setTimeout(this.setDialogT,50)
     },
     close() {
       this.dialog = false;
     },
     setTeam(index) {
       this.teamIndex = index;
+      this.dialog = false;
       this.showTeam = true;
       setTimeout(this.setDialogT,50)
-      this.dialog = false;
+      
     },
     setDialogT() {
       this.dialogTeam = true;
     },
     setShowTeamF(){
       this.showTeam =false
+      this.dialog = true;
     }
   }
 };

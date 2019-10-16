@@ -1,16 +1,14 @@
 
 <template>
-      <div class="compare" style="padding:0 2%"> 
-        <div style="display:flex;justify-content: center;align-items:center;height:5%;font-size:20px;font-weight:800;filter: drop-shadow(3px 3px 3px rgba(0, 0, 0,.5));">
+      <div class="compare" style="padding:2%"> 
+        <div style="display:flex;justify-content: center;align-items:center;height:10%;font-size:20px;font-weight:800;filter: drop-shadow(3px 3px 3px rgba(0, 0, 0,.5));">
           2018-2019 MVP Predict
         </div>
         <swiper :options="swiperOption" style="height:80%;width:100%">
-
           <swiper-slide v-for="(i, index) in player" :key="index"><mvp :player="playerData[i]" :index="index"/></swiper-slide>
-
           <div class="swiper-pagination " slot="pagination"></div>
           <div class="swiper-button-prev swiper-button-blue" slot="button-prev" ></div>
-       <div class="swiper-button-next swiper-button-blue" slot="button-next"></div>
+          <div class="swiper-button-next swiper-button-blue" slot="button-next"></div>
         </swiper>
       </div>
 </template>

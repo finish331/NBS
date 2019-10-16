@@ -40,10 +40,12 @@
                         <div v-for="(j, index1) in teamData" :key="index1">
                             <img   :src=j.pic_url alt="" style="width:50%;position: absolute;top:0px;left:0;opacity: 1;" v-if="i.team==j.name">
                         </div>
-                        <img  :src=i.pic_url alt="" style="width:100%;position: absolute;bottom:3px;left:0">
+                        <img  :src=i.pic_url alt="" style="height:100%;max-width:100%;position: absolute;bottom:3px;left:0">
                     </div>
                     <div  @click="setPlayer(index)" style="cursor: pointer;">
-                        <span style="font-size:24px;text-shadow:0 0 1px #1d1d1d;font-weight:700">#{{i.number}}</span>{{i.name}}
+                        <span style="font-size:24px;text-shadow:0 0 1px #1d1d1d;font-weight:700">#{{i.number}}</span>
+                        &nbsp
+                        {{i.name}}
                     </div>
                 </div>
             </div>
@@ -136,7 +138,7 @@
     .player{
 
         margin-bottom: 40px;
-        height: 30%;
+        /* height: 30%; */
         width:100%;
     }
     .playerHomePage{
