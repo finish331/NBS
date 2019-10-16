@@ -43,8 +43,8 @@
                         <img  :src=i.pic_url alt="" style="height:100%;max-width:100%;position: absolute;bottom:3px;left:0">
                     </div>
                     <div  @click="setPlayer(index)" style="cursor: pointer;">
-                        <span style="font-size:24px;text-shadow:0 0 1px #1d1d1d;font-weight:700">#{{i.number}}</span>
-                        &nbsp
+                        <span style="font-size:24px;text-shadow:0 0 1px #1d1d1d;font-weight:700">#{{i.number}}&nbsp;</span>
+                        
                         {{i.name}}
                     </div>
                 </div>

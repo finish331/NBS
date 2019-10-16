@@ -291,7 +291,7 @@ export default {
 .mvp-player {
   position: relative;
   width: 100%;
-  height: 25%;
+  height: 20%;
   font-size: 20px;
   color: white;
   font-weight: 800;
@@ -322,7 +322,7 @@ export default {
 }
 .mvp-radar {
   width: 100%;
-  height: 35%;
+  height: 35.5%;
   background: #666;
   margin-top: 2%;
 }
