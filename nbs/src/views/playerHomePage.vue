@@ -1,9 +1,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <template>
     <div >
-        <div id="showPlayer" style="width: 100%;height:100%;z-index:9;position: absolute;background:#ffffff;" :class={playerIn:showPlayer} v-if="showPlayer">
-        <Player  :player="playerData[playerIndex]" @close="parentClose"/>
-    </div>
+      
     <div class="playerHomePage px-5" >
         <div id="searchPlayer" class="col-sm-12 col-md-4 " style="width: 100%;height: 100%;padding: 2%;">
             <!-- 搜尋欄 -->
@@ -42,15 +40,24 @@
                         <div v-for="(j, index1) in teamData" :key="index1">
                             <img   :src=j.pic_url alt="" style="width:50%;position: absolute;top:0px;left:0;opacity: 1;" v-if="i.team==j.name">
                         </div>
-                        <img  :src=i.pic_url alt="" style="width:100%;position: absolute;bottom:3px;left:0">
+                        <img  :src=i.pic_url alt="" style="height:100%;max-width:100%;position: absolute;bottom:3px;left:0">
                     </div>
                     <div  @click="setPlayer(index)" style="cursor: pointer;">
-                        <span style="font-size:24px;text-shadow:0 0 1px #1d1d1d;font-weight:700">#{{i.number}}</span>{{i.name}}
+                        <span style="font-size:24px;text-shadow:0 0 1px #1d1d1d;font-weight:700">#{{i.number}}&nbsp;</span>
+                        
+                        {{i.name}}
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <template>
+            <v-dialog v-model="dialog" width="100%" v-if="showPlayer" style="z-index:999">
+                <v-card>
+                    <Player  :player="playerData[playerIndex]" @close="parentClose"/>
+                </v-card>
+      </v-dialog>
+</template>
     </div>
 </template>
 
@@ -73,16 +80,21 @@
             return {
                 playerIndex:0,
                 showPlayer:false,
-                notShowPlayer:true,
                 teamData:teamData,
                 playerData:playerData,
-                playerName:""
+                playerName:"",
+                dialog: false,
+            }
+        },
+        watch: {
+            dialog (val) {
+            !val && setTimeout(this.setShowPlayerF,250)
             }
         },
         mounted: function(){
-            if(window.innerWidth <=960){
-                document.getElementById('showPlayer').style.display='none';
-            }
+            // if(window.innerWidth <=960){
+            //     document.getElementById('showPlayer').style.display='none';
+            // }
         },
         methods:{
             test(){
@@ -99,28 +111,34 @@
             setPlayer(index){
                 this.playerIndex=index
                 this.showPlayer=true
-                this.notShowPlayer=false
+                setTimeout(this.setDialogT,50)
                 // console.log(this.playerIndex)
             },
             parentClose(state){
-              var temp = document.getElementById('showPlayer')
-              temp.classList.add('playerOut')
-              setTimeout(this.setPlayerShow, 500)
+                this.dialog=false
             },
-            setPlayerShow(){
+            setDialogT(){
+              this.dialog=true
+            },
+            setShowPlayerF(){
               this.showPlayer=false
             }
         }
     }
 </script>
 <style >
+    @media (max-width: 960px){
+        #showPlayer{
+            display: none;
+        }
+    }
     .hover:hover{
         color: rgb(0, 132, 255);
     }
     .player{
 
         margin-bottom: 40px;
-        height: 30%;
+        /* height: 30%; */
         width:100%;
     }
     .playerHomePage{
@@ -129,6 +147,7 @@
         display: flex;
         height: calc(100vh - 76px);
         width: 100%;
+        padding: 2% 0;
         background-color: rgb(250, 250, 250);
     }
     .show-player{

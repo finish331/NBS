@@ -1,6 +1,6 @@
 <template>
 
-	<div id="app" class="px-5">
+	<div id="" style="padding-top:2px">
 		<!-- 球員基本資料區 -->
 		<div class="my-1 mx-2 text-white global-bg-gray">
 			<div class="container-fluid">
@@ -57,8 +57,10 @@
 		<!-- 球員進階數據 -->
 		<div class="container my-3">
 			<div class="row no-gutters">
-				<div class="col-12 col-md-4 mb-3">
+				<div class="col-12 col-md-5 mb-3" style="padding:0 3px" @mouseover="over()" @mouseleave="leave()"> 
 					<ve-radar
+						
+						style="padding:0"
 						id="radarChartDiv"
 						:radar="radars"
 						:tooltip="tooltip"
@@ -66,11 +68,11 @@
 						:data="chartData"
 						:settings="radarSettings"
 						height="300px"
-						width="auto"
+						width="100%"
 						class="mr-1 global-bg-gray"
 					></ve-radar>
 				</div>
-				<div class="col-12 col-md-8 mb-3" v-if="pointsData">
+				<div class="col-12 col-md-7 mb-3" v-if="pointsData" style="padding:0 3px" >
 					<ve-line
 						id="lineChartDiv"
 						height="300px"
@@ -128,6 +130,20 @@
 					rows: [
 
 					]
+				},
+				radars: {
+					indicator: [
+					{ name: "PTS", max: 5},
+					{ name: "TRB", max: 5 },
+					{ name: "AST", max: 5 },
+					{ name: "BLK", max: 5 },
+					{ name: "STL", max: 5 }
+					],
+					center: ['50%', '55%'],
+					name: {
+					color: "white",
+					fontSize: 12
+					}
 				},
 				chartData: {
 					columns: ["seasons", "PTS", "TRB", "AST", "BLK", "STL"],
@@ -283,6 +299,8 @@
 
 				this.chartData.rows[0].seasons=this.player.data['Season'][Object.keys(this.player.data['Season']).length-2]
 				this.level(this.player.data.PTS[Object.keys(this.player.data.PTS).length-2],this.player.data.TRB[Object.keys(this.player.data.TRB).length-2],this.player.data.AST[Object.keys(this.player.data.AST).length-2],this.player.data.BLK[Object.keys(this.player.data.BLK).length-2],this.player.data.STL[Object.keys(this.player.data.STL).length-2])
+				
+				
 			}
 			else if(this.player['college_data']!=undefined){
 				for(i=0;i<Object.keys(this.player.college_data.PTS).length;i++){
@@ -365,6 +383,21 @@
 
 		},
 		methods:{
+			leave(){
+				this.radars.indicator[0].name='PTS'
+				this.radars.indicator[1].name='TRB'
+				this.radars.indicator[2].name='AST'
+				this.radars.indicator[3].name='BLK'
+				this.radars.indicator[4].name='STL'
+			},
+			over(){
+				this.radars.indicator[0].name='得分'
+				this.radars.indicator[1].name='籃板'
+				this.radars.indicator[2].name='助攻'
+				this.radars.indicator[3].name='火鍋'
+				this.radars.indicator[4].name='抄截'
+				
+			},
 			level(PTS,TRB,AST,BLK,STL){
 				if(PTS==0){
 					this.chartData.rows[0].PTS=0

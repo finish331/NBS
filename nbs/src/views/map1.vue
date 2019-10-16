@@ -264,8 +264,8 @@
       </template>
 
     </div>
-    <div style="display:flex;height:100%;width:100%;">
-      <ve-histogram width="100%" height="100%" :textStyle="textStyles" :extend="series" :data="TeamData" :legend="legend">
+    <div style="display:flex;height:100%;width:100%;padding:2%">
+      <ve-histogram :xAxis="xAxis" style="background:#666666" width="100%" height="100%" :textStyle="textStyles" :extend="series"  :data="TeamData" :legend="legend">
       </ve-histogram>
     </div>
   </div>
@@ -297,7 +297,7 @@
 .map1 {
   width: 100%;
   height: calc(100vh - 76px);
-  padding: 3%;
+  padding: 1%;
 
 }
 
@@ -307,7 +307,7 @@
   height: 100%;
   background-color: rgb(253, 253, 253);
   /* border-radius:2%;  */
-  box-shadow: 10px 10px 20px rgba(0, 0, 0, .1);
+  /* box-shadow: 10px 10px 20px rgba(0, 0, 0, .1); */
 
 }
 
@@ -376,6 +376,7 @@
   }
 }
 </style>
+
 <script>
 import player from "@/assets/json/player.json";
 import {

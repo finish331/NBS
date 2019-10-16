@@ -12,11 +12,10 @@
         {{player.name}}
         <v-icon style="color:yellow" v-if="index==0">emoji_events</v-icon>
         <v-icon style="color:#d6d6d6" v-if="index==1">emoji_events</v-icon>
-
         <v-icon style="color:#c58354" v-if="index==2">emoji_events</v-icon>
 
       </div>
-      <div class="mvp-radar">
+      <div class="mvp-radar" @mouseover="over()" @mouseleave="leave()">
         <ve-radar
           :radar="radars"
           :tooltip="tooltip"
@@ -91,6 +90,20 @@ export default {
           }
         ]
       },
+      radars: {
+					indicator: [
+					{ name: "PTS", max: 5},
+					{ name: "TRB", max: 5 },
+					{ name: "AST", max: 5 },
+					{ name: "BLK", max: 5 },
+					{ name: "STL", max: 5 }
+					],
+					center: ['50%', '55%'],
+					name: {
+					color: "white",
+					fontSize: 12
+					}
+				},
       teamData: teamData
     };
   },
@@ -151,6 +164,21 @@ export default {
     // console.log(this.playerData);
   },
   methods: {
+    leave(){
+				this.radars.indicator[0].name='PTS'
+				this.radars.indicator[1].name='TRB'
+				this.radars.indicator[2].name='AST'
+				this.radars.indicator[3].name='BLK'
+				this.radars.indicator[4].name='STL'
+			},
+			over(){
+				this.radars.indicator[0].name='得分'
+				this.radars.indicator[1].name='籃板'
+				this.radars.indicator[2].name='助攻'
+				this.radars.indicator[3].name='火鍋'
+				this.radars.indicator[4].name='抄截'
+				
+			},
     level(PTS, TRB, AST, BLK, STL) {
       if(PTS==0){
 					this.chartData.rows[0].PTS=0
@@ -263,7 +291,7 @@ export default {
 .mvp-player {
   position: relative;
   width: 100%;
-  height: 25%;
+  height: 20%;
   font-size: 20px;
   color: white;
   font-weight: 800;
@@ -277,17 +305,26 @@ export default {
   top: 0;
 }
 .mvp-name {
+  display: flex;
   width: 100%;
   height: 5%;
   background: #1d1d1d;
   font-size: 20px;
   color: white;
   font-weight: 800;
+  justify-content: center;
+  align-items: center
+}
+@media (max-width:440px){
+  .mvp-name {
+  font-size: 14px;
+  }
 }
 .mvp-radar {
   width: 100%;
-  height: 30%;
+  height: 35.5%;
   background: #666;
-  margin-top: 5%;
+  margin-top: 2%;
 }
+
 </style>
