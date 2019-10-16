@@ -4,8 +4,9 @@ import TestView from './components/HelloWorld.vue'
 import Home from './views/Home.vue'
 import Player from './views/Player.vue'
 import Leader from './views/Leader.vue'
+import Mvp from './views/mvp.vue'
 import Champion from './views/Champion.vue'
-import CompareLeader from './views/ComparePlayer.vue'
+import ComparePlayer from './views/ComparePlayer.vue'
 import Map from './views/map.vue'
 import Map1 from './views/map1.vue'
 import PlayerHomePage from './views/playerHomePage.vue'
@@ -17,6 +18,11 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/mvp',
+      name: 'mvp',
+      component: Mvp
     },
     {
       path: '/test',
@@ -49,7 +55,7 @@ export default new Router({
     {
       path: '/compare',
       name: 'Compare',
-      component: CompareLeader
+      component: ComparePlayer
     },
     {
       path: '/map',

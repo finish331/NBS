@@ -32,20 +32,19 @@ class MergePlayer:
         for col in self.columns:
             self.result[col] = self.result[col].astype('float64')
         self.result['Age'] = self.result['Age'].astype('int64')
-        # print(self.result.head())
-        # print(self.result.isnull().sum())
-        # print(self.result.dtypes)
 
-    def MergeMVP(self):
+    def MergeMVP(self, year):
         mvp_columns = self.player1.columns
         mvp_columns = list(mvp_columns)
         mvp_columns.append('Share')
+        mvp_columns.append('Season')
         # print(mvp_columns)
         for mvp_index, mvp_row in self.mvp.iterrows():
             for player_index, player_row in self.player1.iterrows():
+                new_row = player_row
                 if mvp_row['Player'] == player_row['Player']:
-                    new_row = player_row
                     new_row['Share'] = mvp_row['Share']
+                    new_row['Season'] = year
                     self.MVPresult.append(new_row.values)
                     break
         self.result = self.result.append(pd.DataFrame(self.MVPresult, columns=mvp_columns))
@@ -53,18 +52,18 @@ class MergePlayer:
 
     def process(self, type):
         if type == 'player':
-            for year in range(2009, 2020):
+            for year in range(1947, 2020):
                 # 合併球員資料
-                self.player1 = self.openFile('AllPlayer/all_player' + str(year))
+                self.player1 = self.openFile('AllPlayer/per_game/all_player' + str(year))
                 self.player2 = self.openFile('AllPlayer/old/all_player' + str(year))
                 self.MergeData()
                 self.save_to_json('AllPlayer/final/all_player' + str(year), self.result)
         else:
-            for year in range(2010, 2020):
+            for year in range(1956, 2020):
                 # 合併MVP資料
                 self.player1 = self.openFile('AllPlayer/final/all_player' + str(year - 1))
                 self.mvp = self.openFile('MVP/MVP_' + str(year))
-                self.MergeMVP()
+                self.MergeMVP(year)
                 self.save_to_json('MVP/final/MVP_' + str(year), self.result)
 
 if __name__ == '__main__':

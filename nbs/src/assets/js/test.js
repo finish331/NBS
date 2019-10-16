@@ -1,13 +1,21 @@
 export const barChart = {
     textStyles: {
-        color: "#1d1d1d",
-        fontSize: 14
+        color: "#fff",
+        fontSize: 10,
+        fontWeight: 800
+
       },
-      
+      xAxis:{
+        data:['Mp','FG','FGA','3P','3PA','2P','2PA','FT','FTA','ORB','DRB','TRB','AST','STL','BLK','TOV','PF','PTS'],
+        axisLabel:{
+          fontSize:10
+        } 
+      },
       series: {
         label: { show: true, position: "top" },
         itemStyle:{
-            color: '#0067b1'
+            color: '#0fffe9',
+            barBorderRadius: [3, 3, 0, 0]
         }
       }
 }

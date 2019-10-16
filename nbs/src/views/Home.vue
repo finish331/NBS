@@ -10,7 +10,7 @@
             <div style="display:flex">B<div class="title-span"><span>asketball</span></div><br></div>
             <div style="display:flex">S<div class="title-span"><span>cout</span></div></div>
           </div>
-          <a href="'/player'"><div class="content-bnt">
+          <a href="/#/playerHomePage"><div class="content-bnt">
             →
 
           </div></a>
@@ -62,7 +62,18 @@
     bottom: 0;
     animation: contenr-title-in .5s .25s 1 ease-in backwards;
   }
+  .contenr-title span{
+    font-size: 90px;
+  }
+  @media (max-width: 620px){
+    .contenr-title{
+    font-size: 70px;
 
+    }
+    .contenr-title span{
+      font-size: 50px;
+    }
+  }
   @keyframes contenr-title-in {
     from {
       opacity: 0;
@@ -72,9 +83,7 @@
       opacity: .75;
     }
   }
-  .contenr-title span{
-    font-size: 90px;
-  }
+  
   .title-span{
     animation: title-in .75s .75s 1 ease-in backwards;
   }
@@ -91,12 +100,13 @@
     position: absolute;
     padding: 0 3%;
     font-size: 40px;
-    border: 2px solid rgb(54, 91, 255);
+    border: 3px solid rgb(255, 255, 255);
     color: white;
+    font-weight: 900;
     right:2%;
     bottom: 2%;
     opacity: .75;
-    border-radius: 5px;
+    border-radius: 10px;
     transition:all .25s;
   }
   .content-bnt:hover{
