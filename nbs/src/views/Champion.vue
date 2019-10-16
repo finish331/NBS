@@ -102,18 +102,18 @@
       <!-- 球隊LOGO -->
       <div id="left-team-logo" style="height:30%" @click="clickTeam('left')" ></div>
 
-      <div style="display:flex;width:100%;height:20%;align-items:center">
+      <div style="display:flex;width:100%;height:20%;align-items:center;padding:0 5%">
         <div class="col player-btn" style="height:100%;padding:0;" v-for="(i, index) in leftTeam.player" :key="index">
-          <div @click="clickPlayer(index,0)" style="height:100%;background-color: #272727;display:flex; align-items:center " v-if=i.state>
+          <div @click="clickPlayer(index,0)" style="height:100%;width:100%;background-color: #272727;display:flex; align-items:center " v-if=i.state>
             <div class="playerName" >
-              <img :src=i.pic_url width="100%">
-              {{i.name}}
+              <div style="height:60%;display:flex; align-items:flex-end"><img :src=i.pic_url class="img-player"></div>
+              <div>{{i.name}}</div>
             </div>
           </div>
           <div @click="clickPlayer(index,0)" style="height:100%;display:flex; align-items:center " v-else>
-            <div class="playerName">
-              <img :src=i.pic_url width="100%">
-              {{i.name}}
+            <div class="playerName" >
+              <div style="height:60%;display:flex; align-items:flex-end"><img :src=i.pic_url class="img-player"></div>
+              <div>{{i.name}}</div>
             </div>
           </div>
         </div>
@@ -121,13 +121,13 @@
       <!-- 圖表 -->
       <div style="width:100%;height:45%">
         <!-- 球隊圖表 -->
-        <div style="width:100%;height:100%" v-if="leftTeam.isTeam">
-          <ve-bar height="100%" :xAxis="xAxis" :legend="radarLegend" :textStyle="textStyles" :data="leftTeamDate" :extend="leftseries" >
+        <div style="width:100%;height:100%;" v-if="leftTeam.isTeam">
+          <ve-bar :yAxis="yAxis" height="100%"  :xAxis="xAxis" :legend="radarLegend" :textStyle="textStyles" :data="leftTeamDate" :extend="leftseries" >
           </ve-bar>
         </div>
         <!-- 球員圖表 -->
         <div style="width:100%;height:100%" v-else>
-          <ve-bar height="100%" :xAxis="xAxis" :textStyle="textStyles" :data="leftPlayerData" :extend="leftseries" :legend="radarLegend">
+          <ve-bar :yAxis="yAxis" height="100%"  :xAxis="xAxis" :textStyle="textStyles" :data="leftPlayerData" :extend="leftseries" :legend="radarLegend">
                 </ve-bar>
         </div>
 
@@ -147,18 +147,18 @@
       <!-- 球隊LOGO -->
       <div id="right-team-logo" style="height:30%" @click="clickTeam('right')" ></div>
 
-      <div style="display:flex;width:100%;height:20%">
+      <div style="display:flex;width:100%;height:20%;padding:0 5%">
         <div class="col player-btn" style="height:100%;padding:0;" v-for="(i, index) in rightTeam.player" :key="index">
           <div @click="clickPlayer(index,1)" style="height:100%;background-color: #272727;display:flex; align-items:center;justify-content: center " v-if=i.state>
-            <div class="playerName">
-              <img :src=i.pic_url width="100%">
-              {{i.name}}
+            <div class="playerName" >
+                <div style="height:60%;display:flex; align-items:flex-end"><img :src=i.pic_url width="100%" class="img-player"></div>
+                <div>{{i.name}}</div>
             </div>
           </div>
           <div @click="clickPlayer(index,1)" style="height:100%;display:flex; align-items:center; " v-else>
-            <div class="playerName">
-              <img :src=i.pic_url width="100%">
-              {{i.name}}
+            <div class="playerName" >
+                <div style="height:60%;display:flex; align-items:flex-end"><img :src=i.pic_url class="img-player" ></div>
+                <div>{{i.name}}</div>
             </div>
           </div>
         </div>
@@ -166,13 +166,13 @@
 
       <div style="width:100%;height:45%">
         <!-- 球隊圖表 -->
-        <div style="width:100%;height:100%" v-if="rightTeam.isTeam">
-          <ve-bar height="100%"  :textStyle="textStyles" :legend="radarLegend"  :data="rightTeamDate" :extend="rightseries">
+        <div style="width:100%;height:100%;" v-if="rightTeam.isTeam">
+          <ve-bar height="100%"  :textStyle="textStyles" :legend="radarLegend" :yAxis="yAxiss" :data="rightTeamDate" :settings="rightseries">
           </ve-bar>
         </div>
         <!-- 球員圖表 -->
         <div style="width:100%;height:100%" v-else>
-          <ve-bar height="100%"  :textStyle="textStyles" :legend="radarLegend"  :data="rightPlayerData" :extend="rightseries">
+          <ve-bar height="100%"  :textStyle="textStyles" :legend="radarLegend" :yAxis="yAxiss" :data="rightPlayerData" :settings="rightseries">
           </ve-bar>
         </div>
       </div>
@@ -191,79 +191,18 @@ export default {
       playerData:playerData,
       teamData:teamData,
       ...lineChart,
+      yAxiss: [
+        {
+            offset:4,
+            data: ['抄截','火鍋','助攻','籃板','得分'],
+        }],
+        yAxis: [
+        {
+          offset:5,
+          position: 'right',
+            data: ['STL','BLK','AST','TRB','PTS'],
+        }],
       leftTeamDate: {
-        columns: ['type', 'value'],
-        rows: [{
-            'type': '',
-            'value': 3.1
-          },
-          {
-            'type': '',
-            'value': 3
-          },
-          {
-            'type': '',
-            'value': 5.3
-          },
-          {
-            'type': '',
-            'value': 5
-          },
-          {
-            'type': '',
-            'value': 1
-          }
-        ]
-      },
-      rightTeamDate: {
-        columns: ['type', 'value'],
-        rows: [{
-            'type': '',
-            'value': 3.1
-          },
-          {
-            'type': '',
-            'value': 3
-          },
-          {
-            'type': '',
-            'value': 5.3
-          },
-          {
-            'type': '',
-            'value': 5
-          },
-          {
-            'type': '',
-            'value': 1
-          }
-        ]
-      },
-      leftPlayerData: {
-        columns: ['type', 'value'],
-        rows: [{
-            'type': '',
-            'value': 3.1
-          },
-          {
-            'type': '',
-            'value': 3
-          },
-          {
-            'type': '',
-            'value': 5.3
-          },
-          {
-            'type': '',
-            'value': 5
-          },
-          {
-            'type': '',
-            'value': 1
-          }
-        ]
-      },
-      rightPlayerData: {
         columns: ['type', 'value'],
         rows: [{
             'type': 'STL',
@@ -283,6 +222,78 @@ export default {
           },
           {
             'type': 'PTS',
+            'value': 1
+          }
+        ]
+      },
+      rightTeamDate: {
+        columns: ['type', 'value'],
+        rows: [{
+            'type': '抄截',
+            'value': 3.1
+          },
+          {
+            'type': '火鍋',
+            'value': 3
+          },
+          {
+            'type': '助攻',
+            'value': 5.3
+          },
+          {
+            'type': '籃板',
+            'value': 5
+          },
+          {
+            'type': '得分',
+            'value': 1
+          }
+        ]
+      },
+      leftPlayerData: {
+        columns: ['type', 'value'],
+        rows: [{
+            'type': 'STL',
+            'value': 3.1
+          },
+          {
+            'type': 'BLK',
+            'value': 3
+          },
+          {
+            'type': 'AST',
+            'value': 5.3
+          },
+          {
+            'type': 'TRB',
+            'value': 5
+          },
+          {
+            'type': 'PTS',
+            'value': 1
+          }
+        ]
+      },
+      rightPlayerData: {
+        columns: ['type', 'value'],
+        rows: [{
+            'type': '抄截',
+            'value': 3.1
+          },
+          {
+            'type': '火鍋',
+            'value': 3
+          },
+          {
+            'type': '助攻',
+            'value': 5.3
+          },
+          {
+            'type': '籃板',
+            'value': 5
+          },
+          {
+            'type': '得分',
             'value': 1
           }
         ]
@@ -321,7 +332,6 @@ export default {
           },
           {
             pic_url:'',
-
             state: false,
             name: "player3",
             PTS: 3.1,
@@ -332,7 +342,6 @@ export default {
           },
           {
             pic_url:'',
-
             state: false,
             name: "player4",
             PTS: 8.1,
@@ -619,7 +628,12 @@ export default {
 };
 </script>
 <style>
+.img-player{
+  width: 100%;
+  max-height: 100%;
+}
 #left-team-logo{
+  
    cursor: pointer;
    width:100% ;
    height:40%;
@@ -691,12 +705,14 @@ export default {
   color: white;
   background-color: #1d1d1d;
   /* border: 12px solid white; */
+  padding: 2% 0;
   height: 100%
 }
 
 .right-team {
   color: white;
   background-color: #1d1d1d;
+  padding: 2% 0;
   /* border: 12px solid white; */
   height: 100%
 }
@@ -719,9 +735,15 @@ export default {
     display: none;
   }
 }
+.playerName{
+  padding: 3%;
+  font-size: 10px;
+  height:100%;
+  word-break: break-all;
+}
 @media (max-width:430px){
   .playerName{
-    font-size: 0.01px
+    font-size: 1px
   }
   #selectLeftTeam{
   background:#fff;
