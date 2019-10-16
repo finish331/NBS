@@ -24,7 +24,8 @@
     <swiper
       :options="swiperOption"
       style="height:76%;width:100%"
-      :class="{MVPIn: showIn,MVPOut : showOut}"
+      :class="{MVPIn: showIn,MVPOut : showOut} "
+      v-if="showIn"
     >
       <swiper-slide v-for="(i, index) in player" :key="index">
         <mvp :player="playerData[i]" :index="index" v-if="showIn" />
@@ -84,25 +85,25 @@ export default {
       this.nowYear = document.getElementById("selectMVPYear").value;
       this.setPlayer();
         this.showOut=true
-        setTimeout(this.setInF, 50);
+        setTimeout(this.setInF, 500);
         // this.showIn = false;
-        setTimeout(this.setInT, 50);
+        setTimeout(this.setInT, 500);
     },
     change() {
       if (this.content == "預測排名") {
         this.content = "實際排名";
         this.setPlayer();
         this.showOut=true
-        setTimeout(this.setInF, 50);
+        setTimeout(this.setInF, 500);
         // this.showIn = false;
-        setTimeout(this.setInT, 50);
+        setTimeout(this.setInT, 500);
       } else {
         this.content = "預測排名";
         this.setPlayer();
         this.showOut=true
-        setTimeout(this.setInF, 50);
+        setTimeout(this.setInF, 500);
         // this.showIn = false;
-        setTimeout(this.setInT, 50);
+        setTimeout(this.setInT, 500);
       }
     },
     setInT() {
