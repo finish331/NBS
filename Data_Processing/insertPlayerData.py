@@ -20,6 +20,7 @@ template = [
     'FGA',
     'FG%',
     '3P',
+    '3P%'
     '3PA',
     '2P',
     '2PA',
@@ -59,7 +60,7 @@ dataJson = {}
 playerCount = 0
 attributesIndex = []
 
-with open("../python/JSON/all_players.json", 'r') as load_f:
+with open("../python/JSON/all_players.json", 'r', encoding="utf-8") as load_f:
     load_dict = json.load(load_f)
 
 # 將要取得的屬性跟json檔map在一起
