@@ -89,7 +89,7 @@
     <div class="col-sm-12 col-md-6 left-team">
       <!-- 球隊下拉選單 -->
       <div style="height:5%">
-        <form >
+        <form style="height:100%">
           <select style="background:#2f2f2f;color:white;padding:0 12px" name="selectLeftTeam" id="selectLeftTeam" @change="print_value(0)">
             <option v-for="(i, index) in teamData" :key="index" :value=index>
               {{i.name}}
@@ -107,13 +107,13 @@
           <div @click="clickPlayer(index,0)" style="height:100%;width:100%;background-color: #272727;display:flex; align-items:center " v-if=i.state>
             <div class="playerName" >
               <div style="height:60%;display:flex; align-items:flex-end"><img :src=i.pic_url class="img-player"></div>
-              <div>{{i.name}}</div>
+              <div>{{i.name.split(" ")[0]}}<br>{{i.name.split(" ")[1]}}</div>
             </div>
           </div>
           <div @click="clickPlayer(index,0)" style="height:100%;display:flex; align-items:center " v-else>
             <div class="playerName" >
               <div style="height:60%;display:flex; align-items:flex-end"><img :src=i.pic_url class="img-player"></div>
-              <div>{{i.name}}</div>
+              <div>{{i.name.split(" ")[0]}}<br>{{i.name.split(" ")[1]}}</div>
             </div>
           </div>
         </div>
@@ -137,7 +137,7 @@
     <div class="col-sm-12 col-md-6 right-team">
       <!-- 球隊下拉選單 -->
       <div style="height:5%">
-        <form >
+        <form style="height:100%">
           <select style="background:#2f2f2f;
           color:white;padding:0 12px;" name="selectRightTeam" id="selectRightTeam" @change="print_value(1)">
             <option v-for="(i, index) in teamData" :key="index"  :value=index >{{i.name}}</option>
@@ -152,13 +152,13 @@
           <div @click="clickPlayer(index,1)" style="height:100%;background-color: #272727;display:flex; align-items:center;justify-content: center " v-if=i.state>
             <div class="playerName" >
                 <div style="height:60%;display:flex; align-items:flex-end"><img :src=i.pic_url width="100%" class="img-player"></div>
-                <div>{{i.name}}</div>
+                <div>{{i.name.split(" ")[0]}}<br>{{i.name.split(" ")[1]}}</div>
             </div>
           </div>
           <div @click="clickPlayer(index,1)" style="height:100%;display:flex; align-items:center; " v-else>
             <div class="playerName" >
                 <div style="height:60%;display:flex; align-items:flex-end"><img :src=i.pic_url class="img-player" ></div>
-                <div>{{i.name}}</div>
+                <div>{{i.name.split(" ")[0]}}<br>{{i.name.split(" ")[1]}}</div>
             </div>
           </div>
         </div>
@@ -655,11 +655,14 @@ export default {
 }
 #selectLeftTeam{
   background:#fff;
-  color:#1d1d1d
+  color:#1d1d1d;
+  height: 100%;
 }
 #selectRightTeam{
   background:#fff;
-  color:#1d1d1d
+  color:#1d1d1d;
+  height: 100%;
+
 }
 .champion {
   display: flex;
@@ -743,18 +746,18 @@ export default {
 }
 @media (max-width:430px){
   .playerName{
-    font-size: 1px
+    font-size: 5px
   }
   #selectLeftTeam{
   background:#fff;
   color:#1d1d1d;
-    font-size: 0.01px
+    font-size: 5px
 
 }
 #selectRightTeam{
   background:#fff;
   color:#1d1d1d;
-    font-size: 1px
+    font-size: 5px
 
 }
 }
