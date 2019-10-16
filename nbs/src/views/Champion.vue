@@ -746,7 +746,7 @@ export default {
 }
 @media (max-width:430px){
   .playerName{
-    font-size: 5px
+    font-size: 10px
   }
   #selectLeftTeam{
   background:#fff;
