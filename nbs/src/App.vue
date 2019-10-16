@@ -11,16 +11,16 @@
 				<b-navbar-nav>
 					<b-nav-item v-bind:to="'/playerHomePage'">Player</b-nav-item>
 				</b-navbar-nav>
-
+				<b-navbar-nav>
+					<b-nav-item v-bind:to="'/map'">Team</b-nav-item>
+				</b-navbar-nav>
 				<b-navbar-nav>
 					<b-nav-item v-bind:to="'/leader'">Leader</b-nav-item>
 				</b-navbar-nav>
 				<b-navbar-nav>
 					<b-nav-item v-bind:to="'/champion'">Champion</b-nav-item>
-</b-navbar-nav>
-				<b-navbar-nav>
-					<b-nav-item v-bind:to="'/map'">Team</b-nav-item>
 				</b-navbar-nav>
+				
 
 				<b-navbar-nav>
 					<b-nav-item v-bind:to="'/compare'">MVP Predict</b-nav-item>
