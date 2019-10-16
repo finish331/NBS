@@ -1,6 +1,6 @@
 <template>
-	<div style="position: relative;">
-    <div class="container page-height px-5" style="position: relative;">
+	<div style="position: relative;width:100%;height:calc(100vh - 76px);padding:5%">
+    <div style="position: relative;width:100%;height:100%">
       <div id="selectTeam" v-if=showSelectTeam :class={teamIn:showSelectTeam}>
         <div style="overflow:auto;position: relative;max-height:100%;widht:100%;background:#f4f4f4;box-shadow:5px 5px 10px  rgb(29, 29, 29,.1);z-index:11;padding:5%">
           <button @click="close" style="position: absolute;z-index:9999;top:5px;right:5px" ><v-icon style="font-size:30px">cancel</v-icon></button>
@@ -18,8 +18,8 @@
           </div>
         </div>
       </div>
-      <div class="row mh-100 vh-100 align-items-center" >
-        <ve-map class="col" :visualMap="visualMap" :events="{ click: clickHandler.bind(this, 1),mouseover:test.bind(this,1) }"  height="100%" width="100%" :tooltip="tooltip" :data="chartData" :settings="chartSettings" :legend="legend" :geo="geo"></ve-map>
+      <div class=" align-items-center" style="height:100%;width:100%;padding-right:10%" >
+        <ve-map height="100%" width="100%" :visualMap="visualMap" :events="{ click: clickHandler.bind(this, 1),mouseover:test.bind(this,1) }"   :tooltip="tooltip" :data="chartData" :settings="chartSettings" :legend="legend" ></ve-map>
 			</div>
 
 	</div>
@@ -55,6 +55,7 @@
           if(this.team[e.name]!=null){
             this.teamName=e.name
             this.showSelectTeam=true
+            this.tooltip.show=false
           }
         },
 				test(p,e){
@@ -129,6 +130,8 @@
             show: false
         },
         chartSettings: {
+          aspectScale:1.8,
+          zoom:1.25,
           mapOrigin: usMap,
           itemStyle: {
             normal:{
@@ -165,6 +168,7 @@
       },
       close(){
         var temp = document.getElementById('selectTeam')
+        this.tooltip.show=true
               temp.classList.add('teamOut')
               setTimeout(this.setTeamShow, 500)
 
