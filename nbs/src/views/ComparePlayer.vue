@@ -39,7 +39,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import mvp from "./mvp";
 import mvpData from "@/assets/json/pred_mvp_result.json";

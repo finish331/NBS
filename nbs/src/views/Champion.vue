@@ -214,13 +214,23 @@ export default {
   components: {},
   data() {
     return {
+      max:0,
       content: "預測排名",
       expectData:expectData,
+      xAxis: {
+      // show:false,
+      max:null,
+      inverse: true,
+      axisLabel:{
+        fontSize:10
+      } 
+    },
       xAxiss:[
         {
+          max:null,
           axisLabel:{
                 fontSize:10
-              }
+          }
         }
       ],
       playerData:playerData,
@@ -639,6 +649,42 @@ export default {
         document.getElementById('right-team-logo').style.backgroundImage = url
       }
     },
+    setMax(){
+      this.max=0
+      var i
+      if(this.leftTeam.isTeam==false){
+        for( i=0;i<5;i++){
+          if(Number(this.leftPlayerData.rows[i].value)>this.max){
+            this.max=Math.floor((Number(this.leftPlayerData.rows[i].value)+10)/10)*10
+          }
+        }
+      }
+      else{
+          for( i=0;i<5;i++){
+          if(Number(this.leftTeamDate.rows[i].value)>this.max){
+            this.max=Math.floor((Number(this.leftTeamDate.rows[i].value)+10)/10)*10
+          }
+        }
+      }
+      if(this.rightTeam.isTeam==false){
+        for( i=0;i<5;i++){
+          if(Number(this.rightPlayerData.rows[i].value)>this.max){
+            this.max=Math.floor((Number(this.rightPlayerData.rows[i].value)+10)/10)*10
+          }
+        }
+      }
+      else{
+          for( i=0;i<5;i++){
+          if(Number(this.rightTeamDate.rows[i].value)>this.max){
+            this.max=Math.floor((Number(this.rightTeamDate.rows[i].value)+10)/10)*10
+          }
+        }
+      }
+      this.xAxiss[0].max=this.max
+      this.xAxis.max=this.max
+      
+      
+    },
     clickPlayer(i, lr) {
       if (lr == 0) {
         this.leftTeam.isTeam = false;
@@ -648,6 +694,7 @@ export default {
         this.leftPlayerData.rows[2].value = this.leftTeam.player[i].AST;
         this.leftPlayerData.rows[3].value = this.leftTeam.player[i].TRB;
         this.leftPlayerData.rows[4].value = this.leftTeam.player[i].PTS;
+        
         for (var j = 0; j < this.leftTeam.player.length; j++) {
           if (i !== j) {
             this.leftTeam.player[j].state = false;
@@ -667,7 +714,7 @@ export default {
           }
         }
       }
-
+      this.setMax()
     },
     clickTeam(text) {
       if (text === 'left') {
@@ -677,7 +724,8 @@ export default {
         this.leftTeamDate.rows[2].value = this.leftTeam.team.sc;
         this.leftTeamDate.rows[3].value = this.leftTeam.team.bc
         this.leftTeamDate.rows[4].value = this.leftTeam.team.aa;
-
+        
+        
         for (var j = 0; j < this.leftTeam.player.length; j++) {
 
           this.leftTeam.player[j].state = false;
@@ -691,14 +739,13 @@ export default {
         this.rightTeamDate.rows[2].value = this.rightTeam.team.sc;
         this.rightTeamDate.rows[3].value = this.rightTeam.team.bc
         this.rightTeamDate.rows[4].value = this.rightTeam.team.aa;
-
         for (j = 0; j < this.rightTeam.player.length; j++) {
 
           this.rightTeam.player[j].state = false;
 
         }
       }
-
+this.setMax()
     }
   }
 };

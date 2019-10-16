@@ -18,13 +18,7 @@ export const lineChart = {
         barBorderRadius: [0, 3, 3, 0]
     }
   },
-  xAxis: {
-    // show:false,
-    inverse: true,
-    axisLabel:{
-      fontSize:10
-    } 
-  },
+  
   radarLegend:{
     show:false
   }
