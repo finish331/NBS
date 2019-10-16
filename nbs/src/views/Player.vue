@@ -57,8 +57,9 @@
 		<!-- 球員進階數據 -->
 		<div class="container my-3">
 			<div class="row no-gutters">
-				<div class="col-12 col-md-4 mb-3">
+				<div class="col-12 col-md-5 mb-3" style="padding:0 3px"> 
 					<ve-radar
+						style="padding:0"
 						id="radarChartDiv"
 						:radar="radars"
 						:tooltip="tooltip"
@@ -66,11 +67,11 @@
 						:data="chartData"
 						:settings="radarSettings"
 						height="300px"
-						width="auto"
+						width="100%"
 						class="mr-1 global-bg-gray"
 					></ve-radar>
 				</div>
-				<div class="col-12 col-md-8 mb-3" v-if="pointsData">
+				<div class="col-12 col-md-7 mb-3" v-if="pointsData" style="padding:0 3px">
 					<ve-line
 						id="lineChartDiv"
 						height="300px"
