@@ -651,8 +651,10 @@ export default {
     },
     setMax(){
       this.max=0
+      var windowWidth =window.innerWidth;
       var i
-      if(this.leftTeam.isTeam==false){
+      if(windowWidth>=960){
+        if(this.leftTeam.isTeam==false){
         for( i=0;i<5;i++){
           if(Number(this.leftPlayerData.rows[i].value)>this.max){
             this.max=Math.floor((Number(this.leftPlayerData.rows[i].value)+10)/10)*10
@@ -680,6 +682,25 @@ export default {
           }
         }
       }
+      }
+      else{
+        if(this.rightTeam.isTeam==false){
+        for( i=0;i<5;i++){
+          if(Number(this.rightPlayerData.rows[i].value)>this.max){
+            this.max=Math.floor((Number(this.rightPlayerData.rows[i].value)+10)/10)*10
+          }
+        }
+      }
+      else{
+          for( i=0;i<5;i++){
+          if(Number(this.rightTeamDate.rows[i].value)>this.max){
+            this.max=Math.floor((Number(this.rightTeamDate.rows[i].value)+10)/10)*10
+          }
+        }
+      }
+      }
+      
+      
       this.xAxiss[0].max=this.max
       this.xAxis.max=this.max
       
