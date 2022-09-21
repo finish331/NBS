@@ -30,7 +30,7 @@
     "vue-firestore": "^0.3.22",
     "vue-loading-overlay": "^3.2.0",
     "vue-router": "^3.0.3",
-    "vuetify": "^2.0.1",
+    "vuetify": "^2.6.10",
     "vuex": "^3.1.1"
   },
   "devDependencies": {
